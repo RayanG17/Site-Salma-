@@ -457,5 +457,22 @@ function launchConfetti(count=50){
   }
 }
 </script>
+<audio id="bgMusic" src="musique.mp3" loop></audio>
+
+<button id="musicBtn" onclick="toggleMusic()" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#ff8fab;border:none;border-radius:50%;width:52px;height:52px;font-size:24px;cursor:pointer;box-shadow:0 4px 16px #ff8fab66;">🎵</button>
+
+<script>
+const music=document.getElementById('bgMusic');
+document.addEventListener('click',function s(){
+  music.volume=0.5;music.play();
+  document.removeEventListener('click',s);
+},{once:true});
+function toggleMusic(){
+  if(music.paused){music.play();document.getElementById('musicBtn').textContent='🎵';}
+  else{music.pause();document.getElementById('musicBtn').textContent='🔇';}
+  event.stopPropagation();
+}
+</script>
+
 </body>
 </html>
