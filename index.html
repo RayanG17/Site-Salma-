@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Fan2Salmouchee 🎀</title>
+<title>Fan2Salmouchee 🎀⚓</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -14,27 +15,29 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 body{
-  font-family:'Nunito',sans-serif;
-  background:var(--cream);
-  min-height:100vh;
-  overflow-x:hidden;
+font-family:‘Nunito’,sans-serif;
+background:var(–cream);
+min-height:100vh;
+overflow-x:hidden;
 }
 
 /* ── FOND ── */
 .bg-layer{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  background:
-    url("58165D45-DA04-4BDF-9A70-00AA4ADA64CA.png") center/cover no-repeat,
-    linear-gradient(160deg,#fff0f8cc,#ffe8f4cc,#f0f4ffcc);
+position:fixed;inset:0;z-index:0;
+background:
+radial-gradient(ellipse 80% 60% at 0% 0%,#ff1f8e22 0%,transparent 55%),
+radial-gradient(ellipse 60% 50% at 100% 100%,#0d1f3c33 0%,transparent 55%),
+radial-gradient(ellipse 50% 40% at 50% 50%,#ffd60a18 0%,transparent 65%),
+repeating-linear-gradient(45deg,#ff6eb408 0px,#ff6eb408 1px,transparent 1px,transparent 20px),
+linear-gradient(160deg,#fff0f8 0%,#ffe8f4 60%,#f0f4ff 100%);
 }
+
 /* ── HALFTONE MANGA ── */
 .bg-layer::after{
-  content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,#ff1f8e10 1px,transparent 1px);
-  background-size:18px 18px;
-  pointer-events:none;
+content:’’;position:absolute;inset:0;
+background-image:radial-gradient(circle,#ff1f8e10 1px,transparent 1px);
+background-size:18px 18px;
+pointer-events:none;
 }
 
 .bg-stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
@@ -47,11 +50,11 @@ body{
 
 /* ── LOGO HEADER ── */
 .site-logo{
-  display:block;
-  max-width:320px;width:85%;
-  margin:0 auto 8px;
-  filter:drop-shadow(0 4px 18px #ff1f8e88);
-  animation:logoPop .8s cubic-bezier(.2,.8,.2,1) both;
+display:block;
+max-width:320px;width:85%;
+margin:0 auto 8px;
+filter:drop-shadow(0 4px 18px #ff1f8e88);
+animation:logoPop .8s cubic-bezier(.2,.8,.2,1) both;
 }
 @keyframes logoPop{from{opacity:0;transform:scale(.7) rotate(-4deg);}to{opacity:1;transform:scale(1) rotate(0deg);}}
 
@@ -64,122 +67,122 @@ body{
 
 /* ── CARD ── */
 .card{
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(16px);
-  border-radius:28px;
-  padding:32px 28px;
-  max-width:500px;width:100%;
-  box-shadow:var(--shadow),0 0 0 3px #ff1f8e22;
-  border:2.5px solid var(--rose);
-  position:relative;
-  overflow:visible;
+background:rgba(255,255,255,.95);
+backdrop-filter:blur(16px);
+border-radius:28px;
+padding:32px 28px;
+max-width:500px;width:100%;
+box-shadow:var(–shadow),0 0 0 3px #ff1f8e22;
+border:2.5px solid var(–rose);
+position:relative;
+overflow:visible;
 }
 
 /* ── MANGA SPEED LINES derrière card ── */
 .card::before{
-  content:'';
-  position:absolute;inset:-12px;
-  background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,#ff1f8e08 2deg,transparent 4deg,transparent 20deg,#ffd60a06 22deg,transparent 24deg,transparent 45deg);
-  border-radius:36px;
-  z-index:-1;
-  animation:spinSlow 20s linear infinite;
+content:’’;
+position:absolute;inset:-12px;
+background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,#ff1f8e08 2deg,transparent 4deg,transparent 20deg,#ffd60a06 22deg,transparent 24deg,transparent 45deg);
+border-radius:36px;
+z-index:-1;
+animation:spinSlow 20s linear infinite;
 }
 @keyframes spinSlow{to{transform:rotate(360deg);}}
 
 .badge{
-  position:absolute;top:-16px;right:16px;
-  background:linear-gradient(135deg,var(--gold),#ffaa00);
-  color:var(--navy);
-  font-family:'Fredoka One',sans-serif;font-size:12px;
-  padding:5px 16px;border-radius:50px;
-  box-shadow:0 3px 12px #ffd60a88;
-  white-space:nowrap;
+position:absolute;top:-16px;right:16px;
+background:linear-gradient(135deg,var(–gold),#ffaa00);
+color:var(–navy);
+font-family:‘Fredoka One’,sans-serif;font-size:12px;
+padding:5px 16px;border-radius:50px;
+box-shadow:0 3px 12px #ffd60a88;
+white-space:nowrap;
 }
 .top-deco{display:flex;gap:6px;justify-content:center;margin-bottom:14px;font-size:24px;}
 .character{font-size:68px;animation:bounce 1.6s ease-in-out infinite;display:block;margin-bottom:10px;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 
 .bubble-title{
-  font-family:'Fredoka One',sans-serif;
-  font-size:clamp(21px,5vw,30px);
-  color:var(--navy);
-  line-height:1.2;margin-bottom:10px;
+font-family:‘Fredoka One’,sans-serif;
+font-size:clamp(21px,5vw,30px);
+color:var(–navy);
+line-height:1.2;margin-bottom:10px;
 }
 .bubble-text{font-size:clamp(14px,3.5vw,16px);color:#555;line-height:1.7;margin-bottom:22px;}
-.highlight{color:var(--hot);font-weight:900;}
+.highlight{color:var(–hot);font-weight:900;}
 .highlight-gold{color:#b8860b;font-weight:900;}
 
 .progress-bar{width:100%;height:9px;background:#ffe0f0;border-radius:50px;margin-bottom:24px;overflow:hidden;border:1.5px solid #ffb3d9;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--hot),var(--pink),var(--gold));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(–hot),var(–pink),var(–gold));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);}
 
 /* ── BOUTONS ── */
 .choices{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 .btn{
-  font-family:'Fredoka One',sans-serif;font-size:17px;
-  padding:13px 28px;border:none;border-radius:50px;
-  cursor:pointer;transition:transform .18s,box-shadow .18s;
-  letter-spacing:.02em;position:relative;overflow:hidden;
+font-family:‘Fredoka One’,sans-serif;font-size:17px;
+padding:13px 28px;border:none;border-radius:50px;
+cursor:pointer;transition:transform .18s,box-shadow .18s;
+letter-spacing:.02em;position:relative;overflow:hidden;
 }
-.btn::after{content:'';position:absolute;inset:0;background:#fff3;opacity:0;transition:opacity .2s;}
+.btn::after{content:’’;position:absolute;inset:0;background:#fff3;opacity:0;transition:opacity .2s;}
 .btn:hover::after{opacity:1;}
 .btn:hover{transform:scale(1.07) translateY(-2px);}
 .btn:active{transform:scale(.95);}
-.btn-yes{background:linear-gradient(135deg,var(--hot),#ff6eb4);color:#fff;box-shadow:0 6px 22px #ff1f8e55;}
-.btn-no{background:linear-gradient(135deg,var(--navy),#1a3a6e);color:#fff;box-shadow:0 6px 22px #0d1f3c55;}
-.btn-gold{background:linear-gradient(135deg,#ffd60a,#ffaa00);color:var(--navy);box-shadow:0 6px 22px #ffd60a66;font-size:16px;}
+.btn-yes{background:linear-gradient(135deg,var(–hot),#ff6eb4);color:#fff;box-shadow:0 6px 22px #ff1f8e55;}
+.btn-no{background:linear-gradient(135deg,var(–navy),#1a3a6e);color:#fff;box-shadow:0 6px 22px #0d1f3c55;}
+.btn-gold{background:linear-gradient(135deg,#ffd60a,#ffaa00);color:var(–navy);box-shadow:0 6px 22px #ffd60a66;font-size:16px;}
 
 /* ── CADEAUX ── */
 .gifts-grid{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:18px 0;}
 .gift-box{
-  width:120px;
-  background:linear-gradient(145deg,#ffe8f4,#fff);
-  border:2.5px dashed var(--pink);
-  border-radius:22px;padding:18px 10px;
-  cursor:pointer;
-  transition:transform .3s,box-shadow .3s,border-color .3s;
-  position:relative;overflow:hidden;
+width:120px;
+background:linear-gradient(145deg,#ffe8f4,#fff);
+border:2.5px dashed var(–pink);
+border-radius:22px;padding:18px 10px;
+cursor:pointer;
+transition:transform .3s,box-shadow .3s,border-color .3s;
+position:relative;overflow:hidden;
 }
-.gift-box:hover{transform:scale(1.12) rotate(-3deg);box-shadow:0 14px 32px #ff1f8e44;border-color:var(--hot);border-style:solid;}
-.gift-box .qmark{font-family:'Fredoka One',sans-serif;font-size:42px;color:var(--hot);display:block;}
+.gift-box:hover{transform:scale(1.12) rotate(-3deg);box-shadow:0 14px 32px #ff1f8e44;border-color:var(–hot);border-style:solid;}
+.gift-box .qmark{font-family:‘Fredoka One’,sans-serif;font-size:42px;color:var(–hot);display:block;}
 .gift-box p{font-size:11px;color:#999;margin-top:6px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
 .gift-box .gift-icon{display:none;font-size:42px;}
 .gift-box.opened .qmark{display:none;}
 .gift-box.opened .gift-icon{display:block;}
-.gift-box.opened{border-style:solid;border-color:var(--hot);background:linear-gradient(145deg,#fff0f8,#fff);}
+.gift-box.opened{border-style:solid;border-color:var(–hot);background:linear-gradient(145deg,#fff0f8,#fff);}
 
 /* ── POPUP ── */
 .gift-popup{display:none;position:fixed;inset:0;z-index:500;background:#0d1f3ccc;backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px;}
 .gift-popup.open{display:flex;}
 .gift-popup-inner{
-  background:#fff;border-radius:28px;
-  padding:36px 28px;max-width:460px;width:100%;
-  text-align:center;
-  animation:popIn .4s cubic-bezier(.2,.8,.2,1);
-  border:3px solid var(--hot);
-  position:relative;max-height:92vh;overflow-y:auto;
-  box-shadow:0 20px 60px #ff1f8e44;
+background:#fff;border-radius:28px;
+padding:36px 28px;max-width:460px;width:100%;
+text-align:center;
+animation:popIn .4s cubic-bezier(.2,.8,.2,1);
+border:3px solid var(–hot);
+position:relative;max-height:92vh;overflow-y:auto;
+box-shadow:0 20px 60px #ff1f8e44;
 }
 @keyframes popIn{from{transform:scale(.65);opacity:0;}to{transform:scale(1);opacity:1;}}
 .popup-close{
-  position:absolute;top:12px;right:12px;
-  background:var(--soft);border:none;
-  width:32px;height:32px;border-radius:50%;
-  font-size:15px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s;
+position:absolute;top:12px;right:12px;
+background:var(–soft);border:none;
+width:32px;height:32px;border-radius:50%;
+font-size:15px;cursor:pointer;
+display:flex;align-items:center;justify-content:center;
+transition:background .2s;
 }
-.popup-close:hover{background:var(--rose);}
+.popup-close:hover{background:var(–rose);}
 
 /* ── LETTRE ── */
 .letter{
-  background:linear-gradient(135deg,#fff9f0,#fff8fc);
-  border:2px solid #ffccaa;border-radius:16px;
-  padding:24px;text-align:left;
-  font-size:15px;line-height:1.8;color:#444;
-  position:relative;margin-top:22px;
+background:linear-gradient(135deg,#fff9f0,#fff8fc);
+border:2px solid #ffccaa;border-radius:16px;
+padding:24px;text-align:left;
+font-size:15px;line-height:1.8;color:#444;
+position:relative;margin-top:22px;
 }
-.letter::before{content:'💌';position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:36px;}
-.letter-sig{margin-top:14px;font-family:'Fredoka One',sans-serif;font-size:18px;color:var(--hot);text-align:right;}
+.letter::before{content:‘💌’;position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:36px;}
+.letter-sig{margin-top:14px;font-family:‘Fredoka One’,sans-serif;font-size:18px;color:var(–hot);text-align:right;}
 
 /* ── FLEURS ── */
 .flower-garden{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;font-size:34px;margin:10px 0;}
@@ -188,62 +191,63 @@ body{
 
 /* ── DOUDOU IMAGE ── */
 .plushie-img{
-  width:160px;height:160px;object-fit:contain;
-  animation:plushieFloat 2s ease-in-out infinite;
-  cursor:pointer;
-  filter:drop-shadow(0 8px 24px #ff1f8e55);
-  border-radius:50%;
-  transition:transform .2s;
+width:160px;height:160px;object-fit:contain;
+animation:plushieFloat 2s ease-in-out infinite;
+cursor:pointer;
+filter:drop-shadow(0 8px 24px #ff1f8e55);
+border-radius:50%;
+transition:transform .2s;
 }
 @keyframes plushieFloat{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-16px) rotate(3deg);}}
 
 /* ── PAGE FINALE ── */
 .final-logo{
-  display:block;max-width:280px;width:80%;
-  margin:0 auto 4px;
-  filter:drop-shadow(0 4px 18px #ff1f8e88);
+display:block;max-width:280px;width:80%;
+margin:0 auto 4px;
+filter:drop-shadow(0 4px 18px #ff1f8e88);
 }
 .final-sub{font-size:15px;color:#999;margin-bottom:24px;font-style:italic;text-align:center;}
 .contact-section{
-  background:rgba(255,255,255,.95);
-  border-radius:24px;padding:24px 32px;
-  max-width:460px;width:100%;
-  box-shadow:var(--shadow);
-  border:2px solid var(--rose);
-  margin-bottom:26px;
+background:rgba(255,255,255,.95);
+border-radius:24px;padding:24px 32px;
+max-width:460px;width:100%;
+box-shadow:var(–shadow);
+border:2px solid var(–rose);
+margin-bottom:26px;
 }
-.contact-title{font-family:'Fredoka One',sans-serif;font-size:19px;color:var(--navy);margin-bottom:16px;}
-.contact-item{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px dashed var(--soft);text-decoration:none;color:inherit;transition:transform .2s;}
+.contact-title{font-family:‘Fredoka One’,sans-serif;font-size:19px;color:var(–navy);margin-bottom:16px;}
+.contact-item{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px dashed var(–soft);text-decoration:none;color:inherit;transition:transform .2s;}
 .contact-item:last-child{border-bottom:none;}
 .contact-item:hover{transform:translateX(6px);}
 .contact-icon{font-size:26px;flex-shrink:0;}
 .contact-label{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.1em;font-weight:800;}
-.contact-val{font-size:15px;color:var(--navy);font-weight:900;}
+.contact-val{font-size:15px;color:var(–navy);font-weight:900;}
 .op-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,var(--navy),#1a3a6e);
-  color:var(--gold);
-  font-family:'Fredoka One',sans-serif;font-size:12px;
-  padding:6px 14px;border-radius:50px;margin:3px;
-  box-shadow:0 4px 14px #0d1f3c55;
+display:inline-flex;align-items:center;gap:6px;
+background:linear-gradient(135deg,var(–navy),#1a3a6e);
+color:var(–gold);
+font-family:‘Fredoka One’,sans-serif;font-size:12px;
+padding:6px 14px;border-radius:50px;margin:3px;
+box-shadow:0 4px 14px #0d1f3c55;
 }
 .tomo-row{display:flex;gap:8px;justify-content:center;font-size:32px;margin:10px 0;}
-.replay-btn{font-family:'Fredoka One',sans-serif;font-size:15px;padding:11px 26px;border:2.5px solid var(--hot);background:transparent;color:var(--hot);border-radius:50px;cursor:pointer;transition:all .3s;margin-top:8px;}
-.replay-btn:hover{background:var(--hot);color:#fff;}
+.replay-btn{font-family:‘Fredoka One’,sans-serif;font-size:15px;padding:11px 26px;border:2.5px solid var(–hot);background:transparent;color:var(–hot);border-radius:50px;cursor:pointer;transition:all .3s;margin-top:8px;}
+.replay-btn:hover{background:var(–hot);color:#fff;}
 
 /* ── WANTED POSTER DECO ── */
 .wanted-tag{
-  display:inline-block;
-  background:linear-gradient(135deg,#ffecd2,#fff8e7);
-  border:2px solid #c8a060;
-  border-radius:8px;
-  font-family:'Fredoka One',sans-serif;
-  font-size:11px;color:#7a5020;
-  padding:3px 12px;
-  letter-spacing:.08em;
-  box-shadow:inset 0 0 20px #c8a03022,0 3px 8px #c8a06044;
+display:inline-block;
+background:linear-gradient(135deg,#ffecd2,#fff8e7);
+border:2px solid #c8a060;
+border-radius:8px;
+font-family:‘Fredoka One’,sans-serif;
+font-size:11px;color:#7a5020;
+padding:3px 12px;
+letter-spacing:.08em;
+box-shadow:inset 0 0 20px #c8a03022,0 3px 8px #c8a06044;
 }
 </style>
+
 </head>
 <body>
 <div class="bg-layer"></div>
@@ -251,12 +255,13 @@ body{
 <div class="confetti" id="confetti"></div>
 
 <!-- ═══ ÉCRAN 0 — INTRO ═══ -->
+
 <div class="screen active" id="screen0">
-  <img src="58C9060A-32C9-49D7-A895-4569DEB56DA6.png" class="site-logo" alt="Fan2Salmouchee"/>
-  <div class="top-deco">2️⃣6️⃣ 5️⃣6️⃣</div>
+  <img src="logo.png" class="site-logo" alt="Fan2Salmouchee"/>
+  <div class="top-deco">🏴‍☠️ 🎀 ⭐ 🎮 ⚓</div>
   <div class="card">
     <div class="badge">✨ Pour toi ✨</div>
-    <span class="character">👸🏽</span>
+    <span class="character">🐱</span>
     <h1 class="bubble-title">Hé <span class="highlight">Salmouchee</span> ! 👀</h1>
     <p class="bubble-text">Quelqu'un a créé une aventure spéciale rien que pour toi, <span class="highlight-gold">Salma</span>.<br>T'es prête à découvrir quelque chose de <span class="highlight">super mignon</span> ? 🌟</p>
     <div class="choices">
@@ -267,12 +272,13 @@ body{
 </div>
 
 <!-- ═══ NO1 ═══ -->
+
 <div class="screen" id="screenno1">
-  <img src="58C9060A-32C9-49D7-A895-4569DEB56DA6.png" class="site-logo" alt="Fan2Salmouchee"/>
+  <img src="logo.png" class="site-logo" alt="Fan2Salmouchee"/>
   <div class="card">
     <span class="character">😤</span>
     <h1 class="bubble-title">MAIS ENFIN !</h1>
-    <p class="bubble-text">C'est moi wsh, <span class="highlight"> El Jefe </span> évidemment !<br>T'as pas vu le thème ? <span class="highlight">One Piece + Hello Kitty</span>, c'est forcément pour toi 🏴‍☠️🎀</p>
+    <p class="bubble-text">C'est moi, ton <span class="highlight">chéri adoré</span> évidemment !<br>T'as pas vu le thème ? <span class="highlight">One Piece + Hello Kitty</span>, c'est forcément pour toi 🏴‍☠️🎀</p>
     <div class="choices">
       <button class="btn btn-yes" onclick="goTo('1')">OK OK j'y vais 😂</button>
     </div>
@@ -280,11 +286,12 @@ body{
 </div>
 
 <!-- ═══ ÉCRAN 1 ═══ -->
+
 <div class="screen" id="screen1">
   <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
   <div class="card">
     <div class="badge">Question 1/4</div>
-    <span class="character">💘</span>
+    <span class="character">⚓</span>
     <h1 class="bubble-title">Est-ce que tu sais que t'es <span class="highlight">incroyable</span> ?</h1>
     <p class="bubble-text">Genre vraiment. T'es le genre de personne qui rend la vie plus belle juste en existant. 🌸</p>
     <div class="choices">
@@ -295,6 +302,7 @@ body{
 </div>
 
 <!-- ═══ NO2 ═══ -->
+
 <div class="screen" id="screenno2">
   <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
   <div class="card">
@@ -308,6 +316,7 @@ body{
 </div>
 
 <!-- ═══ ÉCRAN 2 ═══ -->
+
 <div class="screen" id="screen2">
   <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
   <div class="card">
@@ -323,6 +332,7 @@ body{
 </div>
 
 <!-- ═══ NO3 ═══ -->
+
 <div class="screen" id="screenno3">
   <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
   <div class="card">
@@ -336,6 +346,7 @@ body{
 </div>
 
 <!-- ═══ ÉCRAN 3 ═══ -->
+
 <div class="screen" id="screen3">
   <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
   <div class="card">
@@ -351,6 +362,7 @@ body{
 </div>
 
 <!-- ═══ NO4 ═══ -->
+
 <div class="screen" id="screenno4">
   <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
   <div class="card">
@@ -364,11 +376,12 @@ body{
 </div>
 
 <!-- ═══ ÉCRAN 4 ═══ -->
+
 <div class="screen" id="screen4">
   <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
   <div class="card">
     <div class="badge">Question 4/4</div>
-    <span class="character">🫀</span>
+    <span class="character">🎮</span>
     <h1 class="bubble-title">Dernière question… Es-tu <span class="highlight">heureuse</span> ?</h1>
     <p class="bubble-text">Pas pour faire semblant. Vraiment. Parce que ton bonheur ça compte énormément pour moi. 🌸</p>
     <div class="choices">
@@ -379,6 +392,7 @@ body{
 </div>
 
 <!-- ═══ NO5 ═══ -->
+
 <div class="screen" id="screenno5">
   <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
   <div class="card">
@@ -392,6 +406,7 @@ body{
 </div>
 
 <!-- ═══ ÉCRAN 5 — CADEAUX ═══ -->
+
 <div class="screen" id="screen5">
   <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
   <div class="card">
@@ -423,6 +438,7 @@ body{
 </div>
 
 <!-- ═══ POPUP 1 — LETTRE ═══ -->
+
 <div class="gift-popup" id="popup1">
   <div class="gift-popup-inner">
     <button class="popup-close" onclick="closePopup(1)">✕</button>
@@ -439,6 +455,7 @@ body{
 </div>
 
 <!-- ═══ POPUP 2 — FLEURS ═══ -->
+
 <div class="gift-popup" id="popup2">
   <div class="gift-popup-inner">
     <button class="popup-close" onclick="closePopup(2)">✕</button>
@@ -450,6 +467,7 @@ body{
 </div>
 
 <!-- ═══ POPUP 3 — DOUDOU IMAGE ═══ -->
+
 <div class="gift-popup" id="popup3">
   <div class="gift-popup-inner">
     <button class="popup-close" onclick="closePopup(3)">✕</button>
@@ -461,10 +479,11 @@ body{
 </div>
 
 <!-- ═══ PAGE FINALE ═══ -->
+
 <div class="final-screen" id="finalScreen">
-  <img src="58C9060A-32C9-49D7-A895-4569DEB56DA6.png" class="final-logo" alt="Fan2Salmouchee"/>
-  <div class="tomo-row">🥰😍🌸🎀⚓🏴‍☠️</div>
-  <p class="final-sub"> @fan2salmouchee </p>
+  <img src="logo.png" class="final-logo" alt="Fan2Salmouchee"/>
+  <div class="tomo-row">💑🥰😍🌸🎀⚓🏴‍☠️</div>
+  <p class="final-sub">One Piece × Hello Kitty × Tomodachi Life</p>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px;">
     <span class="op-badge">⚓ She's my Nakama</span>
@@ -503,6 +522,10 @@ body{
     Reviens la voir quand tu veux, elle sera toujours là. 🌸
   </div>
 
+  <a href="lettres.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#ff1f8e,#ff6eb4);color:#fff;font-family:'Fredoka One',sans-serif;font-size:17px;padding:16px 32px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px #ff1f8e55;margin-bottom:14px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform=''">
+    💌 Mes lettres pour toi
+  </a>
+  <p style="font-size:12px;color:#ccc;margin-bottom:16px;font-style:italic;">Une nouvelle lettre se débloque chaque jour jusqu'au 26 octobre 🎂</p>
   <button class="replay-btn" onclick="restart()">🔄 Recommencer l'aventure</button>
 </div>
 
@@ -620,6 +643,7 @@ function toggleMusic(){
 </script>
 
 <!-- SON DE FOND (déjà ajouté manuellement) -->
+
 <audio id="bgMusic" src="musique.mp3" loop></audio>
 <button id="musicBtn" onclick="toggleMusic()" style="position:fixed;bottom:24px;right:24px;z-index:998;background:linear-gradient(135deg,#ff1f8e,#ff6eb4);border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 20px #ff1f8e66;transition:transform .2s;" title="Musique">🎵</button>
 
