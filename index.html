@@ -1,68 +1,102 @@
-<!DOCTYPE html>  
-<html lang="fr">  
-<head>  
-  <meta charset="UTF-8">  
-  <title>Moi & Salma ❤️</title>  
-  <style>  
-    body {  
-      margin: 0;  
-      font-family: Arial, sans-serif;  
-      text-align: center;  
-      color: white;  
-      background: linear-gradient(to right, #ff6a88, #ff99ac);  
-    }  
-  
-    h1 {  
-      margin-top: 50px;  
-      font-size: 3em;  
-    }  
-  
-    p {  
-      font-size: 1.5em;  
-      margin: 20px;  
-    }  
-  
-    .heart {  
-      font-size: 40px;  
-      animation: float 2s infinite;  
-    }  
-  
-    @keyframes float {  
-      0% { transform: translateY(0); }  
-      50% { transform: translateY(-20px); }  
-      100% { transform: translateY(0); }  
-    }  
-  
-    .box {  
-      margin-top: 40px;  
-      padding: 20px;  
-    }  
-  
-    img {  
-      width: 200px;  
-      border-radius: 15px;  
-      margin: 10px;  
-    }  
-  </style>  
-</head>  
-<body>  
-  
-  <h1>Moi & Salma ❤️</h1>  
-  
-  <p>Depuis que je t’ai rencontrée, ma vie est devenue plus belle 💕</p>  
-  
-  <div class="heart">❤️ ❤️ ❤️</div>  
-  
-  <div class="box">  
-    <p>Ce site est juste pour te dire à quel point tu comptes pour moi 💌</p>  
-    <p>Je t’aime Salma ❤️</p>  
-  </div>  
-  
-  <div>  
-    <!-- Tu peux remplacer les images -->  
-    <img src="https://via.placeholder.com/200" alt="photo1">  
-    <img src="https://via.placeholder.com/200" alt="photo2">  
-  </div>  
-  
-</body>  
-</html>  
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pour Salma ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      text-align: center;
+      font-family: Arial;
+      background: linear-gradient(to right, pink, #ffccff);
+      color: #333;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 2.5em;
+      color: #ff4da6;
+    }
+
+    .box {
+      margin-top: 40px;
+    }
+
+    button {
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #ff66b2;
+      color: white;
+    }
+
+    .no {
+      background: #ccc;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 1.5em;
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 30px;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🎀 Hello Salma 🎀</h1>
+
+  <p>J’ai un cadeau pour toi 🎁</p>
+  <p>Est-ce que tu le veux ? 😏</p>
+
+  <div class="box">
+    <button class="yes" onclick="yesClick()">Je le veux 😍</button>
+    <button class="no" onclick="noClick()">Je le veux pas 🙄</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    function yesClick() {
+      document.getElementById("result").innerHTML =
+        "🌸 Surprise !! Des fleurs pour toi Salma ❤️🌸";
+
+      // fleurs qui tombent
+      setInterval(() => {
+        let flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerText = "🌸";
+        flower.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(flower);
+
+        setTimeout(() => {
+          flower.remove();
+        }, 3000);
+      }, 300);
+    }
+
+    function noClick() {
+      document.getElementById("result").innerHTML =
+        "😢 Dommage… mais tu les veux quand même ❤️";
+    }
+  </script>
+
+</body>
+</html>
