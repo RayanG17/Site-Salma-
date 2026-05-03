@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8"/>
@@ -29,32 +30,32 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 @keyframes fadeSlide{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CARD ── */
-.card{background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-radius:28px;padding:36px 32px;max-width:520px;width:100%;box-shadow:var(--shadow);border:2.5px solid var(--rose);position:relative;}
-.badge{position:absolute;top:-18px;right:20px;background:var(--gold);color:var(--navy);font-family:'Fredoka One',sans-serif;font-size:12px;padding:5px 16px;border-radius:50px;box-shadow:0 3px 12px #ffd60a66;}
+.card{background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-radius:28px;padding:36px 32px;max-width:520px;width:100%;box-shadow:var(–shadow);border:2.5px solid var(–rose);position:relative;}
+.badge{position:absolute;top:-18px;right:20px;background:var(–gold);color:var(–navy);font-family:‘Fredoka One’,sans-serif;font-size:12px;padding:5px 16px;border-radius:50px;box-shadow:0 3px 12px #ffd60a66;}
 .top-deco{display:flex;gap:6px;justify-content:center;margin-bottom:18px;font-size:26px;}
 .character{font-size:72px;animation:bounce 1.6s ease-in-out infinite;display:block;margin-bottom:12px;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
-.bubble-title{font-family:'Fredoka One',sans-serif;font-size:clamp(22px,5vw,32px);color:var(--navy);line-height:1.25;margin-bottom:10px;}
+.bubble-title{font-family:‘Fredoka One’,sans-serif;font-size:clamp(22px,5vw,32px);color:var(–navy);line-height:1.25;margin-bottom:10px;}
 .bubble-text{font-size:clamp(14px,3.5vw,17px);color:#555;line-height:1.65;margin-bottom:24px;}
-.highlight{color:var(--red);font-weight:800;}
+.highlight{color:var(–red);font-weight:800;}
 .highlight-gold{color:#c9a000;font-weight:800;}
 .progress-bar{width:100%;height:8px;background:#ffd6e0;border-radius:50px;margin-bottom:28px;overflow:hidden;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--red));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(–pink),var(–red));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);}
 
 /* ── BOUTONS ── */
 .choices{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-.btn{font-family:'Fredoka One',sans-serif;font-size:18px;padding:14px 32px;border:none;border-radius:50px;cursor:pointer;transition:transform .2s,box-shadow .2s;letter-spacing:.03em;}
+.btn{font-family:‘Fredoka One’,sans-serif;font-size:18px;padding:14px 32px;border:none;border-radius:50px;cursor:pointer;transition:transform .2s,box-shadow .2s;letter-spacing:.03em;}
 .btn:hover{transform:scale(1.07);}
 .btn:active{transform:scale(.96);}
-.btn-yes{background:linear-gradient(135deg,var(--pink),var(--red));color:#fff;box-shadow:0 6px 20px #ff8fab55;}
-.btn-no{background:linear-gradient(135deg,var(--navy),#2d4a7a);color:#fff;box-shadow:0 6px 20px #1d355744;}
-.btn-gold{background:linear-gradient(135deg,#ffd60a,#ffaa00);color:var(--navy);box-shadow:0 6px 20px #ffd60a55;}
+.btn-yes{background:linear-gradient(135deg,var(–pink),var(–red));color:#fff;box-shadow:0 6px 20px #ff8fab55;}
+.btn-no{background:linear-gradient(135deg,var(–navy),#2d4a7a);color:#fff;box-shadow:0 6px 20px #1d355744;}
+.btn-gold{background:linear-gradient(135deg,#ffd60a,#ffaa00);color:var(–navy);box-shadow:0 6px 20px #ffd60a55;}
 
 /* ── CADEAUX ── */
 .gifts-grid{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:20px 0;}
-.gift-box{width:130px;background:linear-gradient(145deg,var(--soft),#fff);border:2.5px dashed var(--rose);border-radius:20px;padding:20px 12px;cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
-.gift-box:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 12px 30px #ff8fab44;border-color:var(--pink);}
-.gift-box .qmark{font-family:'Fredoka One',sans-serif;font-size:44px;color:var(--pink);display:block;}
+.gift-box{width:130px;background:linear-gradient(145deg,var(–soft),#fff);border:2.5px dashed var(–rose);border-radius:20px;padding:20px 12px;cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
+.gift-box:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 12px 30px #ff8fab44;border-color:var(–pink);}
+.gift-box .qmark{font-family:‘Fredoka One’,sans-serif;font-size:44px;color:var(–pink);display:block;}
 .gift-box p{font-size:12px;color:#888;margin-top:8px;font-weight:700;}
 .gift-box .gift-icon{display:none;font-size:44px;}
 .gift-box.opened .qmark{display:none;}
@@ -63,14 +64,14 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 /* ── POPUP ── */
 .gift-popup{display:none;position:fixed;inset:0;z-index:500;background:#0006;backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
 .gift-popup.open{display:flex;}
-.gift-popup-inner{background:#fff;border-radius:28px;padding:40px 32px;max-width:480px;width:100%;text-align:center;animation:popIn .4s cubic-bezier(.2,.8,.2,1);border:3px solid var(--rose);position:relative;max-height:90vh;overflow-y:auto;}
+.gift-popup-inner{background:#fff;border-radius:28px;padding:40px 32px;max-width:480px;width:100%;text-align:center;animation:popIn .4s cubic-bezier(.2,.8,.2,1);border:3px solid var(–rose);position:relative;max-height:90vh;overflow-y:auto;}
 @keyframes popIn{from{transform:scale(.7);opacity:0;}to{transform:scale(1);opacity:1;}}
-.popup-close{position:absolute;top:14px;right:14px;background:var(--soft);border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.popup-close{position:absolute;top:14px;right:14px;background:var(–soft);border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 
 /* ── LETTRE ── */
 .letter{background:linear-gradient(135deg,#fff9f0,#fff);border:2px solid #ffd6a0;border-radius:16px;padding:28px;text-align:left;font-size:15px;line-height:1.8;color:#444;position:relative;margin-top:20px;}
-.letter::before{content:'💌';position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:38px;}
-.letter-sig{margin-top:16px;font-family:'Fredoka One',sans-serif;font-size:18px;color:var(--red);text-align:right;}
+.letter::before{content:‘💌’;position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:38px;}
+.letter-sig{margin-top:16px;font-family:‘Fredoka One’,sans-serif;font-size:18px;color:var(–red);text-align:right;}
 
 /* ── FLEURS ── */
 .flower-garden{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;font-size:36px;margin:12px 0;}
@@ -83,21 +84,22 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 @keyframes plushieFloat{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-16px) rotate(3deg);}}
 
 /* ── PAGE FINALE ── */
-.final-title{font-family:'Fredoka One',sans-serif;font-size:clamp(32px,7vw,58px);background:linear-gradient(135deg,var(--red),var(--pink),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;text-align:center;}
+.final-title{font-family:‘Fredoka One’,sans-serif;font-size:clamp(32px,7vw,58px);background:linear-gradient(135deg,var(–red),var(–pink),var(–gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;text-align:center;}
 .final-sub{font-size:16px;color:#888;margin-bottom:28px;font-style:italic;text-align:center;}
-.contact-section{background:rgba(255,255,255,.9);border-radius:24px;padding:28px 36px;max-width:480px;width:100%;box-shadow:var(--shadow);border:2px solid var(--soft);margin-bottom:30px;}
-.contact-title{font-family:'Fredoka One',sans-serif;font-size:20px;color:var(--navy);margin-bottom:18px;}
-.contact-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed var(--soft);text-decoration:none;color:inherit;transition:transform .2s;}
+.contact-section{background:rgba(255,255,255,.9);border-radius:24px;padding:28px 36px;max-width:480px;width:100%;box-shadow:var(–shadow);border:2px solid var(–soft);margin-bottom:30px;}
+.contact-title{font-family:‘Fredoka One’,sans-serif;font-size:20px;color:var(–navy);margin-bottom:18px;}
+.contact-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed var(–soft);text-decoration:none;color:inherit;transition:transform .2s;}
 .contact-item:last-child{border-bottom:none;}
 .contact-item:hover{transform:translateX(6px);}
 .contact-icon{font-size:28px;flex-shrink:0;}
 .contact-label{font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.1em;font-weight:700;}
-.contact-val{font-size:16px;color:var(--navy);font-weight:800;}
-.op-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--navy),#2d4a7a);color:var(--gold);font-family:'Fredoka One',sans-serif;font-size:13px;padding:6px 16px;border-radius:50px;margin:4px;box-shadow:0 4px 14px #1d355744;}
+.contact-val{font-size:16px;color:var(–navy);font-weight:800;}
+.op-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(–navy),#2d4a7a);color:var(–gold);font-family:‘Fredoka One’,sans-serif;font-size:13px;padding:6px 16px;border-radius:50px;margin:4px;box-shadow:0 4px 14px #1d355744;}
 .tomo-row{display:flex;gap:10px;justify-content:center;font-size:36px;margin:10px 0;}
-.replay-btn{font-family:'Fredoka One',sans-serif;font-size:16px;padding:12px 28px;border:2px solid var(--rose);background:transparent;color:var(--pink);border-radius:50px;cursor:pointer;transition:all .3s;margin-top:10px;}
-.replay-btn:hover{background:var(--rose);color:#fff;}
+.replay-btn{font-family:‘Fredoka One’,sans-serif;font-size:16px;padding:12px 28px;border:2px solid var(–rose);background:transparent;color:var(–pink);border-radius:50px;cursor:pointer;transition:all .3s;margin-top:10px;}
+.replay-btn:hover{background:var(–rose);color:#fff;}
 </style>
+
 </head>
 <body>
 
@@ -106,6 +108,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 <div class="confetti" id="confetti"></div>
 
 <!-- ═══ ÉCRAN 0 — INTRO ═══ -->
+
 <div class="screen active" id="screen0">
   <div class="top-deco">🏴‍☠️ 🎀 🌸 🎮 ⚓</div>
   <div class="card">
@@ -121,6 +124,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN NO1 ═══ -->
+
 <div class="screen" id="screenno1">
   <div class="card">
     <span class="character">😤</span>
@@ -133,6 +137,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN 1 ═══ -->
+
 <div class="screen" id="screen1">
   <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
   <div class="card">
@@ -148,6 +153,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN NO2 ═══ -->
+
 <div class="screen" id="screenno2">
   <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
   <div class="card">
@@ -161,6 +167,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN 2 ═══ -->
+
 <div class="screen" id="screen2">
   <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
   <div class="card">
@@ -176,6 +183,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN NO3 ═══ -->
+
 <div class="screen" id="screenno3">
   <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
   <div class="card">
@@ -189,6 +197,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN 3 ═══ -->
+
 <div class="screen" id="screen3">
   <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
   <div class="card">
@@ -204,6 +213,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN NO4 ═══ -->
+
 <div class="screen" id="screenno4">
   <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
   <div class="card">
@@ -217,6 +227,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN 4 ═══ -->
+
 <div class="screen" id="screen4">
   <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
   <div class="card">
@@ -232,6 +243,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN NO5 ═══ -->
+
 <div class="screen" id="screenno5">
   <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
   <div class="card">
@@ -245,6 +257,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ ÉCRAN 5 — CADEAUX ═══ -->
+
 <div class="screen" id="screen5">
   <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
   <div class="card">
@@ -276,6 +289,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ POPUP 1 — LETTRE ═══ -->
+
 <div class="gift-popup" id="popup1">
   <div class="gift-popup-inner">
     <button class="popup-close" onclick="closePopup(1)">✕</button>
@@ -292,6 +306,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ POPUP 2 — FLEURS ═══ -->
+
 <div class="gift-popup" id="popup2">
   <div class="gift-popup-inner">
     <button class="popup-close" onclick="closePopup(2)">✕</button>
@@ -303,6 +318,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ POPUP 3 — DOUDOU ═══ -->
+
 <div class="gift-popup" id="popup3">
   <div class="gift-popup-inner">
     <button class="popup-close" onclick="closePopup(3)">✕</button>
@@ -314,6 +330,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </div>
 
 <!-- ═══ PAGE FINALE ═══ -->
+
 <div class="final-screen" id="finalScreen">
   <div class="tomo-row">🧑‍🤝‍🧑💑🥰😍🌸🎀</div>
   <h1 class="final-title">Notre univers à nous 🌍</h1>
@@ -356,7 +373,8 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
     Reviens la voir quand tu veux, elle sera toujours là. 🌸
   </div>
 
-  <button class="replay-btn" onclick="restart()">🔄 Recommencer l'aventure</button>
+<button class="replay-btn" onclick="restart()">🔄 Recommencer l’aventure</button>
+
 </div>
 
 <script>
@@ -455,22 +473,6 @@ function launchConfetti(count=50){
       setTimeout(()=>c.remove(),3000);
     },i*40);
   }
-}
-</script>
-<audio id="bgMusic" src="musique.mp3" loop></audio>
-
-<button id="musicBtn" onclick="toggleMusic()" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#ff8fab;border:none;border-radius:50%;width:52px;height:52px;font-size:24px;cursor:pointer;box-shadow:0 4px 16px #ff8fab66;">🎵</button>
-
-<script>
-const music=document.getElementById('bgMusic');
-document.addEventListener('click',function s(){
-  music.volume=0.5;music.play();
-  document.removeEventListener('click',s);
-},{once:true});
-function toggleMusic(){
-  if(music.paused){music.play();document.getElementById('musicBtn').textContent='🎵';}
-  else{music.pause();document.getElementById('musicBtn').textContent='🔇';}
-  event.stopPropagation();
 }
 </script>
 
