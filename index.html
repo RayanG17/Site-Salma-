@@ -60,17 +60,9 @@
       padding: 0 20px 80px;
     }
 
-    header {
-      padding: 54px 0 38px;
-      text-align: center;
-      animation: fadeDown .9s ease both;
-    }
+    header { padding: 54px 0 38px; text-align: center; animation: fadeDown .9s ease both; }
 
-    /* LOGO DESCENDU DE 175px COMME TU AS DEMANDÉ */
-    .logo-wrap {
-      margin-top: 175px;     /* ← voilà le changement */
-      margin-bottom: 16px;
-    }
+    .logo-wrap { margin-bottom: 16px; }
     .logo-img {
       width: clamp(180px, 35vw, 300px);
       height: auto;
@@ -135,7 +127,7 @@
     .card.today { background: linear-gradient(135deg, #d4855a, var(--gold)); box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both; }
     @keyframes todayPulse { 0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); } 50% { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); } }
 
-    /* Case magique 26 octobre */
+    /* CASE MAGIQUE DU 26 OCTOBRE */
     .card.final::before {
       content: '✨';
       position: absolute;
@@ -219,7 +211,7 @@
   <footer>fait avec amour par Rayan &nbsp;·&nbsp; pour Salma</footer>
 </div>
 
-<!-- MODAL + SCRIPT (identique) -->
+<!-- MODAL -->
 <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -269,7 +261,7 @@ for (let i = 0; i < total; i++) {
   card.className = "card";
 
   const isToday = i === 0;
-  const isFinalDay = (i === total - 1);
+  const isFinalDay = (i === total - 1);        // ← C'EST ICI LA CORRECTION : la DERNIÈRE case = 26 octobre
   const unlocked = i <= 0;
   const surprise = SURPRISES[i] || null;
 
@@ -295,7 +287,7 @@ for (let i = 0; i < total; i++) {
   grid.appendChild(card);
 }
 
-// Countdown + Modal
+// Countdown + Modal (inchangé)
 const els = { d: document.getElementById("cd-days"), h: document.getElementById("cd-hours"), m: document.getElementById("cd-mins"), s: document.getElementById("cd-secs") };
 function popEl(el, v) {
   const s = pad(v);
@@ -330,4 +322,4 @@ function closeModalDirect() {
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModalDirect(); });
 </script>
 </body>
-</html>
+</html>*
