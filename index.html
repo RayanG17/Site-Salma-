@@ -36,7 +36,9 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: url('bg .PNG') center/cover no-repeat fixed;
+  background: url('bg .PNG') center/contain no-repeat fixed;
+background-color: #fdf0f4;
+
 }
 
 /* Overlay très léger pour lisibilité */
@@ -44,7 +46,8 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: rgba(253, 240, 244, 0.3);
+  background: background: rgba(253, 240, 244, 0.1);
+;
   pointer-events: none;
 }
 
@@ -72,11 +75,9 @@ header {
 .logo-img {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255,255,255,0.85);
-  box-shadow: 0 6px 24px rgba(139,34,82,.25);
+  object-fit: contain;
 }
+
 
 .eyebrow {
   font-weight: 200;
