@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* BACKGROUND — fixé pour téléphone & tablette */
+    /* BACKGROUND — adapté téléphone/tablette/PC */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -127,7 +127,7 @@
     .card.today { background: linear-gradient(135deg, #d4855a, var(--gold)); box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both; }
     @keyframes todayPulse { 0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); } 50% { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); } }
 
-    /* ====================== CASE MAGIQUE DU 26 OCTOBRE ====================== */
+    /* CASE MAGIQUE DU 26 OCTOBRE */
     .card.final::before {
       content: '✨';
       position: absolute;
@@ -227,7 +227,7 @@
 </div>
 
 <script>
-const BIRTHDAY = new Date("2026-10-27T00:00:00");
+const BIRTHDAY = new Date("2026-10-26T00:00:00");
 
 const SURPRISES = [
   { icon: "💬", title: "Le premier jour", content: "Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime." },
@@ -237,7 +237,6 @@ const SURPRISES = [
   { icon: "📸", title: "Ma photo préférée de nous", content: "✏️ Décris la photo et le moment." },
   { icon: "🎵", title: "La chanson qui me fait penser à toi", content: "✏️ Titre + artiste, et pourquoi cette chanson." },
   { icon: "💬", title: "Ce que j'aime chez toi", content: "✏️ Une liste des choses que j'aime chez toi." }
-  // Ajoute tes autres lettres ici
 ];
 
 function daysBetween(a, b) {
@@ -262,7 +261,7 @@ for (let i = 0; i < total; i++) {
   card.className = "card";
 
   const isToday = i === 0;
-  const isFinalDay = (date.getFullYear() === 2026 && date.getMonth() === 9 && date.getDate() === 27); // ← EXACTEMENT le 26 octobre
+  const isFinalDay = (i === total - 1);        // ← C'EST ICI LA CORRECTION : la DERNIÈRE case = 26 octobre
   const unlocked = i <= 0;
   const surprise = SURPRISES[i] || null;
 
@@ -278,7 +277,7 @@ for (let i = 0; i < total; i++) {
     card.addEventListener("click", () => openModal(i+1, date, surprise));
   } else {
     card.classList.add("locked");
-    if (isFinalDay) card.classList.add("final");   // même verrouillée elle brille
+    if (isFinalDay) card.classList.add("final");
     card.innerHTML = `<div class="card-inner">
       <span class="card-day-num">${i+1}</span>
       <span class="card-date-label">${formatDate(date)}</span>
@@ -288,7 +287,7 @@ for (let i = 0; i < total; i++) {
   grid.appendChild(card);
 }
 
-// Countdown
+// Countdown + Modal (inchangé)
 const els = { d: document.getElementById("cd-days"), h: document.getElementById("cd-hours"), m: document.getElementById("cd-mins"), s: document.getElementById("cd-secs") };
 function popEl(el, v) {
   const s = pad(v);
@@ -307,7 +306,6 @@ function tick() {
 }
 tick(); setInterval(tick, 1000);
 
-// Modal
 function openModal(dayNum, date, surprise) {
   document.getElementById("modal-badge").textContent = `Jour ${dayNum} · ${formatDate(date)}`;
   document.getElementById("modal-icon").textContent = surprise ? surprise.icon : "💌";
