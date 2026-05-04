@@ -44,11 +44,9 @@ body {
     background: url('bg.jpg') center/cover no-repeat fixed;
     Et dépose bg.jpg dans le même dossier que index.html
   */
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(232,160,180,0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(196,84,122,0.2) 0%, transparent 60%),
-    linear-gradient(160deg, #fdf0f4 0%, #f9e0ea 40%, #fdf0f4 100%);
-  pointer-events: none;
+background: url('bg.png') center/cover no-repeat fixed;
+pointer-events: none;
+
 }
 
 .bg-layer::after {
@@ -314,7 +312,8 @@ footer {
         remplace ces 3 lignes par :
         <img src="logo.png" alt="notre logo" style="width:84px;height:84px;border-radius:50%;object-fit:cover;box-shadow:0 8px 32px rgba(139,34,82,.25);border:3px solid rgba(255,255,255,.75)"/>
       -->
-      <div class="logo-placeholder">🌸</div>
+      <img src="logo.png" alt="notre logo" style="width:84px;height:84px;border-radius:50%;object-fit:cover;box-shadow:0 8px 32px rgba(139,34,82,.25);border:3px solid rgba(255,255,255,.75)"/>
+
     </div>
     <p class="eyebrow">De Rayan, avec tout son amour</p>
     <h1>Pour <strong>Salmouchee</strong></h1>
