@@ -30,12 +30,23 @@
     }
 
     /* BACKGROUND adapté à tous les écrans */
-    .bg-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: url('bg%20.PNG') center/cover no-repeat fixed;
-      background-color: #fdf0f4;
+    ./* BACKGROUND — corrigé pour mobile + tablette */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('bg%20.PNG') center/cover no-repeat fixed;
+  background-color: #fdf0f4;
+}
+
+/* Fix mobile & tablette */
+@media (max-width: 1024px) {
+  .bg-layer {
+    background-attachment: scroll;        /* ← important */
+    background-position: center top;      /* mieux centré en portrait */
+    background-size: cover;
+  }
+}
     }
 
     .bg-overlay {
