@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* BACKGROUND — adapté à tous les appareils */
+    /* BACKGROUND — adapté téléphone/tablette/PC */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -66,9 +66,9 @@
       animation: fadeDown .9s ease both;
     }
 
-    /* LOGO DESCENDU UN TOUT PETIT PEU */
+    /* LOGO DESCENDU DE 175px COMME TU AS DEMANDÉ */
     .logo-wrap {
-      margin-top: 15px;     /* ← c'est ici que j'ai descendu le logo */
+      margin-top: 175px;     /* ← voilà le changement */
       margin-bottom: 16px;
     }
     .logo-img {
@@ -219,7 +219,7 @@
   <footer>fait avec amour par Rayan &nbsp;·&nbsp; pour Salma</footer>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL + SCRIPT (identique) -->
 <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -295,7 +295,7 @@ for (let i = 0; i < total; i++) {
   grid.appendChild(card);
 }
 
-// Countdown
+// Countdown + Modal
 const els = { d: document.getElementById("cd-days"), h: document.getElementById("cd-hours"), m: document.getElementById("cd-mins"), s: document.getElementById("cd-secs") };
 function popEl(el, v) {
   const s = pad(v);
@@ -314,7 +314,6 @@ function tick() {
 }
 tick(); setInterval(tick, 1000);
 
-// Modal
 function openModal(dayNum, date, surprise) {
   document.getElementById("modal-badge").textContent = `Jour ${dayNum} · ${formatDate(date)}`;
   document.getElementById("modal-icon").textContent = surprise ? surprise.icon : "💌";
