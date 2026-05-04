@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* BACKGROUND — adapté téléphone/tablette/PC */
+    /* BACKGROUND — adapté à tous les appareils */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -60,9 +60,17 @@
       padding: 0 20px 80px;
     }
 
-    header { padding: 54px 0 38px; text-align: center; animation: fadeDown .9s ease both; }
+    header {
+      padding: 54px 0 38px;
+      text-align: center;
+      animation: fadeDown .9s ease both;
+    }
 
-    .logo-wrap { margin-bottom: 16px; }
+    /* LOGO DESCENDU UN TOUT PETIT PEU */
+    .logo-wrap {
+      margin-top: 15px;     /* ← c'est ici que j'ai descendu le logo */
+      margin-bottom: 16px;
+    }
     .logo-img {
       width: clamp(180px, 35vw, 300px);
       height: auto;
@@ -127,7 +135,7 @@
     .card.today { background: linear-gradient(135deg, #d4855a, var(--gold)); box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both; }
     @keyframes todayPulse { 0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); } 50% { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); } }
 
-    /* CASE MAGIQUE DU 26 OCTOBRE */
+    /* Case magique 26 octobre */
     .card.final::before {
       content: '✨';
       position: absolute;
@@ -261,7 +269,7 @@ for (let i = 0; i < total; i++) {
   card.className = "card";
 
   const isToday = i === 0;
-  const isFinalDay = (i === total - 1);        // ← C'EST ICI LA CORRECTION : la DERNIÈRE case = 26 octobre
+  const isFinalDay = (i === total - 1);
   const unlocked = i <= 0;
   const surprise = SURPRISES[i] || null;
 
@@ -287,7 +295,7 @@ for (let i = 0; i < total; i++) {
   grid.appendChild(card);
 }
 
-// Countdown + Modal (inchangé)
+// Countdown
 const els = { d: document.getElementById("cd-days"), h: document.getElementById("cd-hours"), m: document.getElementById("cd-mins"), s: document.getElementById("cd-secs") };
 function popEl(el, v) {
   const s = pad(v);
@@ -306,6 +314,7 @@ function tick() {
 }
 tick(); setInterval(tick, 1000);
 
+// Modal
 function openModal(dayNum, date, surprise) {
   document.getElementById("modal-badge").textContent = `Jour ${dayNum} · ${formatDate(date)}`;
   document.getElementById("modal-icon").textContent = surprise ? surprise.icon : "💌";
