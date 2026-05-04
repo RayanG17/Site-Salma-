@@ -227,7 +227,7 @@
 </div>
 
 <script>
-const BIRTHDAY = new Date("2026-10-26T00:00:00");
+const BIRTHDAY = new Date("2026-10-27T00:00:00");
 
 const SURPRISES = [
   { icon: "💬", title: "Le premier jour", content: "Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime." },
@@ -262,7 +262,7 @@ for (let i = 0; i < total; i++) {
   card.className = "card";
 
   const isToday = i === 0;
-  const isFinalDay = (date.getFullYear() === 2026 && date.getMonth() === 9 && date.getDate() === 26); // ← EXACTEMENT le 26 octobre
+  const isFinalDay = (date.getFullYear() === 2026 && date.getMonth() === 9 && date.getDate() === 27); // ← EXACTEMENT le 26 octobre
   const unlocked = i <= 0;
   const surprise = SURPRISES[i] || null;
 
