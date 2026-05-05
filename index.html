@@ -58,7 +58,7 @@
       animation: fadeDown .9s ease both;
     }
 
-    /* Logo serré juste au-dessus des boutons réseaux */
+    /* Logo avec animation d'entrée au chargement du site */
     .logo-wrap {
       margin-bottom: 10px;
       margin-top: 0;
@@ -68,6 +68,7 @@
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0 10px 18px rgba(139,34,82,.22));
+      animation: logoReveal 1.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) both;
     }
 
     /* Réseaux */
@@ -259,10 +260,11 @@
     .card.final {
       grid-column: span 2;
       grid-row: span 2;
-      aspect-ratio: unset; /* on enlève l'aspect-ratio 1:1 pour qu'elle occupe vraiment 2×2 */
+      aspect-ratio: unset;
       border-radius: 20px;
     }
 
+    /* Couleur différente pour la case anniversaire (même verrouillée) */
     .card.final.locked {
       background: rgba(201,146,74,.12);
       border: 2px dashed rgba(201,146,74,.45);
@@ -424,17 +426,51 @@
       margin-left: 50%; transform: translateX(-50%);
     }
 
+    /* Animation du logo au chargement du site */
+    @keyframes logoReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.7);
+      }
+      70% {
+        transform: translateY(8px) scale(1.08);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeUp   { from { opacity:0; transform:translateY(22px);  } to { opacity:1; transform:translateY(0); } }
 
-    @media (max-width:480px) {
-      .grid { grid-template-columns: repeat(4,1fr); gap:7px; }
-    }
-
-    /* Correction background mobile + tablette (rien d'autre n'est touché) */
+    /* RESPONSIVE BACKGROUND : optimisation téléphone + tablette */
     @media (max-width: 1024px) {
       .bg-layer {
-        background-attachment: scroll;
+        background-attachment: scroll !important;
+        background-position: 50% 30% !important; /* mieux centré sur portrait mobile/tablette */
+        background-size: cover !important;
+      }
+      .bg-overlay {
+        background: rgba(253, 240, 244, 0.15); /* légèrement plus visible sur petit écran */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: repeat(4,1fr); gap:7px; }
+      .logo-img {
+        width: clamp(140px, 38vw, 200px);
+      }
+      .wrapper {
+        padding: 0 15px 60px;
+      }
+    }
+
+    /* Tablette intermédiaire */
+    @media (min-width: 481px) and (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 12px;
       }
     }
   </style>
@@ -535,7 +571,7 @@ const MESSAGES = {
   10: { icon:"🎀", title:"Hello Kitty t'envie", content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Sauf que toi t'as un niveau de personnalité en plus. Hello Kitty t'envie, je t'assure." },
   11: { icon:"💪", title:"Ta force", content:"T'as une force en toi que tu vois pas forcément.\n\nMoi je la vois. Dans ta façon de gérer les choses, de continuer même quand c'est dur. Elle me bluffe, vraiment." },
   12: { icon:"🌟", title:"Tu brilles", content:"T'as cette capacité à être lumineuse même sans t'en rendre compte.\n\nC'est le genre de qualité qu'on peut pas forcer. Soit t'as, soit t'as pas. Et toi t'as. En abondance." },
-  13: { icon:"🏴‍☠️", title:"She's my Nakama", content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nJe comprends maintenant ce qu'il veut dire. Mon trésor à moi il s'appelle Salmouchee." },
+  13: { icon:"🏴‍☠️", title:"She's my Nakama", content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nJe comprends maintenant ce que il veut dire. Mon trésor à moi il s'appelle Salmouchee." },
   14: { icon:"🎮", title:"Tomodachi Life", content:"Si on était des personnages Tomodachi Life, je suis sûr que notre compatibilité serait à 100%.\n\nPas parce que je veux que ce soit parfait — mais parce qu'avec toi même les imperfections ont l'air d'aller de soi." },
   15: { icon:"🌙", title:"Les nuits", content:"Les nuits où je dors pas bien, je pense à des trucs simples.\n\nUne conversation qu'on a eu. Un truc drôle que t'as dit. Et bizarrement ça suffit à rendre la nuit plus douce." },
   16: { icon:"💭", title:"Dans ma tête", content:"T'es dans ma tête plus souvent que tu le réalises.\n\nDans une chanson qui passe, dans un truc drôle que je vois et que j'ai envie de te montrer. C'est dingue comme quelqu'un peut prendre autant de place." },
@@ -554,6 +590,13 @@ const BIRTHDAY_MSG = {
   icon: "🎂",
   title: "Joyeux Anniversaire Salmouchee 🎉",
   content: "Aujourd'hui c'est TON jour. 🎂\n\nLe 26 octobre — la date où quelqu'un d'extraordinaire est arrivé dans ce monde et l'a rendu meilleur sans même le faire exprès.\n\nCes cases, ce compte à rebours, ces mois à penser à toi — tout ça pour te dire une chose :\n\nTu mérites tout le bonheur du monde, Salma. Tout. Sans exception.\n\nJoyeux anniversaire ma Salmouchee. 🌸✨"
+};
+
+// Message verrouillé SPÉCIAL pour la case anniversaire (différent des autres cases)
+const BIRTHDAY_LOCKED_MSG = {
+  icon: "🎂",
+  title: "Bientôt ton jour magique ✨",
+  content: "Cette case est réservée à ton anniversaire, Salmouchee !\n\nElle ne s’ouvrira que le 26 octobre… mais en attendant, chaque jour qui passe me rapproche un peu plus de pouvoir te souhaiter le plus beau des anniversaires.\n\nTu es ma plus belle surprise 🌸"
 };
 
 const GENERIC_MESSAGES = [
@@ -624,7 +667,6 @@ for (let i = 0; i < totalDays; i++) {
     if (wasOpened)  card.classList.add("opened");
 
     if (isBirthday) {
-      // Étoiles décoratives
       const starPositions = [
         {top:'8%',left:'6%',delay:'0s'},{top:'12%',left:'88%',delay:'.4s'},
         {top:'80%',left:'5%',delay:'.8s'},{top:'85%',left:'90%',delay:'.2s'},
@@ -662,15 +704,15 @@ for (let i = 0; i < totalDays; i++) {
     if (isBirthday) card.classList.add("final");
 
     if (isBirthday) {
+      // Message VERROUILLÉ différent + modal anniversaire même quand verrouillée
+      const lockedMsg = BIRTHDAY_LOCKED_MSG;
       card.innerHTML = `<div class="card-inner">
         <span class="card-type-icon" style="font-size:clamp(32px,6vw,50px);opacity:.5;">🎂</span>
         <span class="card-day-num">${i + 1}</span>
         <span class="card-date-label">${formatDate(date)}</span>
         <span class="bday-label-locked">Anniversaire ✨</span>
       </div>`;
-      // Correction : maintenant la case anniversaire verrouillée affiche bien un message (comme les autres)
-      const lockedMsg = LOCKED_MESSAGES[i % LOCKED_MESSAGES.length];
-      card.addEventListener("click", () => openModal(i + 1, date, lockedMsg, false, true));
+      card.addEventListener("click", () => openModal(i + 1, date, lockedMsg, true, true));
     } else {
       card.innerHTML = `<div class="card-inner">
         <span class="card-day-num">${i + 1}</span>
@@ -735,4 +777,3 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeModalDi
 </script>
 </body>
 </html>
-```​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
