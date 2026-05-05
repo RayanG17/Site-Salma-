@@ -1,950 +1,667 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pour Salmouchee</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Tenor+Sans&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --ink:       #1a0a12;
-      --blush:     #f7e8ef;
-      --petal:     #e8c2d4;
-      --rose:      #c4547a;
-      --wine:      #8b2252;
-      --gilt:      #c9924a;
-      --gilt-pale: #f0d9b5;
-      --smoke:     rgba(26,10,18,0.06);
-      --veil:      rgba(247,232,239,0.72);
-      --veil2:     rgba(247,232,239,0.45);
-      --border:    rgba(196,84,122,0.14);
-    }
-
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-
-    body {
-      min-height:100vh;
-      font-family:'DM Sans',sans-serif;
-      color:var(--ink);
-      overflow-x:hidden;
-      cursor:none;
-    }
-
-    /* ═══════════════════════════════
-       CURSOR PERSONNALISÉ
-    ═══════════════════════════════ */
-    #cursor {
-      position:fixed; z-index:9999; pointer-events:none;
-      width:10px; height:10px; border-radius:50%;
-      background:var(--rose);
-      transform:translate(-50%,-50%);
-      transition:transform .1s ease, width .3s ease, height .3s ease, opacity .3s ease;
-      mix-blend-mode:multiply;
-    }
-    #cursor-ring {
-      position:fixed; z-index:9998; pointer-events:none;
-      width:36px; height:36px; border-radius:50%;
-      border:1.5px solid rgba(196,84,122,0.45);
-      transform:translate(-50%,-50%);
-      transition:transform .18s ease, width .3s ease, height .3s ease, opacity .3s ease;
-      mix-blend-mode:multiply;
-    }
-    body:hover #cursor { opacity:1; }
-    .card:hover ~ #cursor,
-    a:hover ~ #cursor { width:18px; height:18px; }
-
-    /* ═══════════════════════════════
-       BACKGROUND
-    ═══════════════════════════════ */
-    .bg-layer {
-      position:fixed; inset:0; z-index:0;
-      background: url('bg .PNG') center/cover no-repeat;
-      background-color:#fdf0f4;
-    }
-    @media (max-width:1024px) {
-      .bg-layer { background-attachment:scroll; background-position:50% 30%; }
-    }
-
-    /* Grain cinématique */
-    .bg-grain {
-      position:fixed; inset:0; z-index:1;
-      pointer-events:none;
-      opacity:.032;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-      background-size:180px;
-      animation:grainShift 8s steps(2) infinite;
-    }
-    @keyframes grainShift {
-      0%{transform:translate(0,0);}  25%{transform:translate(-2%,-1%);}
-      50%{transform:translate(1%,2%);} 75%{transform:translate(-1%,1%);}
-    }
-
-    /* Vignette */
-    .bg-vignette {
-      position:fixed; inset:0; z-index:2; pointer-events:none;
-      background:radial-gradient(ellipse 110% 80% at 50% 40%, transparent 40%, rgba(26,10,18,0.18) 100%);
-    }
-
-    /* Overlay très léger */
-    .bg-overlay {
-      position:fixed; inset:0; z-index:2;
-      background:rgba(247,232,239,0.08); pointer-events:none;
-    }
-
-    /* Canvas particules */
-    #particles-canvas {
-      position:fixed; inset:0; z-index:3;
-      pointer-events:none; opacity:.6;
-    }
-
-    /* ═══════════════════════════════
-       INTRO
-    ═══════════════════════════════ */
-    #intro-screen {
-      position:fixed; inset:0; z-index:999;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center; gap:0;
-      background:linear-gradient(160deg,#fdf0f4,#f5d4e6 50%,#ead0e8);
-      transition:opacity .9s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.4,0,.2,1);
-    }
-    #intro-screen.hide { opacity:0; transform:scale(1.03); pointer-events:none; }
-
-    .intro-bg-lines {
-      position:absolute; inset:0; pointer-events:none; overflow:hidden;
-    }
-    .intro-bg-lines::before,
-    .intro-bg-lines::after {
-      content:'';
-      position:absolute;
-      border-radius:50%;
-      border:1px solid rgba(196,84,122,.12);
-    }
-    .intro-bg-lines::before {
-      width:700px; height:700px;
-      left:50%; top:50%; transform:translate(-50%,-50%);
-      animation:introCircle 4s ease-in-out infinite;
-    }
-    .intro-bg-lines::after {
-      width:500px; height:500px;
-      left:50%; top:50%; transform:translate(-50%,-50%);
-      animation:introCircle 4s 1s ease-in-out infinite;
-    }
-    @keyframes introCircle {
-      0%,100%{transform:translate(-50%,-50%) scale(1);}
-      50%{transform:translate(-50%,-50%) scale(1.04);}
-    }
-
-    .intro-logo-wrap {
-      position:relative;
-      animation:introReveal 1.2s cubic-bezier(.16,1,.3,1) both;
-    }
-    @keyframes introReveal {
-      0%{opacity:0;transform:translateY(30px) scale(.92);}
-      100%{opacity:1;transform:translateY(0) scale(1);}
-    }
-    .intro-logo {
-      width:clamp(180px,42vw,290px);
-      filter:drop-shadow(0 20px 40px rgba(139,34,82,.22));
-    }
-
-    /* Ligne ornementale intro */
-    .intro-ornament {
-      display:flex; align-items:center; gap:14px;
-      margin-top:32px;
-      animation:introReveal 1.2s .25s cubic-bezier(.16,1,.3,1) both;
-    }
-    .intro-orn-line { width:60px; height:1px; background:linear-gradient(90deg,transparent,rgba(196,84,122,.4)); }
-    .intro-orn-line.r { transform:scaleX(-1); }
-    .intro-orn-diamond {
-      width:7px; height:7px;
-      background:var(--rose);
-      transform:rotate(45deg);
-      box-shadow:0 0 12px rgba(196,84,122,.5);
-    }
-
-    .intro-tagline {
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic; font-weight:300;
-      font-size:clamp(16px,3.5vw,24px);
-      color:var(--wine); letter-spacing:.08em;
-      margin-top:16px;
-      animation:introReveal 1.2s .4s cubic-bezier(.16,1,.3,1) both;
-    }
-
-    .intro-skip {
-      position:absolute; bottom:36px;
-      font-family:'Tenor Sans',sans-serif;
-      font-size:9px; letter-spacing:.35em; text-transform:uppercase;
-      color:var(--rose); opacity:0;
-      background:none; border:none; cursor:none;
-      animation:fadeInSlow 1s 2s both;
-    }
-    @keyframes fadeInSlow { to{opacity:.55;} }
-
-    /* ═══════════════════════════════
-       WRAPPER
-    ═══════════════════════════════ */
-    .wrapper {
-      position:relative; z-index:10;
-      max-width:960px; margin:0 auto;
-      padding:0 24px 100px;
-      opacity:0; transform:translateY(20px);
-      transition:opacity 1s ease, transform 1s ease;
-    }
-    .wrapper.visible { opacity:1; transform:translateY(0); }
-
-    /* ═══════════════════════════════
-       HEADER
-    ═══════════════════════════════ */
-    header {
-      padding:52px 0 36px;
-      text-align:center;
-    }
-
-    .logo-wrap {
-      margin-bottom:28px;
-      position:relative;
-      display:inline-block;
-    }
-    .logo-img {
-      width:clamp(150px,28vw,240px);
-      height:auto; object-fit:contain;
-      filter:drop-shadow(0 12px 30px rgba(139,34,82,.18));
-      transition:transform .6s cubic-bezier(.16,1,.3,1);
-    }
-    .logo-wrap:hover .logo-img { transform:scale(1.03); }
-
-    /* Halo derrière le logo */
-    .logo-halo {
-      position:absolute; inset:-20px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(196,84,122,.1),transparent 70%);
-      pointer-events:none;
-      animation:haloBreath 4s ease-in-out infinite;
-    }
-    @keyframes haloBreath { 0%,100%{opacity:.6;} 50%{opacity:1;} }
-
-    /* SOCIALS */
-    .socials {
-      display:flex; justify-content:center; gap:10px; margin:0 0 28px;
-      opacity:0; animation:slideUp .8s .3s cubic-bezier(.16,1,.3,1) both;
-    }
-    .wrapper.visible .socials { opacity:1; }
-
-    .social-btn {
-      display:flex; flex-direction:column; align-items:center; gap:5px;
-      text-decoration:none;
-      background:var(--veil);
-      backdrop-filter:blur(16px) saturate(1.4);
-      border:1px solid var(--border);
-      border-radius:14px; padding:10px 16px;
-      transition:transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, background .3s;
-      box-shadow:0 2px 16px rgba(139,34,82,.07), inset 0 1px 0 rgba(255,255,255,.7);
-      min-width:62px;
-    }
-    .social-btn:hover {
-      transform:translateY(-4px) scale(1.04);
-      box-shadow:0 12px 32px rgba(139,34,82,.15), inset 0 1px 0 rgba(255,255,255,.9);
-      background:rgba(255,248,249,.92);
-    }
-    .social-icon { font-size:20px; line-height:1; display:flex; align-items:center; justify-content:center; }
-    .social-label { font-family:'Tenor Sans',sans-serif; font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:var(--rose); }
-
-    /* EYEBROW */
-    .eyebrow {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:10px; letter-spacing:.5em; text-transform:uppercase;
-      color:var(--rose); margin-bottom:12px;
-      display:inline-flex; align-items:center; gap:12px;
-      opacity:0; animation:slideUp .8s .15s cubic-bezier(.16,1,.3,1) both;
-    }
-    .wrapper.visible .eyebrow { opacity:1; }
-    .eyebrow::before, .eyebrow::after {
-      content:''; display:block;
-      width:28px; height:1px;
-      background:linear-gradient(90deg,transparent,var(--rose));
-    }
-    .eyebrow::after { transform:scaleX(-1); }
-
-    h1 {
-      font-family:'Cormorant Garamond',serif;
-      font-weight:300; font-style:italic;
-      font-size:clamp(36px,7vw,72px);
-      color:var(--wine); line-height:1.05; margin-bottom:8px;
-      letter-spacing:-.01em;
-      opacity:0; animation:slideUp .9s .05s cubic-bezier(.16,1,.3,1) both;
-      text-shadow:0 2px 20px rgba(247,232,239,.9);
-    }
-    .wrapper.visible h1 { opacity:1; }
-    h1 strong { font-style:normal; font-weight:600; }
-
-    .subtitle {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:11px; letter-spacing:.3em; text-transform:uppercase;
-      color:rgba(139,34,82,.6);
-      opacity:0; animation:slideUp .8s .2s cubic-bezier(.16,1,.3,1) both;
-    }
-    .wrapper.visible .subtitle { opacity:1; }
-
-    @keyframes slideUp {
-      from{opacity:0;transform:translateY(18px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-
-    /* ═══════════════════════════════
-       SÉPARATEUR ORNEMENTAL
-    ═══════════════════════════════ */
-    .ornament {
-      display:flex; align-items:center; gap:18px;
-      margin:36px auto 48px; max-width:340px;
-    }
-    .orn-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(196,84,122,.3)); }
-    .orn-line.r { transform:scaleX(-1); }
-    .orn-center {
-      display:flex; align-items:center; gap:8px;
-    }
-    .orn-diamond {
-      width:6px; height:6px;
-      background:var(--rose); transform:rotate(45deg);
-    }
-    .orn-diamond.sm { width:4px; height:4px; background:rgba(196,84,122,.4); }
-
-    /* ═══════════════════════════════
-       COUNTDOWN — premium
-    ═══════════════════════════════ */
-    .countdown-strip {
-      display:flex; justify-content:center;
-      gap:clamp(8px,2.5vw,20px); margin-bottom:56px;
-    }
-
-    .cd-unit { display:flex; flex-direction:column; align-items:center; gap:7px; }
-
-    .cd-box {
-      position:relative;
-      width:clamp(62px,13vw,94px); height:clamp(68px,14vw,102px);
-      display:flex; align-items:center; justify-content:center;
-      overflow:hidden;
-    }
-
-    /* Fond verre */
-    .cd-box::before {
-      content:'';
-      position:absolute; inset:0;
-      background:var(--veil);
-      backdrop-filter:blur(20px) saturate(1.5);
-      border:1px solid var(--border);
-      border-radius:12px;
-      box-shadow:0 4px 24px rgba(139,34,82,.09), inset 0 1px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(139,34,82,.05);
-    }
-
-    /* Ligne centrale flip */
-    .cd-box::after {
-      content:'';
-      position:absolute; left:10%; right:10%; top:50%;
-      height:1px;
-      background:linear-gradient(90deg,transparent,rgba(196,84,122,.18),transparent);
-      z-index:2;
-    }
-
-    .cd-num {
-      font-family:'Cormorant Garamond',serif;
-      font-weight:300;
-      font-size:clamp(28px,6vw,50px);
-      color:var(--wine); line-height:1;
-      position:relative; z-index:1;
-      transition:transform .2s ease, opacity .2s ease;
-      letter-spacing:-.02em;
-    }
-    .cd-num.pop { animation:numFlip .28s cubic-bezier(.4,0,.6,1); }
-    @keyframes numFlip {
-      0%{transform:translateY(-6px) scale(.95);opacity:.4;}
-      100%{transform:translateY(0) scale(1);opacity:1;}
-    }
-    .cd-label {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:8px; letter-spacing:.3em; text-transform:uppercase;
-      color:rgba(139,34,82,.5);
-    }
-
-    /* ═══════════════════════════════
-       SECTION HEADER
-    ═══════════════════════════════ */
-    .section-header {
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; margin-bottom:28px; flex-wrap:wrap;
-    }
-
-    .section-title h2 {
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic; font-weight:300;
-      font-size:clamp(20px,3.5vw,32px); color:var(--wine);
-      letter-spacing:.02em;
-    }
-    .section-title p {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:9px; letter-spacing:.28em; text-transform:uppercase;
-      color:rgba(139,34,82,.45); margin-top:5px;
-    }
-
-    /* BOUTON NOTIF */
-    .notif-btn {
-      display:flex; align-items:center; gap:8px;
-      background:var(--veil);
-      backdrop-filter:blur(16px);
-      border:1px solid var(--border);
-      border-radius:50px; padding:10px 20px;
-      cursor:none;
-      font-family:'Tenor Sans',sans-serif;
-      font-size:9px; letter-spacing:.3em; text-transform:uppercase;
-      color:var(--rose);
-      transition:all .3s cubic-bezier(.16,1,.3,1);
-      box-shadow:0 2px 16px rgba(139,34,82,.06), inset 0 1px 0 rgba(255,255,255,.7);
-      white-space:nowrap;
-    }
-    .notif-btn:hover {
-      background:rgba(255,248,249,.92);
-      transform:translateY(-2px);
-      box-shadow:0 8px 28px rgba(139,34,82,.14);
-    }
-    .notif-btn.active {
-      background:linear-gradient(135deg,var(--rose),var(--wine));
-      color:#fff; border-color:transparent;
-      box-shadow:0 6px 24px rgba(139,34,82,.35);
-    }
-    .notif-dot {
-      width:6px; height:6px; border-radius:50%;
-      background:currentColor; opacity:.7;
-      animation:dotBreath 2s ease-in-out infinite;
-    }
-    @keyframes dotBreath { 0%,100%{transform:scale(1);}50%{transform:scale(1.5);} }
-
-    /* ═══════════════════════════════
-       BANNER NOUVELLE CASE
-    ═══════════════════════════════ */
-    .new-banner {
-      display:none; align-items:center; gap:16px;
-      background:linear-gradient(135deg,var(--rose),var(--wine));
-      border-radius:16px; padding:16px 22px;
-      margin-bottom:24px; cursor:none;
-      box-shadow:0 8px 32px rgba(139,34,82,.3);
-      animation:bannerReveal .6s cubic-bezier(.16,1,.3,1) both;
-      overflow:hidden; position:relative;
-    }
-    .new-banner::before {
-      content:''; position:absolute;
-      width:200px; height:200px; border-radius:50%;
-      background:rgba(255,255,255,.06);
-      top:-60px; right:-40px;
-      pointer-events:none;
-    }
-    .new-banner.show { display:flex; }
-    @keyframes bannerReveal {
-      from{transform:translateY(-12px);opacity:0;}
-      to{transform:translateY(0);opacity:1;}
-    }
-    .new-banner-icon { font-size:26px; flex-shrink:0; animation:iconLift 2s ease-in-out infinite; }
-    @keyframes iconLift { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
-    .new-banner-text { flex:1; }
-    .new-banner-title {
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic; font-weight:400;
-      font-size:16px; color:#fff; margin-bottom:2px;
-    }
-    .new-banner-sub {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:9px; letter-spacing:.25em; text-transform:uppercase;
-      color:rgba(255,255,255,.6);
-    }
-    .new-banner-arrow { color:rgba(255,255,255,.5); font-size:20px; font-weight:300; }
-
-    /* ═══════════════════════════════
-       GRILLE
-    ═══════════════════════════════ */
-    .grid-wrapper { position:relative; }
-    .connect-line { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(clamp(82px,15vw,115px),1fr));
-      gap:11px; position:relative; z-index:1;
-    }
-/* ═══════════════════════════════
-       CARD — le cœur du design
-    ═══════════════════════════════ */
-    .card {
-      aspect-ratio:1; border-radius:14px;
-      cursor:none; position:relative;
-      overflow:hidden;
-      transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
-      user-select:none;
-      /* Stagger au chargement */
-      opacity:0;
-      animation:cardLoad .6s cubic-bezier(.16,1,.3,1) both;
-    }
-    @keyframes cardLoad {
-      from{opacity:0;transform:scale(.88) translateY(8px);}
-      to{opacity:1;transform:scale(1) translateY(0);}
-    }
-
-    .card:hover:not(.locked) {
-      transform:translateY(-5px) scale(1.03);
-      z-index:5;
-    }
-
-    /* LOCKED */
-    .card.locked {
-      background:var(--veil2);
-      border:1px solid var(--border);
-      backdrop-filter:blur(10px);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
-    }
-    .card.locked:hover { transform:translateY(-2px) scale(1.01); }
-
-    /* Shimmer sur hover des cases locked */
-    .card.locked::before {
-      content:'';
-      position:absolute; inset:0;
-      background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);
-      transform:translateX(-100%);
-      transition:transform .5s ease;
-    }
-    .card.locked:hover::before { transform:translateX(100%); }
-
-    .card-inner {
-      display:flex; flex-direction:column; align-items:center;
-      justify-content:center; height:100%; gap:4px; padding:9px;
-      position:relative; z-index:1;
-    }
-
-    .card-day-num {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(19px,4vw,28px); font-weight:300;
-      color:var(--wine); line-height:1;
-    }
-    .card-date-label {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:clamp(7px,1.1vw,9px); letter-spacing:.12em;
-      color:rgba(139,34,82,.5); text-align:center;
-    }
-    .lock-icon { font-size:11px; opacity:.3; margin-top:2px; }
-
-    /* UNLOCKED — gradient rose soyeux */
-    .card.unlocked {
-      background:linear-gradient(145deg,#d4708e,#8b2252);
-      box-shadow:0 6px 28px rgba(139,34,82,.28), inset 0 1px 0 rgba(255,255,255,.2);
-      border:1px solid rgba(255,255,255,.15);
-    }
-    .card.unlocked::before {
-      content:'';
-      position:absolute; inset:0;
-      background:linear-gradient(145deg,rgba(255,255,255,.12) 0%,transparent 60%);
-      pointer-events:none;
-    }
-    /* Reflet lumineux */
-    .card.unlocked::after {
-      content:'';
-      position:absolute; top:-30%; left:-20%;
-      width:70%; height:70%; border-radius:50%;
-      background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);
-      pointer-events:none;
-      transition:transform .4s ease;
-    }
-    .card.unlocked:hover::after { transform:translate(10%,10%); }
-
-    .card.unlocked .card-day-num { color:rgba(255,255,255,.95); }
-    .card.unlocked .card-date-label { color:rgba(255,255,255,.6); }
-    .card-type-icon { font-size:clamp(14px,3vw,20px); }
-
-    /* OPENED — translucide */
-    .card.unlocked.opened {
-      background:rgba(196,84,122,.1);
-      border:1px solid rgba(196,84,122,.18);
-      backdrop-filter:blur(10px);
-      box-shadow:none;
-    }
-    .card.unlocked.opened::before, .card.unlocked.opened::after { display:none; }
-    .card.unlocked.opened .card-day-num { color:rgba(139,34,82,.5); }
-    .card.unlocked.opened .card-date-label { color:rgba(139,34,82,.35); }
-    .card.unlocked.opened .card-type-icon { opacity:.3; }
-
-    /* Petite coche */
-    .card-check {
-      position:absolute; top:7px; right:8px;
-      width:14px; height:14px; border-radius:50%;
-      background:rgba(196,84,122,.15);
-      display:flex; align-items:center; justify-content:center;
-      display:none;
-    }
-    .card-check::after {
-      content:'';
-      width:5px; height:3px;
-      border-left:1.5px solid rgba(196,84,122,.5);
-      border-bottom:1.5px solid rgba(196,84,122,.5);
-      transform:rotate(-45deg) translateY(-1px);
-    }
-    .card.opened .card-check { display:flex; }
-
-    /* Point nouveau */
-    .card-new-dot {
-      position:absolute; top:7px; right:7px;
-      width:9px; height:9px; border-radius:50%;
-      background:#e53935;
-      border:2px solid rgba(255,248,249,.9);
-      z-index:3; display:none;
-      box-shadow:0 0 8px rgba(229,57,53,.5);
-    }
-    .card-new-dot.show { display:block; animation:dotPulseNew 1.6s ease-in-out infinite; }
-    @keyframes dotPulseNew {
-      0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,.4);}
-      50%{box-shadow:0 0 0 5px rgba(229,57,53,0);}
-    }
-
-    /* TODAY — doré */
-    .card.today {
-      background:linear-gradient(145deg,#e8a060,#c9924a);
-      box-shadow:0 8px 32px rgba(201,146,74,.4), 0 0 0 3px rgba(255,255,255,.55), inset 0 1px 0 rgba(255,255,255,.25);
-      animation:todayPulse 3s ease-in-out infinite;
-      border:1px solid rgba(255,255,255,.2);
-    }
-    .card.today::before {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(145deg,rgba(255,255,255,.15) 0%,transparent 60%);
-      pointer-events:none;
-    }
-    .card.today.opened { background:rgba(201,146,74,.12); box-shadow:none; animation:none; border:1px solid rgba(201,146,74,.2); }
-    .card.today.opened .card-day-num { color:rgba(201,146,74,.55); }
-    .card.today.opened::before { display:none; }
-    @keyframes todayPulse {
-      0%,100%{box-shadow:0 8px 32px rgba(201,146,74,.4),0 0 0 3px rgba(255,255,255,.55);}
-      50%{box-shadow:0 8px 42px rgba(201,146,74,.6),0 0 0 5px rgba(255,255,255,.3);}
-    }
-
-    /* SÉPARATEUR ANNIVERSAIRE */
-    .birthday-separator {
-      grid-column:1/-1; height:1px; margin:10px 0 6px;
-      background:linear-gradient(90deg,transparent,rgba(201,146,74,.35),transparent);
-      position:relative;
-    }
-    .birthday-separator::before {
-      content:'26 Octobre';
-      position:absolute; left:50%; top:50%;
-      transform:translate(-50%,-50%);
-      font-family:'Tenor Sans',sans-serif;
-      font-size:8px; letter-spacing:.45em; text-transform:uppercase;
-      color:rgba(201,146,74,.7);
-      background:rgba(253,240,244,.9); backdrop-filter:blur(8px);
-      padding:4px 18px; border-radius:50px; white-space:nowrap;
-    }
-
-    /* CASE ANNIVERSAIRE */
-    .card.final { border-radius:16px; }
-    .card.final.locked {
-      background:linear-gradient(145deg,rgba(201,146,74,.18),rgba(139,34,82,.1));
-      border:1.5px dashed rgba(201,146,74,.4);
-    }
-    .card.final.locked .card-day-num { color:rgba(201,146,74,.8); }
-    .card.final.locked .card-date-label { color:rgba(201,146,74,.5); }
-    .card.final.locked .inner-border {
-      position:absolute; inset:8px; border-radius:10px;
-      border:1px solid rgba(201,146,74,.2);
-      animation:innerPulse 3s ease-in-out infinite;
-    }
-    @keyframes innerPulse { 0%,100%{opacity:.3;} 50%{opacity:.8;} }
-
-    .card.final.unlocked {
-      background:linear-gradient(135deg,#fde68a,#f9a825,#c9924a,#8b2252,#c4547a);
-      background-size:400% 400%;
-      animation:bdayShift 3.5s ease infinite, cardLoad .6s cubic-bezier(.16,1,.3,1) both;
-      box-shadow:0 0 0 4px rgba(255,255,255,.8), 0 0 35px rgba(201,146,74,.9), 0 0 80px rgba(201,146,74,.4), 0 14px 45px rgba(139,34,82,.4);
-      border:3px solid rgba(255,255,255,.65);
-      overflow:visible;
-    }
-    @keyframes bdayShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-    .card.final.unlocked::before {
-      content:''; position:absolute; inset:-8px; border-radius:24px;
-      background:conic-gradient(from 0deg,#fde68a,#c9924a,#8b2252,#c4547a,#fde68a);
-      z-index:-1; animation:haloSpin 5s linear infinite; opacity:.7;
-    }
-    @keyframes haloSpin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-    .card.final.unlocked .card-day-num { color:#fff; font-size:clamp(20px,4vw,28px); text-shadow:0 0 18px rgba(255,255,255,.8); }
-    .card.final.unlocked .card-date-label { color:rgba(255,255,255,.9); }
-    .card.final.unlocked .card-type-icon { font-size:clamp(22px,4vw,32px); filter:drop-shadow(0 0 10px rgba(255,255,255,.8)); animation:iconFloat 2.5s ease-in-out infinite; }
-    @keyframes iconFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
-    .bday-label {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:clamp(7px,1.1vw,9px); letter-spacing:.15em; text-transform:uppercase;
-      color:rgba(255,255,255,.9); background:rgba(0,0,0,.16); padding:2px 10px; border-radius:50px;
-    }
-    .bday-label-locked {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:clamp(7px,1.1vw,9px); letter-spacing:.15em; text-transform:uppercase;
-      color:rgba(201,146,74,.7); background:rgba(201,146,74,.1); padding:2px 10px; border-radius:50px;
-    }
-    .star-ring { position:absolute; inset:0; pointer-events:none; overflow:hidden; border-radius:14px; }
-    .star-ring span { position:absolute; font-size:11px; opacity:0; animation:starTwinkle 2.5s ease-in-out infinite; }
-    @keyframes starTwinkle { 0%,100%{opacity:0;transform:scale(.4);} 50%{opacity:.85;transform:scale(1);} }
-
-    /* ═══════════════════════════════
-       MODAL PRINCIPALE
-    ═══════════════════════════════ */
-    .modal-bg {
-      position:fixed; inset:0; z-index:100;
-      background:rgba(26,10,18,.52); backdrop-filter:blur(10px) saturate(1.3);
-      display:flex; align-items:center; justify-content:center; padding:20px;
-      opacity:0; pointer-events:none; transition:opacity .35s ease;
-    }
-    .modal-bg.open { opacity:1; pointer-events:all; }
-
-    .modal {
-      background:rgba(253,240,244,.97);
-      backdrop-filter:blur(24px) saturate(1.5);
-      border-radius:24px; padding:clamp(28px,5vw,48px); max-width:500px; width:100%;
-      box-shadow:0 32px 100px rgba(26,10,18,.2), inset 0 1px 0 rgba(255,255,255,.8);
-      transform:translateY(28px) scale(.95); transition:transform .4s cubic-bezier(.16,1,.3,1);
-      border:1px solid rgba(232,160,180,.25);
-      position:relative; overflow:hidden;
-    }
-    .modal::before {
-      content:''; position:absolute; top:-60px; right:-60px;
-      width:180px; height:180px; border-radius:50%;
-      background:radial-gradient(circle,rgba(196,84,122,.08),transparent 70%);
-      pointer-events:none;
-    }
-    .modal-bg.open .modal { transform:translateY(0) scale(1); }
-
-    .modal.birthday-modal {
-      background:linear-gradient(150deg,rgba(253,240,244,.98),rgba(253,230,138,.12));
-      border:1.5px solid rgba(201,146,74,.3);
-      box-shadow:0 32px 100px rgba(201,146,74,.2), inset 0 1px 0 rgba(255,255,255,.8);
-    }
-    .modal.locked-modal { border-color:rgba(196,84,122,.15); }
-
-    .modal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
-    .modal-day-badge {
-      font-family:'Tenor Sans',sans-serif;
-      font-size:9px; letter-spacing:.35em; text-transform:uppercase;
-      color:var(--rose); background:rgba(196,84,122,.08); padding:5px 14px;
-      border-radius:50px; border:1px solid rgba(196,84,122,.15);
-    }
-    .modal-close {
-      width:32px; height:32px; border-radius:50%;
-      border:1px solid rgba(196,84,122,.2); background:none; cursor:none;
-      display:flex; align-items:center; justify-content:center;
-      color:var(--rose); font-size:14px; transition:all .2s;
-    }
-    .modal-close:hover { background:rgba(196,84,122,.07); transform:rotate(90deg); }
-
-    .modal-icon { font-size:46px; margin-bottom:12px; display:block; text-align:center; }
-    .modal-title {
-      font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
-      font-size:clamp(20px,3.5vw,28px); color:var(--wine);
-      text-align:center; margin-bottom:16px; letter-spacing:.02em;
-    }
-    .modal-divider {
-      height:1px; margin:14px 0;
-      background:linear-gradient(90deg,transparent,rgba(196,84,122,.2),transparent);
-    }
-    .modal-content {
-      font-family:'DM Sans',sans-serif; font-size:clamp(14px,2vw,15px); font-weight:300;
-      color:rgba(26,10,18,.75); line-height:1.9; text-align:center; white-space:pre-line;
-    }
-    .modal-signature {
-      margin-top:22px; text-align:right;
-      font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
-      font-size:15px; color:var(--rose); letter-spacing:.04em;
-    }
-
-    /* ═══════════════════════════════
-       MODAL NOTIFICATIONS
-    ═══════════════════════════════ */
-    .notif-modal-bg {
-      position:fixed; inset:0; z-index:200;
-      background:rgba(26,10,18,.45); backdrop-filter:blur(8px);
-      display:flex; align-items:center; justify-content:center; padding:20px;
-      opacity:0; pointer-events:none; transition:opacity .3s;
-    }
-    .notif-modal-bg.open { opacity:1; pointer-events:all; }
-    .notif-modal {
-      background:rgba(253,240,244,.97); backdrop-filter:blur(24px);
-      border-radius:24px; padding:34px 28px; max-width:380px; width:100%;
-      box-shadow:0 24px 72px rgba(26,10,18,.18), inset 0 1px 0 rgba(255,255,255,.8);
-      transform:translateY(22px) scale(.96); transition:transform .4s cubic-bezier(.16,1,.3,1);
-      border:1px solid rgba(232,160,180,.25);
-    }
-    .notif-modal-bg.open .notif-modal { transform:translateY(0) scale(1); }
-
-    .notif-modal-icon { font-size:36px; text-align:center; display:block; margin-bottom:14px; }
-    .notif-modal h4 {
-      font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
-      font-size:22px; color:var(--wine); margin-bottom:8px; text-align:center;
-    }
-    .notif-modal p {
-      font-size:12px; color:rgba(139,34,82,.55); text-align:center;
-      margin-bottom:22px; line-height:1.7; font-weight:300;
-    }
-
-    .new-card-info {
-      background:linear-gradient(135deg,rgba(196,84,122,.08),rgba(139,34,82,.05));
-      border:1px solid rgba(196,84,122,.2); border-radius:14px;
-      padding:14px 16px; margin-bottom:18px; text-align:center;
-    }
-    .new-card-info .new-icon { font-size:26px; margin-bottom:6px; display:block; }
-    .new-card-info .new-title {
-      font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--wine);
-    }
-    .new-card-info .new-sub {
-      font-family:'Tenor Sans',sans-serif; font-size:9px; letter-spacing:.2em;
-      text-transform:uppercase; color:rgba(139,34,82,.4); margin-top:4px;
-    }
-
-    .notif-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(196,84,122,.15),transparent); margin:18px 0; }
-    .notif-section-title {
-      font-family:'Tenor Sans',sans-serif; font-size:8px; letter-spacing:.4em;
-      text-transform:uppercase; color:rgba(139,34,82,.4); margin-bottom:12px; text-align:center;
-    }
-
-    .notif-options { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
-    .notif-option {
-      display:flex; align-items:center; gap:14px;
-      background:rgba(247,232,239,.6); border:1px solid rgba(196,84,122,.12);
-      border-radius:12px; padding:12px 16px; cursor:none; text-decoration:none;
-      transition:all .25s cubic-bezier(.16,1,.3,1);
-    }
-    .notif-option:hover {
-      background:rgba(255,248,249,.92); border-color:rgba(196,84,122,.3);
-      transform:translateX(4px);
-      box-shadow:0 4px 16px rgba(139,34,82,.08);
-    }
-    .notif-option-icon { font-size:18px; flex-shrink:0; }
-    .notif-option-text { display:flex; flex-direction:column; gap:2px; }
-    .notif-option-label {
-      font-family:'DM Sans',sans-serif; font-weight:400; font-size:13px; color:var(--wine);
-    }
-    .notif-option-sub {
-      font-family:'Tenor Sans',sans-serif; font-size:9px; letter-spacing:.15em;
-      text-transform:uppercase; color:rgba(139,34,82,.4);
-    }
-
-    .notif-close-btn {
-      width:100%; background:none; border:1px solid rgba(196,84,122,.2);
-      color:var(--rose); border-radius:50px; padding:11px;
-      font-family:'Tenor Sans',sans-serif; font-size:9px; letter-spacing:.3em;
-      text-transform:uppercase; cursor:none; transition:all .25s;
-      margin-top:4px;
-    }
-    .notif-close-btn:hover { background:rgba(196,84,122,.06); }
-
-    /* ═══════════════════════════════
-       TOAST
-    ═══════════════════════════════ */
-    .toast {
-      position:fixed; bottom:28px; left:50%;
-      transform:translateX(-50%) translateY(80px);
-      z-index:300;
-      background:rgba(26,10,18,.88); backdrop-filter:blur(16px);
-      color:rgba(247,232,239,.9);
-      border:1px solid rgba(196,84,122,.2);
-      border-radius:50px; padding:12px 26px;
-      font-family:'Tenor Sans',sans-serif; font-size:10px; letter-spacing:.2em; text-transform:uppercase;
-      white-space:nowrap;
-      box-shadow:0 8px 32px rgba(26,10,18,.25);
-      transition:transform .45s cubic-bezier(.16,1,.3,1), opacity .45s;
-      opacity:0;
-    }
-    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
-
-    /* ═══════════════════════════════
-       FOOTER
-    ═══════════════════════════════ */
-    footer {
-      text-align:center; margin-top:72px;
-      font-family:'Tenor Sans',sans-serif;
-      font-size:8px; letter-spacing:.45em; text-transform:uppercase;
-      color:rgba(139,34,82,.3);
-    }
-
-    /* ═══════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════ */
-    @media (max-width:480px) {
-      .grid { grid-template-columns:repeat(4,1fr); gap:8px; }
-      .logo-img { width:clamp(130px,36vw,190px); }
-      .wrapper { padding:0 16px 60px; }
-      #cursor, #cursor-ring { display:none; }
-      body { cursor:auto; }
-      .notif-btn, .modal-close, .notif-option, .intro-skip, .social-btn, .card { cursor:pointer; }
-    }
-    @media (min-width:481px) and (max-width:1024px) {
-      .grid { grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:10px; }
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+```
+:root {
+  --rose-deep:   #8b2252;
+  --rose-mid:    #c4547a;
+  --rose-soft:   #e8a0b4;
+  --gold:        #c9924a;
+  --cream:       #fff8f9;
+  --text-dark:   #3a1525;
+  --text-mid:    #7a3555;
+  --glass:       rgba(255,255,255,0.45);
+  --glass-border:rgba(196,84,122,0.18);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ══ FOND ══ */
+.bg-layer {
+  position: fixed; inset: 0; z-index: 0;
+  background: url('bg .PNG') center/cover no-repeat;
+  background-color: #fdf0f4;
+}
+@media (max-width: 1024px) {
+  .bg-layer { background-attachment: scroll; background-position: 50% 30%; }
+}
+.bg-overlay {
+  position: fixed; inset: 0; z-index: 0;
+  background: rgba(253,240,244,0.1); pointer-events: none;
+}
+
+/* ══ INTRO ANIMATION ══ */
+#intro-screen {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: linear-gradient(160deg, #fdf0f4 0%, #f5d5e5 40%, #ead0e8 100%);
+  pointer-events: all;
+  transition: opacity .7s ease, transform .7s ease;
+}
+#intro-screen.hide {
+  opacity: 0; transform: scale(1.04);
+  pointer-events: none;
+}
+.intro-particles {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.intro-p {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0;
+  animation: introParticle linear forwards;
+}
+@keyframes introParticle {
+  0%   { opacity: 0; transform: translateY(0) scale(.5); }
+  20%  { opacity: .8; }
+  100% { opacity: 0; transform: translateY(-120px) scale(1.2) rotate(30deg); }
+}
+.intro-logo-wrap {
+  position: relative; text-align: center;
+  animation: introBounceIn 1s cubic-bezier(.68,-.55,.27,1.55) both;
+}
+@keyframes introBounceIn {
+  0%   { opacity: 0; transform: scale(.3) rotate(-8deg); }
+  60%  { transform: scale(1.12) rotate(3deg); }
+  80%  { transform: scale(.96) rotate(-1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+.intro-logo {
+  width: clamp(180px, 45vw, 300px);
+  filter: drop-shadow(0 10px 30px rgba(139,34,82,.35));
+}
+.intro-rings {
+  position: absolute; inset: -30px;
+  pointer-events: none;
+}
+.intro-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(196,84,122,.25);
+  animation: ringExpand ease forwards;
+  opacity: 0;
+}
+.intro-ring:nth-child(1) { animation: ringExpand 1.2s .2s ease forwards; }
+.intro-ring:nth-child(2) { animation: ringExpand 1.2s .5s ease forwards; }
+.intro-ring:nth-child(3) { animation: ringExpand 1.2s .8s ease forwards; }
+@keyframes ringExpand {
+  0%   { transform: scale(.4); opacity: .7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.intro-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: clamp(14px,3vw,20px);
+  color: var(--rose-deep);
+  margin-top: 20px;
+  animation: introBounceIn 1s .4s cubic-bezier(.68,-.55,.27,1.55) both;
+  text-align: center;
+  opacity: .85;
+}
+.intro-skip {
+  position: absolute; bottom: 32px;
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--rose-mid); opacity: .5;
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  animation: fadeIn .5s 1.5s both;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: .5; } }
+
+/* ══ WRAPPER ══ */
+.wrapper {
+  position: relative; z-index: 1;
+  max-width: 920px; margin: 0 auto;
+  padding: 0 20px 80px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.wrapper.visible { opacity: 1; transform: translateY(0); }
+
+/* ══ HEADER ══ */
+header { padding: 36px 0 24px; text-align: center; }
+
+.logo-wrap { margin-bottom: 10px; }
+.logo-img {
+  width: clamp(160px, 30vw, 260px);
+  height: auto; object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(139,34,82,.22));
+}
+
+/* Réseaux */
+.socials {
+  display: flex; justify-content: center; gap: 14px;
+  margin: 0 0 18px; animation: fadeDown .9s .05s ease both;
+}
+.social-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  text-decoration: none; background: rgba(255,248,249,.78);
+  backdrop-filter: blur(10px); border: 1px solid rgba(196,84,122,.2);
+  border-radius: 16px; padding: 10px 16px;
+  transition: transform .2s, box-shadow .2s, background .2s;
+  box-shadow: 0 2px 12px rgba(139,34,82,.08); min-width: 64px;
+}
+.social-btn:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 24px rgba(139,34,82,.18); background: rgba(255,248,249,.95); }
+.social-icon { font-size: 22px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.social-label { font-size: 9px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--rose-mid); }
+
+.eyebrow {
+  font-weight: 300; font-size: 11px; letter-spacing: .4em;
+  text-transform: uppercase; color: var(--rose-deep); margin-bottom: 10px;
+  display: inline-block; background: rgba(255,248,249,.75);
+  backdrop-filter: blur(6px); padding: 4px 14px; border-radius: 50px;
+}
+h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: clamp(32px,6vw,58px); color: var(--rose-deep); line-height: 1.1; margin-bottom: 6px;
+  text-shadow: 0 2px 12px rgba(255,248,249,.95), 0 0 30px rgba(255,248,249,.8);
+}
+h1 strong { font-style: normal; font-weight: 700; }
+.subtitle {
+  font-size: 13px; font-weight: 300; color: var(--text-dark); letter-spacing: .07em;
+  display: inline-block; background: rgba(255,248,249,.7);
+  backdrop-filter: blur(6px); padding: 3px 12px; border-radius: 50px;
+}
+
+/* DIVIDER */
+.divider { display:flex; align-items:center; gap:14px; margin:0 auto 42px; max-width:300px; }
+.div-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--rose-soft)); }
+.div-line.r { transform:scaleX(-1); }
+.div-dot { width:6px; height:6px; border-radius:50%; background:var(--rose-mid); }
+
+/* COUNTDOWN */
+.countdown-strip {
+  display:flex; justify-content:center;
+  gap:clamp(10px,3vw,24px); margin-bottom:50px;
+}
+.cd-unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.cd-box {
+  background:rgba(255,248,249,.82); border:1px solid var(--glass-border);
+  backdrop-filter:blur(14px); border-radius:10px;
+  width:clamp(58px,12vw,86px); height:clamp(62px,13vw,92px);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(139,34,82,.12),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.cd-num {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(24px,5vw,44px); color:var(--rose-deep); line-height:1;
+}
+.cd-num.pop { animation:numPop .25s ease; }
+@keyframes numPop { 0%{transform:scale(1.3);opacity:.4;}100%{transform:scale(1);opacity:1;} }
+.cd-label {
+  font-size:9px; font-weight:400; letter-spacing:.25em; text-transform:uppercase;
+  color:var(--rose-deep); background:rgba(255,248,249,.75);
+  backdrop-filter:blur(4px); padding:2px 8px; border-radius:50px;
+}
+
+/* SECTION TITLE + NOTIF BTN */
+.section-header {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 30px; flex-wrap: wrap;
+}
+.section-title { text-align:center; }
+.section-title h2 {
+  font-family:'Playfair Display',serif; font-style:italic; font-weight:400;
+  font-size:clamp(20px,3.5vw,30px); color:var(--rose-deep);
+  text-shadow:0 2px 12px rgba(255,248,249,.95);
+  display:inline-block; background:rgba(255,248,249,.6);
+  backdrop-filter:blur(8px); padding:4px 18px; border-radius:50px;
+}
+.section-title p {
+  font-size:12px; font-weight:400; color:var(--text-dark); margin-top:8px; letter-spacing:.05em;
+  display:inline-block; background:rgba(255,248,249,.7);
+  backdrop-filter:blur(6px); padding:3px 14px; border-radius:50px;
+}
+
+/* ══ BOUTON NOTIFICATIONS ══ */
+.notif-btn {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,248,249,.82); border: 1px solid rgba(196,84,122,.25);
+  backdrop-filter: blur(10px); border-radius: 50px;
+  padding: 9px 18px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400;
+  color: var(--rose-mid); letter-spacing: .05em;
+  transition: all .25s; white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(139,34,82,.08);
+}
+.notif-btn:hover { background: rgba(255,248,249,.95); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139,34,82,.15); }
+.notif-btn.active { background: linear-gradient(135deg,var(--rose-mid),var(--rose-deep)); color: #fff; border-color: transparent; box-shadow: 0 4px 18px rgba(139,34,82,.3); }
+.notif-btn .notif-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--rose-mid); flex-shrink: 0;
+  transition: background .25s;
+}
+.notif-btn.active .notif-dot { background: rgba(255,255,255,.7); animation: dotPulse 1.5s ease-in-out infinite; }
+@keyframes dotPulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.4);} }
+
+/* Modal notifications */
+.notif-modal-bg {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(58,21,37,.45); backdrop-filter: blur(7px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.notif-modal-bg.open { opacity: 1; pointer-events: all; }
+.notif-modal {
+  background: rgba(255,248,249,.97); backdrop-filter: blur(20px);
+  border-radius: 20px; padding: 32px 28px; max-width: 360px; width: 100%;
+  box-shadow: 0 20px 60px rgba(139,34,82,.2);
+  transform: translateY(20px) scale(.96); transition: transform .3s;
+  border: 1px solid rgba(232,160,180,.3);
+}
+.notif-modal-bg.open .notif-modal { transform: translateY(0) scale(1); }
+.notif-modal h4 {
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px;
+  color: var(--rose-deep); margin-bottom: 6px; text-align: center;
+}
+.notif-modal p { font-size: 12px; color: var(--text-mid); text-align: center; margin-bottom: 20px; line-height: 1.6; }
+.notif-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.notif-option {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,248,249,.7); border: 1px solid rgba(196,84,122,.15);
+  border-radius: 12px; padding: 12px 16px; cursor: pointer;
+  transition: all .2s; font-size: 13px; color: var(--text-dark);
+}
+.notif-option:hover { background: rgba(255,248,249,.95); border-color: rgba(196,84,122,.35); transform: translateX(4px); }
+.notif-option.selected { background: linear-gradient(135deg,rgba(196,84,122,.12),rgba(139,34,82,.08)); border-color: var(--rose-mid); color: var(--rose-deep); font-weight: 600; }
+.notif-option-icon { font-size: 20px; }
+.notif-actions { display: flex; gap: 10px; }
+.notif-confirm {
+  flex: 1; background: linear-gradient(135deg,var(--rose-mid),var(--rose-deep));
+  color: #fff; border: none; border-radius: 50px; padding: 11px;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer;
+  transition: transform .2s; font-weight: 600;
+}
+.notif-confirm:hover { transform: scale(1.04); }
+.notif-cancel {
+  flex: 1; background: none; border: 1px solid rgba(196,84,122,.25);
+  color: var(--rose-mid); border-radius: 50px; padding: 11px;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; transition: background .2s;
+}
+.notif-cancel:hover { background: rgba(196,84,122,.06); }
+
+/* Toast notification */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+  z-index: 300; background: rgba(139,34,82,.92); backdrop-filter: blur(12px);
+  color: #fff; border-radius: 50px; padding: 12px 24px;
+  font-size: 13px; font-weight: 400; white-space: nowrap;
+  box-shadow: 0 8px 28px rgba(139,34,82,.35);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .4s;
+  opacity: 0;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ══ GRID + LIGNE CONNEXION ══ */
+.grid-wrapper { position: relative; }
+
+/* Ligne de connexion style battle pass */
+.connect-line {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(80px,14vw,110px), 1fr));
+  gap: 10px;
+  position: relative; z-index: 1;
+}
+
+/* ══ CARD ══ */
+.card {
+  aspect-ratio: 1; border-radius: 12px; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease;
+  user-select: none;
+}
+.card:hover:not(.locked) { transform: translateY(-3px) scale(1.025); }
+
+/* LOCKED */
+.card.locked {
+  background: rgba(255,248,249,.45);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(139,34,82,.07), inset 0 1px 0 rgba(255,255,255,.7);
+  cursor: pointer;
+}
+
+.card-inner {
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; height:100%; gap:4px; padding:8px;
+}
+.card-day-num {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,3.5vw,26px); font-weight:700;
+  color:var(--rose-deep); line-height:1;
+  text-shadow:0 1px 4px rgba(255,248,249,.8);
+}
+.card-date-label {
+  font-size:clamp(7px,1.2vw,9px); font-weight:400;
+  color:var(--text-dark); letter-spacing:.05em; text-align:center;
+}
+.lock-icon { font-size:clamp(9px,1.8vw,13px); opacity:.45; margin-top:1px; }
+
+/* UNLOCKED */
+.card.unlocked {
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-deep));
+  box-shadow:0 6px 22px rgba(139,34,82,.3);
+  border:1px solid rgba(255,255,255,.28);
+  animation:cardReveal .4s ease both;
+}
+@keyframes cardReveal { from{transform:scale(.88);opacity:0;}to{transform:scale(1);opacity:1;} }
+.card.unlocked .card-day-num { color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.2); }
+.card.unlocked .card-date-label { color:rgba(255,255,255,.85); }
+.card-type-icon { font-size:clamp(14px,3vw,20px); }
+
+/* UNLOCKED OPENED */
+.card.unlocked.opened {
+  background:rgba(196,84,122,.13);
+  border:1px solid rgba(196,84,122,.22);
+  backdrop-filter:blur(8px); box-shadow:none;
+}
+.card.unlocked.opened .card-day-num   { color:var(--rose-deep); opacity:.6; text-shadow:none; }
+.card.unlocked.opened .card-date-label { color:var(--text-mid); opacity:.7; }
+.card.unlocked.opened .card-type-icon  { opacity:.35; }
+.card.unlocked.opened::after {
+  content:'✓'; position:absolute; top:6px; right:7px;
+  font-size:9px; color:var(--rose-mid); opacity:.55;
+  font-family:'DM Sans',sans-serif; pointer-events:none;
+}
+
+/* TODAY */
+.card.today {
+  background:linear-gradient(135deg,#d4855a,var(--gold));
+  box-shadow:0 8px 28px rgba(201,146,74,.45),0 0 0 3px rgba(255,255,255,.6);
+  animation:todayPulse 2.5s ease-in-out infinite,cardReveal .4s ease both;
+}
+.card.today.opened {
+  background:rgba(201,146,74,.15); border:1px solid rgba(201,146,74,.3);
+  box-shadow:none; animation:none;
+}
+.card.today.opened .card-day-num   { color:var(--gold); opacity:.65; text-shadow:none; }
+.card.today.opened .card-type-icon { opacity:.35; }
+.card.today.opened::after {
+  content:'✓'; position:absolute; top:6px; right:7px;
+  font-size:9px; color:var(--gold); opacity:.6;
+  font-family:'DM Sans',sans-serif; pointer-events:none;
+}
+@keyframes todayPulse {
+  0%,100%{box-shadow:0 8px 28px rgba(201,146,74,.45),0 0 0 3px rgba(255,255,255,.6);}
+  50%{box-shadow:0 8px 38px rgba(201,146,74,.65),0 0 0 5px rgba(255,255,255,.35);}
+}
+
+/* ══ CASE ANNIVERSAIRE — isolée et différente ══ */
+.birthday-separator {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,146,74,.5), transparent);
+  margin: 8px 0 4px;
+  position: relative;
+}
+.birthday-separator::before {
+  content: '✨ 26 Octobre ✨';
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 400;
+  background: rgba(255,248,249,.85); backdrop-filter: blur(6px);
+  padding: 3px 14px; border-radius: 50px;
+  white-space: nowrap;
+}
+
+.card.final {
+  border-radius: 16px;
+  /* Couleur différente pleine — pas transparente */
+}
+.card.final.locked {
+  background: linear-gradient(135deg, rgba(201,146,74,.22), rgba(139,34,82,.12));
+  border: 2px dashed rgba(201,146,74,.5);
+  cursor: pointer;
+}
+.card.final.locked .card-day-num    { color: var(--gold); }
+.card.final.locked .card-date-label { color: rgba(201,146,74,.75); }
+.card.final.locked .card-type-icon  { opacity: .55; }
+.card.final.locked::before {
+  content: ''; position: absolute; inset: 8px; border-radius: 10px;
+  border: 1px solid rgba(201,146,74,.3);
+  animation: finalLockedPulse 3s ease-in-out infinite; pointer-events: none;
+}
+@keyframes finalLockedPulse {
+  0%,100%{opacity:.3;transform:scale(1);}50%{opacity:.8;transform:scale(1.03);}
+}
+
+.card.final.unlocked {
+  background: linear-gradient(135deg,#fde68a 0%,#f9a825 25%,#c9924a 50%,#8b2252 75%,#c4547a 100%);
+  background-size: 400% 400%;
+  animation: birthdayShift 3s ease infinite, cardReveal .4s ease both;
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.85),
+    0 0 30px rgba(201,146,74,.9),
+    0 0 70px rgba(201,146,74,.45),
+    0 12px 40px rgba(139,34,82,.45);
+  border: 3px solid rgba(255,255,255,.7);
+  overflow: visible;
+}
+@keyframes birthdayShift {
+  0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}
+}
+.card.final.unlocked::before {
+  content:''; position:absolute; inset:-8px; border-radius:24px;
+  background:conic-gradient(from 0deg,#fde68a,#c9924a,#8b2252,#c4547a,#fde68a);
+  z-index:-1; animation:haloSpin 4s linear infinite; opacity:.75;
+}
+.card.final.unlocked::after {
+  content:''; position:absolute; inset:-2px; border-radius:20px;
+  background:rgba(255,255,255,.06); z-index:-1;
+}
+@keyframes haloSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.card.final .card-inner { gap:6px; }
+.card.final.unlocked .card-type-icon {
+  font-size:clamp(22px,4vw,32px);
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.8));
+  animation:iconFloat 2.5s ease-in-out infinite;
+}
+@keyframes iconFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.card.final.unlocked .card-day-num {
+  color:#fff; font-size:clamp(20px,4vw,28px);
+  text-shadow:0 0 20px rgba(255,255,255,.9),0 2px 8px rgba(0,0,0,.25);
+}
+.card.final.unlocked .card-date-label { color:rgba(255,255,255,.95); font-weight:400; }
+.bday-label {
+  font-size:clamp(7px,1.3vw,10px); font-weight:400; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.95); background:rgba(0,0,0,.18); padding:2px 10px; border-radius:50px; margin-top:2px;
+}
+.bday-label-locked {
+  font-size:clamp(7px,1.3vw,10px); font-weight:400; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(201,146,74,.8); background:rgba(201,146,74,.1); padding:2px 10px; border-radius:50px; margin-top:2px;
+}
+.star-ring { position:absolute; inset:0; pointer-events:none; overflow:hidden; border-radius:14px; }
+.star-ring span {
+  position:absolute; font-size:12px; opacity:0;
+  animation:starTwinkle 2s ease-in-out infinite;
+}
+@keyframes starTwinkle{0%,100%{opacity:0;transform:scale(.5);}50%{opacity:.9;transform:scale(1);}}
+
+/* ══ LIGNE DE CONNEXION BATTLE PASS ══ */
+.bp-line {
+  position: absolute;
+  background: linear-gradient(90deg, var(--rose-soft), rgba(232,160,180,.4));
+  height: 3px;
+  border-radius: 3px;
+  z-index: 0;
+  pointer-events: none;
+  transform-origin: left center;
+}
+.bp-node {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--rose-mid);
+  border: 2px solid rgba(255,255,255,.7);
+  z-index: 0;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 0 6px rgba(196,84,122,.4);
+}
+.bp-node.unlocked { background: var(--rose-mid); }
+.bp-node.locked   { background: rgba(196,84,122,.3); border-color: rgba(196,84,122,.3); box-shadow: none; }
+.bp-node.today    { background: var(--gold); box-shadow: 0 0 10px rgba(201,146,74,.6); border-color: rgba(255,255,255,.9); }
+.bp-line.unlocked { background: linear-gradient(90deg,var(--rose-mid),var(--rose-soft)); opacity: .7; }
+.bp-line.locked   { background: rgba(196,84,122,.2); }
+
+/* ══ MODAL ══ */
+.modal-bg {
+  position:fixed; inset:0; z-index:100;
+  background:rgba(58,21,37,.55); backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.modal-bg.open { opacity:1; pointer-events:all; }
+.modal {
+  background:rgba(255,248,249,.97); backdrop-filter:blur(20px);
+  border-radius:20px; padding:clamp(26px,5vw,44px); max-width:480px; width:100%;
+  box-shadow:0 24px 80px rgba(139,34,82,.25);
+  transform:translateY(22px) scale(.96); transition:transform .3s ease;
+  border:1px solid rgba(232,160,180,.35);
+}
+.modal-bg.open .modal { transform:translateY(0) scale(1); }
+.modal.birthday-modal {
+  background:linear-gradient(145deg,rgba(255,248,249,.98),rgba(253,230,138,.2));
+  border:1.5px solid rgba(201,146,74,.5);
+  box-shadow:0 24px 80px rgba(201,146,74,.35),0 0 0 1px rgba(255,255,255,.5);
+}
+.modal.locked-modal { background:rgba(255,248,249,.97); border:1.5px solid rgba(196,84,122,.2); }
+
+.modal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.modal-day-badge {
+  font-size:10px; font-weight:400; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--rose-mid); background:rgba(196,84,122,.1);
+  padding:5px 12px; border-radius:99px; border:1px solid rgba(196,84,122,.2);
+}
+.modal-close {
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid rgba(196,84,122,.25); background:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--rose-mid); font-size:16px; transition:background .2s;
+}
+.modal-close:hover { background:rgba(196,84,122,.08); }
+.modal-icon { font-size:42px; margin-bottom:10px; display:block; text-align:center; }
+.modal-title {
+  font-family:'Playfair Display',serif; font-style:italic; font-weight:400;
+  font-size:clamp(18px,3.5vw,26px); color:var(--rose-deep); text-align:center; margin-bottom:14px;
+}
+.modal-divider { height:1px; background:linear-gradient(90deg,transparent,var(--rose-soft),transparent); margin:14px 0; }
+.modal-content {
+  font-family:'DM Sans',sans-serif; font-size:clamp(14px,2vw,15px); font-weight:300;
+  color:var(--text-dark); line-height:1.85; text-align:center; white-space:pre-line;
+}
+.modal-signature {
+  margin-top:20px; text-align:right;
+  font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:var(--rose-mid);
+}
+
+/* FOOTER */
+footer {
+  text-align:center; margin-top:60px; font-size:11px; font-weight:400; letter-spacing:.12em;
+  color:var(--rose-deep); background:rgba(255,248,249,.7); backdrop-filter:blur(6px);
+  display:inline-block; padding:6px 20px; border-radius:50px; opacity:.75;
+  margin-left:50%; transform:translateX(-50%);
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown { from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);} }
+
+/* RESPONSIVE */
+@media (max-width:480px) {
+  .grid { grid-template-columns: repeat(4,1fr); gap:7px; }
+  .logo-img { width:clamp(140px,38vw,200px); }
+  .wrapper { padding:0 15px 60px; }
+}
+@media (min-width:481px) and (max-width:1024px) {
+  .grid { grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:10px; }
+}
+```
+
   </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<!-- FOND -->
 <div class="bg-layer"></div>
-<div class="bg-grain"></div>
-<div class="bg-vignette"></div>
 <div class="bg-overlay"></div>
-<canvas id="particles-canvas"></canvas>
 
-<!-- INTRO -->
+<!-- ══ INTRO ANIMATION ══ -->
+
 <div id="intro-screen">
-  <div class="intro-bg-lines"></div>
+  <div class="intro-particles" id="introParticles"></div>
   <div class="intro-logo-wrap">
+    <div class="intro-rings">
+      <div class="intro-ring"></div>
+      <div class="intro-ring"></div>
+      <div class="intro-ring"></div>
+    </div>
     <img src="logo.PNG" class="intro-logo" alt="logo"/>
   </div>
-  <div class="intro-ornament">
-    <div class="intro-orn-line"></div>
-    <div class="intro-orn-diamond"></div>
-    <div class="intro-orn-line r"></div>
-  </div>
-  <p class="intro-tagline">Pour Salmouchee</p>
-  <button class="intro-skip" onclick="skipIntro()">Continuer</button>
+  <p class="intro-tagline">Pour Salmouchee 🌸</p>
+  <button class="intro-skip" onclick="skipIntro()">Appuie pour continuer</button>
 </div>
 
-<!-- TOAST -->
+<!-- ══ TOAST ══ -->
+
 <div class="toast" id="toast"></div>
 
-<!-- WRAPPER -->
+<!-- ══ WRAPPER PRINCIPAL ══ -->
+
 <div class="wrapper" id="mainWrapper">
   <header>
     <div class="logo-wrap">
-      <div class="logo-halo"></div>
       <img src="logo.PNG" alt="notre logo" class="logo-img"/>
     </div>
 
-    <div class="socials">
-      <a class="social-btn" href="tel:0753403436">
-        <span class="social-icon">📱</span><span class="social-label">Appeler</span>
-      </a>
-      <a class="social-btn" href="https://twitter.com/fan2salmouchee" target="_blank" rel="noopener">
-        <span class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" fill="#8b2252"/></svg></span>
-        <span class="social-label">Twitter</span>
-      </a>
-      <a class="social-btn" href="https://snapchat.com/t/1nceGF8B" target="_blank" rel="noopener">
-        <span class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12.001 2C8.68 2 6.5 4.42 6.5 7.5v.82c-.34.14-.94.3-1.7.3-.28 0-.5.2-.5.46 0 .56.72 1.04 1.68 1.3-.1.28-.22.56-.36.82C4.6 12.44 3 13.02 3 13.7c0 .3.22.56.54.62.8.14 1.42.56 1.86 1.24.2.3.28.58.14.9-.14.34-.46.52-.8.52-.26 0-.48-.1-.66-.24-.2-.14-.46-.1-.6.1-.12.18-.08.44.1.58.38.28.82.44 1.28.44.96 0 1.74-.6 2.12-1.52.02-.04.04-.1.06-.14.74.32 1.66.52 2.72.62.14.62.68 1.18 1.44 1.18.76 0 1.3-.56 1.44-1.18 1.06-.1 1.98-.3 2.72-.62.02.04.04.1.06.14.38.92 1.16 1.52 2.12 1.52.46 0 .9-.16 1.28-.44.18-.14.22-.4.1-.58-.14-.2-.4-.24-.6-.1-.18.14-.4.24-.66.24-.34 0-.66-.18-.8-.52-.14-.32-.06-.6.14-.9.44-.68 1.06-1.1 1.86-1.24.32-.06.54-.32.54-.62 0-.68-1.6-1.26-2.62-2.7-.14-.26-.26-.54-.36-.82.96-.26 1.68-.74 1.68-1.3 0-.26-.22-.46-.5-.46-.76 0-1.36-.16-1.7-.3V7.5C17.5 4.42 15.32 2 12 2Z" fill="#8b2252"/></svg></span>
-        <span class="social-label">Snapchat</span>
-      </a>
-    </div>
+```
+<div class="socials">
+  <a class="social-btn" href="tel:0753403436">
+    <span class="social-icon">📱</span>
+    <span class="social-label">Appeler</span>
+  </a>
+  <a class="social-btn" href="https://twitter.com/fan2salmouchee" target="_blank" rel="noopener">
+    <span class="social-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" fill="#8b2252"/></svg>
+    </span>
+    <span class="social-label">Twitter</span>
+  </a>
+  <a class="social-btn" href="https://snapchat.com/t/1nceGF8B" target="_blank" rel="noopener">
+    <span class="social-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12.001 2C8.68 2 6.5 4.42 6.5 7.5v.82c-.34.14-.94.3-1.7.3-.28 0-.5.2-.5.46 0 .56.72 1.04 1.68 1.3-.1.28-.22.56-.36.82C4.6 12.44 3 13.02 3 13.7c0 .3.22.56.54.62.8.14 1.42.56 1.86 1.24.2.3.28.58.14.9-.14.34-.46.52-.8.52-.26 0-.48-.1-.66-.24-.2-.14-.46-.1-.6.1-.12.18-.08.44.1.58.38.28.82.44 1.28.44.96 0 1.74-.6 2.12-1.52.02-.04.04-.1.06-.14.74.32 1.66.52 2.72.62.14.62.68 1.18 1.44 1.18.76 0 1.3-.56 1.44-1.18 1.06-.1 1.98-.3 2.72-.62.02.04.04.1.06.14.38.92 1.16 1.52 2.12 1.52.46 0 .9-.16 1.28-.44.18-.14.22-.4.1-.58-.14-.2-.4-.24-.6-.1-.18.14-.4.24-.66.24-.34 0-.66-.18-.8-.52-.14-.32-.06-.6.14-.9.44-.68 1.06-1.1 1.86-1.24.32-.06.54-.32.54-.62 0-.68-1.6-1.26-2.62-2.7-.14-.26-.26-.54-.36-.82.96-.26 1.68-.74 1.68-1.3 0-.26-.22-.46-.5-.46-.76 0-1.36-.16-1.7-.3V7.5C17.5 4.42 15.32 2 12 2Z" fill="#8b2252"/></svg>
+    </span>
+    <span class="social-label">Snapchat</span>
+  </a>
+</div>
 
-    <p class="eyebrow">De Rayan, avec tout son amour</p>
-    <h1>Pour <strong>Salmouchee</strong></h1>
-    <p class="subtitle">Un compte à rebours jusqu'à ton jour le plus spécial</p>
+<p class="eyebrow">De Rayan, avec tout son amour</p>
+<h1>Pour <strong>Salmouchee</strong></h1>
+<p class="subtitle">Un compte à rebours jusqu'à ton jour le plus spécial</p>
+```
+
   </header>
 
-  <div class="ornament">
-    <div class="orn-line"></div>
-    <div class="orn-center">
-      <div class="orn-diamond sm"></div>
-      <div class="orn-diamond"></div>
-      <div class="orn-diamond sm"></div>
-    </div>
-    <div class="orn-line r"></div>
+  <div class="divider">
+    <div class="div-line"></div><div class="div-dot"></div><div class="div-line r"></div>
   </div>
 
   <div class="countdown-strip">
@@ -961,17 +678,8 @@
     </div>
     <button class="notif-btn" id="notifBtn" onclick="openNotifModal()">
       <span class="notif-dot"></span>
-      Me rappeler
+      Notifications
     </button>
-  </div>
-
-  <div class="new-banner" id="newBanner" onclick="scrollToNewCard()">
-    <span class="new-banner-icon" id="newBannerIcon">🎁</span>
-    <div class="new-banner-text">
-      <div class="new-banner-title" id="newBannerTitle">Une nouvelle surprise t'attend</div>
-      <div class="new-banner-sub">Appuie pour la découvrir</div>
-    </div>
-    <span class="new-banner-arrow">›</span>
   </div>
 
   <div class="grid-wrapper">
@@ -979,10 +687,11 @@
     <div class="grid" id="grid"></div>
   </div>
 
-  <footer>Fait avec amour par Rayan &nbsp;·&nbsp; pour Salma</footer>
+  <footer>fait avec amour par Rayan &nbsp;·&nbsp; pour Salma</footer>
 </div>
 
-<!-- MODAL PRINCIPALE -->
+<!-- ══ MODAL PRINCIPALE ══ -->
+
 <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -997,54 +706,34 @@
   </div>
 </div>
 
-<!-- MODAL NOTIF -->
-<div class="notif-modal-bg" id="notifModalBg" onclick="closeNotifModalBg(event)">
-  <div class="notif-modal">
-    <span class="notif-modal-icon">🔔</span>
-    <h4>Me rappeler</h4>
-    <p>Choisis l'heure à laquelle tu veux être prévenue qu'une nouvelle surprise t'attend.</p>
+<!-- ══ MODAL NOTIFICATIONS ══ -->
 
-    <div id="newCardInfo" style="display:none">
-      <div class="new-card-info">
-        <span class="new-icon" id="newCardIcon">🎁</span>
-        <div class="new-title" id="newCardTitle">Nouvelle surprise disponible</div>
-        <div class="new-sub">Ferme et appuie sur la case</div>
+<div class="notif-modal-bg" id="notifModalBg" onclick="closeNotifModal(event)">
+  <div class="notif-modal">
+    <h4>🔔 Notifications</h4>
+    <p>Choisis quand te prévenir avant qu'une nouvelle case se débloque à minuit.</p>
+    <div class="notif-options" id="notifOptions">
+      <div class="notif-option" data-min="30" onclick="selectNotifTime(this,30)">
+        <span class="notif-option-icon">⏰</span>
+        <span>30 minutes avant</span>
+      </div>
+      <div class="notif-option" data-min="60" onclick="selectNotifTime(this,60)">
+        <span class="notif-option-icon">🕐</span>
+        <span>1 heure avant</span>
+      </div>
+      <div class="notif-option" data-min="120" onclick="selectNotifTime(this,120)">
+        <span class="notif-option-icon">🕑</span>
+        <span>2 heures avant</span>
+      </div>
+      <div class="notif-option" data-min="0" onclick="selectNotifTime(this,0)">
+        <span class="notif-option-icon">✨</span>
+        <span>Au moment du déblocage (minuit)</span>
       </div>
     </div>
-
-    <div class="notif-divider"></div>
-    <div class="notif-section-title">Ajouter un rappel à ton iPhone</div>
-
-    <div class="notif-options">
-      <a class="notif-option" href="#" onclick="return openReminder(30)">
-        <span class="notif-option-icon">⏰</span>
-        <span class="notif-option-text">
-          <span class="notif-option-label">Rappel à 23h30</span>
-          <span class="notif-option-sub">30 min avant le déblocage</span>
-        </span>
-      </a>
-      <a class="notif-option" href="#" onclick="return openReminder(60)">
-        <span class="notif-option-icon">🕑</span>
-        <span class="notif-option-text">
-          <span class="notif-option-label">Rappel à 23h00</span>
-          <span class="notif-option-sub">1 heure avant le déblocage</span>
-        </span>
-      </a>
-      <a class="notif-option" href="#" onclick="return openReminder('matin')">
-        <span class="notif-option-icon">🌅</span>
-        <span class="notif-option-text">
-          <span class="notif-option-label">Rappel à 9h00 le matin</span>
-          <span class="notif-option-sub">Découvrir sa surprise au réveil</span>
-        </span>
-      </a>
+    <div class="notif-actions">
+      <button class="notif-confirm" onclick="confirmNotif()">Activer 🔔</button>
+      <button class="notif-cancel" onclick="closeNotifModal()">Annuler</button>
     </div>
-
-    <div class="notif-divider"></div>
-    <p style="font-size:11px;color:rgba(139,34,82,.4);text-align:center;line-height:1.6;margin-bottom:14px;font-family:'DM Sans',sans-serif;font-weight:300;">
-      Appuie sur une option → l'app Rappels s'ouvre → appuie sur "Ajouter"
-    </p>
-
-    <button class="notif-close-btn" onclick="closeNotifModal()">Fermer</button>
   </div>
 </div>
 
@@ -1053,72 +742,19 @@
 const START_DATE = new Date("2026-05-03T00:00:00");
 const BIRTHDAY   = new Date("2026-10-26T00:00:00");
 
-// ══ CURSOR ══
-const cur = document.getElementById('cursor');
-const curR = document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  cur.style.left=mx+'px'; cur.style.top=my+'px';
-});
-function animRing(){
-  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
-  curR.style.left=rx+'px'; curR.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-}
-animRing();
-document.querySelectorAll('a,button,.card,.social-btn').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cur.style.width='20px';cur.style.height='20px';curR.style.width='50px';curR.style.height='50px'; });
-  el.addEventListener('mouseleave',()=>{ cur.style.width='10px';cur.style.height='10px';curR.style.width='36px';curR.style.height='36px'; });
-});
-
-// ══ PARTICULES flottantes légères ══
-const canvas = document.getElementById('particles-canvas');
-const pctx = canvas.getContext('2d');
-let pts = [];
-function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-resizeCanvas(); window.addEventListener('resize',resizeCanvas);
-function spawnPt(){
-  return {
-    x:Math.random()*canvas.width, y:canvas.height+10,
-    size:Math.random()*1.8+.4,
-    speed:Math.random()*.4+.15,
-    opacity:Math.random()*.4+.1,
-    drift:(Math.random()-.5)*.3,
-    color: Math.random()>.5 ? `rgba(196,84,122,` : `rgba(201,146,74,`
-  };
-}
-for(let i=0;i<40;i++){
-  const p=spawnPt(); p.y=Math.random()*canvas.height;
-  pts.push(p);
-}
-function animParticles(){
-  pctx.clearRect(0,0,canvas.width,canvas.height);
-  pts.forEach((p,i)=>{
-    p.y-=p.speed; p.x+=p.drift;
-    if(p.y<-10){ pts[i]=spawnPt(); }
-    pctx.beginPath();
-    pctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-    pctx.fillStyle=p.color+p.opacity+')';
-    pctx.fill();
-  });
-  requestAnimationFrame(animParticles);
-}
-animParticles();
-
 // ══ MESSAGES ══
 const MESSAGES = {
   0:  { icon:"💬", title:"Le premier jour", content:"Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime." },
   1:  { icon:"🌙", title:"Bête de journée", content:"Hier on a passé une journée géniale avec ta maman.\n\nD'ailleurs fait lui savoir qu'elle cuisine vraiment bien hohoho. Je suis tellement heureux de te connaître." },
   2:  { icon:"💌", title:"Une lettre pour toi", content:"Salma,\n\nJe pense beaucoup à toi ça me fait tellement bizarre d'aller à la fac sans que tu sois là.\n\nOn se voit pour manger après tfaçon nan ? je t'aime mimiche." },
   3:  { icon:"🗺️", title:"Ce qu'on va faire ensemble", content:"Un jour on ira quelque part ensemble, juste pour le plaisir.\n\nPas besoin que ce soit grand. Juste toi, moi, et un bon moment à raconter plus tard." },
-  4:  { icon:"📸", title:"Ma photo préférée de nous", content:"Il y a des moments qu'on n'a pas pris en photo mais qu'on n'oublie jamais.\n\nT'en as sûrement un toi aussi. Moi oui. Et tu joues dedans." },
+  4:  { icon:"📸", title:"Ma photo préférée de nous", content:"Il y a des moments qu'on n'a pas pris en photo mais qu'on n'oublie jamais.\n\nT'en as sûrement un toi aussi. Moi oui. Et tu joues dedans. 🌸" },
   5:  { icon:"🎵", title:"La chanson qui me fait penser à toi", content:"Il y a des chansons qui sonnent différemment depuis que je te connais.\n\nCelle-là en particulier. Chaque fois qu'elle passe, je pense à toi automatiquement." },
   6:  { icon:"✨", title:"Ce que j'aime chez toi", content:"Ta façon d'être toi-même sans t'excuser.\nTon sourire quand quelque chose te fait vraiment rire.\nTon caractère — même quand il me tient tête.\n\nTout ça ensemble, ça forme quelqu'un d'extraordinaire." },
   7:  { icon:"🌸", title:"Juste pour te dire", content:"Aujourd'hui j'avais pas de grande idée. Pas de souvenir précis à raconter.\n\nJ'avais juste envie de te dire que je pense à toi, et que ça me suffit comme raison d'écrire." },
   8:  { icon:"☕", title:"Les matins", content:"Les matins seraient tellement mieux avec toi.\n\nJuste un café, une conversation tranquille, et ton énergie du matin que j'imagine très bien. Ça doit être mignon." },
   9:  { icon:"🌊", title:"Quelque chose de calme", content:"Il y a quelque chose de très calme dans ce que je ressens pour toi. Pas d'agitation, pas de doute.\n\nJuste une certitude douce que t'es importante. C'est rare ça." },
-  10: { icon:"🎀", title:"Hello Kitty t'envie", content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Sauf que toi t'as un niveau de personnalité en plus." },
+  10: { icon:"🎀", title:"Hello Kitty t'envie", content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Sauf que toi t'as un niveau de personnalité en plus. Hello Kitty t'envie, je t'assure." },
   11: { icon:"💪", title:"Ta force", content:"T'as une force en toi que tu vois pas forcément.\n\nMoi je la vois. Dans ta façon de gérer les choses, de continuer même quand c'est dur. Elle me bluffe, vraiment." },
   12: { icon:"🌟", title:"Tu brilles", content:"T'as cette capacité à être lumineuse même sans t'en rendre compte.\n\nC'est le genre de qualité qu'on peut pas forcer. Soit t'as, soit t'as pas. Et toi t'as. En abondance." },
   13: { icon:"🏴‍☠️", title:"She's my Nakama", content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nJe comprends maintenant ce qu'il veut dire. Mon trésor à moi il s'appelle Salmouchee." },
@@ -1135,40 +771,50 @@ const MESSAGES = {
   24: { icon:"🧸", title:"Ton doudou", content:"Si j'étais un doudou, je voudrais être celui que tu gardes pas juste pour la déco.\n\nCelui que tu sortirais les soirs où ça va pas, et que tu rangeras plus jamais. Voilà mon ambition." },
   25: { icon:"🌅", title:"La veille de ton jour", content:"Demain c'est ton anniversaire, Salmouchee.\n\nJe voulais prendre un moment, la veille, pour te dire merci. Merci d'exister. Merci d'être toi. La fête de demain c'est la fête de quelqu'un d'exceptionnel." },
 };
-const BIRTHDAY_MSG={icon:"🎂",title:"Joyeux Anniversaire Salmouchee",content:"Aujourd'hui c'est TON jour.\n\nLe 26 octobre — la date où quelqu'un d'extraordinaire est arrivé dans ce monde et l'a rendu meilleur sans même le faire exprès.\n\nCes cases, ce compte à rebours, ces mois à penser à toi — tout ça pour te dire une chose :\n\nTu mérites tout le bonheur du monde, Salma. Tout. Sans exception.\n\nJoyeux anniversaire ma Salmouchee."};
-const BIRTHDAY_LOCKED_MSG={icon:"🎂",title:"Bientôt ton jour magique",content:"Cette case est réservée à ton anniversaire, Salmouchee.\n\nElle ne s'ouvrira que le 26 octobre… mais en attendant, chaque jour qui passe me rapproche un peu plus de pouvoir te souhaiter le plus beau des anniversaires.\n\nTu es ma plus belle surprise."};
-const GENERIC=[
-  {icon:"🌸",title:"Penser à toi",content:"Aujourd'hui comme tous les autres jours, tu occupes mes pensées.\n\nPas besoin d'une raison particulière — t'es juste là, et c'est tout ce qu'il faut."},
-  {icon:"💕",title:"Petit message du jour",content:"Juste un petit rappel que t'es incroyable, Salmouchee.\n\nVoilà. C'est tout. Bonne journée."},
-  {icon:"✨",title:"Une pensée pour toi",content:"Tu sais ce que j'aime avec toi ? Même les petits moments deviennent mémorables.\n\nC'est un talent rare. Continue d'être toi."},
-  {icon:"🌙",title:"Ce soir je pense à toi",content:"La nuit tombe et je pense à toi.\n\nPas pour une raison précise — juste parce que c'est devenu naturel, et que naturellement tu prends la meilleure place."},
-  {icon:"💌",title:"Lettre du jour",content:"T'es quelqu'un de vraiment précieux, Salma. Pas juste pour ce que tu fais — pour ce que tu es.\n\nCette façon d'être toi sans t'excuser. Je t'admire pour ça."},
-  {icon:"⭐",title:"Ton éclat",content:"T'as un éclat particulier. Pas juste à l'extérieur — intérieurement aussi.\n\nUne lumière qui transperce même tes moments de doute. Je la vois même quand toi tu la vois pas."},
-  {icon:"🎀",title:"Ma Salmouchee",content:"Je suis fier de toi. Vraiment. De qui tu es, de ce que tu fais, de la façon dont tu navigues dans la vie.\n\nT'as une force que tu sous-estimes. Mais moi je la vois."},
+
+const BIRTHDAY_MSG = {
+  icon:"🎂", title:"Joyeux Anniversaire Salmouchee 🎉",
+  content:"Aujourd'hui c'est TON jour. 🎂\n\nLe 26 octobre — la date où quelqu'un d'extraordinaire est arrivé dans ce monde et l'a rendu meilleur sans même le faire exprès.\n\nCes cases, ce compte à rebours, ces mois à penser à toi — tout ça pour te dire une chose :\n\nTu mérites tout le bonheur du monde, Salma. Tout. Sans exception.\n\nJoyeux anniversaire ma Salmouchee. 🌸✨"
+};
+
+const BIRTHDAY_LOCKED_MSG = {
+  icon:"🎂", title:"Bientôt ton jour magique ✨",
+  content:"Cette case est réservée à ton anniversaire, Salmouchee !\n\nElle ne s'ouvrira que le 26 octobre… mais en attendant, chaque jour qui passe me rapproche un peu plus de pouvoir te souhaiter le plus beau des anniversaires.\n\nTu es ma plus belle surprise. 🌸"
+};
+
+const GENERIC_MESSAGES = [
+  { icon:"🌸", title:"Penser à toi", content:"Aujourd'hui comme tous les autres jours, tu occupes mes pensées.\n\nPas besoin d'une raison particulière — t'es juste là, et c'est tout ce qu'il faut." },
+  { icon:"💕", title:"Petit message du jour", content:"Juste un petit rappel que t'es incroyable, Salmouchee.\n\nVoilà. C'est tout. Bonne journée. 🌸" },
+  { icon:"✨", title:"Une pensée pour toi", content:"Tu sais ce que j'aime avec toi ? Même les petits moments deviennent mémorables.\n\nC'est un talent rare. Continue d'être toi." },
+  { icon:"🌙", title:"Ce soir je pense à toi", content:"La nuit tombe et je pense à toi.\n\nPas pour une raison précise — juste parce que c'est devenu naturel, et que naturellement tu prends la meilleure place." },
+  { icon:"💌", title:"Lettre du jour", content:"T'es quelqu'un de vraiment précieux, Salma. Pas juste pour ce que tu fais — pour ce que tu es.\n\nCette façon d'être toi sans t'excuser. Je t'admire pour ça." },
+  { icon:"⭐", title:"Ton éclat", content:"T'as un éclat particulier. Pas juste à l'extérieur — intérieurement aussi.\n\nUne lumière qui transperce même tes moments de doute. Je la vois même quand toi tu la vois pas." },
+  { icon:"🎀", title:"Ma Salmouchee", content:"Je suis fier de toi. Vraiment. De qui tu es, de ce que tu fais, de la façon dont tu navigues dans la vie.\n\nT'as une force que tu sous-estimes. Mais moi je la vois." },
 ];
-const LOCKED_MSGS=[
-  {icon:"🔒",title:"Pas encore…",content:"Cette surprise t'attend sagement.\n\nReviens le bon jour et elle sera là, rien que pour toi. La patience, c'est aussi une forme d'amour."},
-  {icon:"⏳",title:"Bientôt, promis",content:"Tu veux savoir ce qu'il y a dedans ?\n\nMoi aussi j'ai hâte que tu le découvres. Mais chaque chose en son temps, Salmouchee."},
-  {icon:"🌙",title:"Ce moment n'est pas encore venu",content:"Il faut attendre encore un peu.\n\nMais crois-moi, ça vaut le coup d'attendre. Rayan y a pensé avec tout son cœur."},
-  {icon:"🎁",title:"Surprise en cours…",content:"Ce cadeau se prépare encore.\n\nIl sera là le bon jour, exactement quand il le faut. T'as juste à patienter un tout petit peu."},
-  {icon:"✨",title:"Pas encore débloqué",content:"Cette case attend ton retour au bon moment.\n\nJusque-là, sache que Rayan pense à toi chaque jour, case ouverte ou pas."},
+
+const LOCKED_MESSAGES = [
+  { icon:"🔒", title:"Pas encore…", content:"Cette surprise t'attend sagement.\n\nReviens le bon jour et elle sera là, rien que pour toi. La patience, c'est aussi une forme d'amour. 🌸" },
+  { icon:"⏳", title:"Bientôt, promis", content:"Tu veux savoir ce qu'il y a dedans ?\n\nMoi aussi j'ai hâte que tu le découvres. Mais chaque chose en son temps, Salmouchee." },
+  { icon:"🌙", title:"Ce moment n'est pas encore venu", content:"Il faut attendre encore un peu.\n\nMais crois-moi, ça vaut le coup d'attendre. Rayan y a pensé avec tout son cœur." },
+  { icon:"🎁", title:"Surprise en cours…", content:"Ce cadeau se prépare encore.\n\nIl sera là le bon jour, exactement quand il le faut. T'as juste à patienter un tout petit peu." },
+  { icon:"✨", title:"Pas encore débloqué", content:"Cette case attend ton retour au bon moment.\n\nJusque-là, sache que Rayan pense à toi chaque jour, case ouverte ou pas." },
 ];
 
 // ══ UTILS ══
-function daysBetween(a,b){return Math.round((Date.UTC(b.getFullYear(),b.getMonth(),b.getDate())-Date.UTC(a.getFullYear(),a.getMonth(),a.getDate()))/86400000);}
+function daysBetween(a,b){
+  return Math.round((Date.UTC(b.getFullYear(),b.getMonth(),b.getDate())-Date.UTC(a.getFullYear(),a.getMonth(),a.getDate()))/86400000);
+}
 function pad(n){return String(n).padStart(2,"0");}
-function formatDate(d){const m=["jan","fév","mar","avr","mai","jun","jul","aoû","sep","oct","nov","déc"];return `${d.getDate()} ${m[d.getMonth()]}`;}
+function formatDate(d){
+  const m=["jan","fév","mar","avr","mai","jun","jul","aoû","sep","oct","nov","déc"];
+  return `${d.getDate()} ${m[d.getMonth()]}`;
+}
 function getOpened(){try{return JSON.parse(localStorage.getItem("opened_cards")||"[]");}catch{return[];}}
 function markOpened(i){const o=getOpened();if(!o.includes(i)){o.push(i);localStorage.setItem("opened_cards",JSON.stringify(o));}}
-function getLastSeen(){return parseInt(localStorage.getItem("last_seen_unlocked")||"-1");}
-function setLastSeen(n){localStorage.setItem("last_seen_unlocked",String(n));}
 
 const todayDate=new Date(); todayDate.setHours(0,0,0,0);
 const totalDays=daysBetween(START_DATE,BIRTHDAY)+1;
 const unlockedCount=Math.min(daysBetween(START_DATE,todayDate)+1,totalDays);
-const todayCardIndex=unlockedCount-1;
-const hasNewCard=todayCardIndex>=0 && todayCardIndex>getLastSeen();
-let newCardEl=null;
 
 // ══ INTRO ══
 function skipIntro(){
@@ -1177,120 +823,145 @@ function skipIntro(){
     document.getElementById('intro-screen').style.display='none';
     document.getElementById('mainWrapper').classList.add('visible');
     buildConnectLines();
-    checkNewCard();
-  },900);
+  },700);
 }
-const introParticles=document.createElement('div');
-setTimeout(()=>{if(document.getElementById('intro-screen')?.style.display!=='none')skipIntro();},3500);
+
+// Génère des particules intro
+const introParticles=document.getElementById('introParticles');
+const ptEmojis=['🌸','✨','💫','🌟','💕','🎀','⭐'];
+for(let i=0;i<22;i++){
+  const p=document.createElement('div');
+  p.className='intro-p';
+  p.textContent=ptEmojis[i%ptEmojis.length];
+  p.style.cssText=`left:${Math.random()*100}%;top:${30+Math.random()*60}%;font-size:${12+Math.random()*18}px;animation:introParticle ${1.5+Math.random()*2}s ${.5+Math.random()*2}s ease forwards;`;
+  introParticles.appendChild(p);
+}
+
+// Auto-skip après 3.5s
+setTimeout(()=>{
+  if(document.getElementById('intro-screen').style.display!=='none') skipIntro();
+},3500);
 
 // ══ GRILLE ══
 const grid=document.getElementById("grid");
-const cardEls=[];
+const cardElements=[];
 
 for(let i=0;i<totalDays;i++){
+  // Séparateur avant la case anniversaire
   if(i===totalDays-1){
-    const sep=document.createElement('div');sep.className='birthday-separator';grid.appendChild(sep);
+    const sep=document.createElement('div');
+    sep.className='birthday-separator';
+    grid.appendChild(sep);
   }
-  const date=new Date(START_DATE);date.setDate(START_DATE.getDate()+i);
-  const card=document.createElement("div");card.className="card";
+
+  const date=new Date(START_DATE); date.setDate(START_DATE.getDate()+i);
+  const card=document.createElement("div"); card.className="card";
   const isToday=daysBetween(START_DATE,todayDate)===i;
-  const isBday=i===totalDays-1;
+  const isBirthday=i===totalDays-1;
   const unlocked=i<unlockedCount;
   const wasOpened=getOpened().includes(i);
 
-  // Délai stagger
-  card.style.animationDelay=`${Math.min(i*18,400)}ms`;
-
-  let msg=isBday?BIRTHDAY_MSG:(MESSAGES[i]||GENERIC[i%GENERIC.length]);
+  let msg;
+  if(isBirthday)        msg=BIRTHDAY_MSG;
+  else if(MESSAGES[i])  msg=MESSAGES[i];
+  else                  msg=GENERIC_MESSAGES[i%GENERIC_MESSAGES.length];
 
   if(unlocked){
     card.classList.add("unlocked");
-    if(isToday&&!isBday)card.classList.add("today");
-    if(isBday)card.classList.add("final");
-    if(wasOpened)card.classList.add("opened");
+    if(isToday&&!isBirthday) card.classList.add("today");
+    if(isBirthday) card.classList.add("final");
+    if(wasOpened)  card.classList.add("opened");
 
-    // Dot nouveau
-    const dot=document.createElement('span');dot.className='card-new-dot';
-    if(isToday&&hasNewCard&&!wasOpened)dot.classList.add('show');
-    card.appendChild(dot);
-
-    // Coche ouverte
-    const chk=document.createElement('span');chk.className='card-check';
-    card.appendChild(chk);
-
-    if(isBday){
-      const stars=[{t:'8%',l:'6%',d:'0s'},{t:'12%',l:'88%',d:'.4s'},{t:'80%',l:'5%',d:'.8s'},{t:'85%',l:'90%',d:'.2s'},{t:'45%',l:'3%',d:'1.2s'},{t:'40%',l:'93%',d:'.6s'}];
-      const sr=document.createElement('div');sr.className='star-ring';
-      stars.forEach(s=>{const sp=document.createElement('span');sp.style.cssText=`top:${s.t};left:${s.l};animation-delay:${s.d}`;sp.textContent='✦';sr.appendChild(sp);});
-      card.appendChild(sr);
-      const inn=document.createElement('div');inn.className='card-inner';
-      inn.innerHTML=`<span class="card-type-icon">🎂</span><span class="card-day-num">${i+1}</span><span class="card-date-label">${formatDate(date)}</span><span class="bday-label">Joyeux Anniversaire</span>`;
-      card.appendChild(inn);
+    if(isBirthday){
+      const starPos=[
+        {top:'8%',left:'6%',delay:'0s'},{top:'12%',left:'88%',delay:'.4s'},
+        {top:'80%',left:'5%',delay:'.8s'},{top:'85%',left:'90%',delay:'.2s'},
+        {top:'45%',left:'3%',delay:'1.2s'},{top:'40%',left:'93%',delay:'.6s'},
+      ];
+      card.innerHTML=`<div class="star-ring">${starPos.map(p=>`<span style="top:${p.top};left:${p.left};animation-delay:${p.delay}">✨</span>`).join('')}</div>
+        <div class="card-inner">
+          <span class="card-type-icon">🎂</span>
+          <span class="card-day-num">${i+1}</span>
+          <span class="card-date-label">${formatDate(date)}</span>
+          <span class="bday-label">Joyeux Anniversaire 🎉</span>
+        </div>`;
     } else {
-      const inn=document.createElement('div');inn.className='card-inner';
-      inn.innerHTML=`<span class="card-type-icon">${msg.icon}</span><span class="card-day-num">${i+1}</span><span class="card-date-label">${formatDate(date)}</span>`;
-      card.appendChild(inn);
+      card.innerHTML=`<div class="card-inner">
+        <span class="card-type-icon">${msg.icon}</span>
+        <span class="card-day-num">${i+1}</span>
+        <span class="card-date-label">${formatDate(date)}</span>
+      </div>`;
     }
-    card.addEventListener("click",()=>{
-      markOpened(i);card.classList.add("opened");dot.classList.remove('show');
-      if(i===todayCardIndex){setLastSeen(i);hideBanner();}
-      openModal(i+1,date,msg,isBday,false);
-    });
-    if(isToday)newCardEl=card;
+    card.addEventListener("click",()=>{markOpened(i);card.classList.add("opened");openModal(i+1,date,msg,isBirthday,false);});
   } else {
     card.classList.add("locked");
-    if(isBday){
-      card.classList.add("final");
-      const ib=document.createElement('div');ib.className='inner-border';card.appendChild(ib);
-      const inn=document.createElement('div');inn.className='card-inner';
-      inn.innerHTML=`<span class="card-type-icon" style="opacity:.45;font-size:clamp(18px,3.5vw,26px)">🎂</span><span class="card-day-num">${i+1}</span><span class="card-date-label">${formatDate(date)}</span><span class="bday-label-locked">Anniversaire</span>`;
-      card.appendChild(inn);
+    if(isBirthday) card.classList.add("final");
+    if(isBirthday){
+      card.innerHTML=`<div class="card-inner">
+        <span class="card-type-icon" style="font-size:clamp(20px,3.5vw,28px);opacity:.5;">🎂</span>
+        <span class="card-day-num">${i+1}</span>
+        <span class="card-date-label">${formatDate(date)}</span>
+        <span class="bday-label-locked">Anniversaire ✨</span>
+      </div>`;
       card.addEventListener("click",()=>openModal(i+1,date,BIRTHDAY_LOCKED_MSG,true,true));
     } else {
-      const inn=document.createElement('div');inn.className='card-inner';
-      inn.innerHTML=`<span class="card-day-num">${i+1}</span><span class="card-date-label">${formatDate(date)}</span><span class="lock-icon">🔒</span>`;
-      card.appendChild(inn);
-      card.addEventListener("click",()=>openModal(i+1,date,LOCKED_MSGS[i%LOCKED_MSGS.length],false,true));
+      card.innerHTML=`<div class="card-inner">
+        <span class="card-day-num">${i+1}</span>
+        <span class="card-date-label">${formatDate(date)}</span>
+        <span class="lock-icon">🔒</span>
+      </div>`;
+      card.addEventListener("click",()=>openModal(i+1,date,LOCKED_MESSAGES[i%LOCKED_MESSAGES.length],false,true));
     }
   }
   grid.appendChild(card);
-  cardEls.push({el:card,unlocked,isToday,isBday,index:i});
+  cardElements.push({el:card,unlocked,isToday,isBirthday,index:i});
 }
 
-// ══ NOUVELLE CASE ══
-function checkNewCard(){
-  if(!hasNewCard||getOpened().includes(todayCardIndex))return;
-  const msg=MESSAGES[todayCardIndex]||GENERIC[todayCardIndex%GENERIC.length];
-  document.getElementById('newBannerIcon').textContent=msg.icon;
-  document.getElementById('newBannerTitle').textContent=`Jour ${todayCardIndex+1} — ${msg.title}`;
-  document.getElementById('newBanner').classList.add('show');
-}
-function hideBanner(){document.getElementById('newBanner').classList.remove('show');}
-function scrollToNewCard(){if(newCardEl){newCardEl.scrollIntoView({behavior:'smooth',block:'center'});hideBanner();}}
-
-// ══ LIGNES ══
+// ══ LIGNES DE CONNEXION BATTLE PASS ══
 function buildConnectLines(){
-  const svg=document.getElementById('connectSvg');svg.innerHTML='';
-  const wr=document.querySelector('.grid-wrapper').getBoundingClientRect();
+  const svg=document.getElementById('connectSvg');
+  svg.innerHTML='';
+  const wrapper=document.querySelector('.grid-wrapper');
+  const wRect=wrapper.getBoundingClientRect();
+
+  // On filtre les vraies cases (pas les séparateurs)
   const cards=Array.from(grid.querySelectorAll('.card'));
   const rects=cards.map(c=>c.getBoundingClientRect());
+
   for(let i=0;i<cards.length-1;i++){
-    const r1=rects[i],r2=rects[i+1];
-    const x1=r1.left-wr.left+r1.width/2,y1=r1.top-wr.top+r1.height/2;
-    const x2=r2.left-wr.left+r2.width/2,y2=r2.top-wr.top+r2.height/2;
-    const isU=cardEls[i]?.unlocked;
-    const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
-    ln.setAttribute('x1',x1);ln.setAttribute('y1',y1);ln.setAttribute('x2',x2);ln.setAttribute('y2',y2);
-    ln.setAttribute('stroke',isU?'rgba(196,84,122,.3)':'rgba(196,84,122,.08)');
-    ln.setAttribute('stroke-width','1.5');
-    ln.setAttribute('stroke-dasharray',isU?'none':'4,6');
-    svg.appendChild(ln);
-    const mkDot=(cx,cy,u,t)=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r','3.5');c.setAttribute('fill',t?'#c9924a':u?'rgba(196,84,122,.6)':'rgba(196,84,122,.15)');c.setAttribute('stroke','rgba(255,255,255,.7)');c.setAttribute('stroke-width','1.5');svg.appendChild(c);};
-    if(i===0)mkDot(x1,y1,isU,cardEls[i]?.isToday);
-    mkDot(x2,y2,cardEls[i+1]?.unlocked,cardEls[i+1]?.isToday);
+    const r1=rects[i], r2=rects[i+1];
+    const x1=r1.left-wRect.left+r1.width/2;
+    const y1=r1.top-wRect.top+r1.height/2;
+    const x2=r2.left-wRect.left+r2.width/2;
+    const y2=r2.top-wRect.top+r2.height/2;
+
+    const isUnlocked=cardElements[i]&&cardElements[i].unlocked;
+
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+    line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+    line.setAttribute('stroke',isUnlocked?'rgba(196,84,122,.45)':'rgba(196,84,122,.12)');
+    line.setAttribute('stroke-width','2');
+    line.setAttribute('stroke-dasharray',isUnlocked?'none':'5,5');
+    svg.appendChild(line);
+
+    // Nœud sur chaque case
+    if(i===0){
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',x1); c.setAttribute('cy',y1); c.setAttribute('r','4');
+      c.setAttribute('fill',cardElements[i].isToday?'#c9924a':isUnlocked?'#c4547a':'rgba(196,84,122,.2)');
+      c.setAttribute('stroke','rgba(255,255,255,.7)'); c.setAttribute('stroke-width','1.5');
+      svg.appendChild(c);
+    }
+    const c2=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    const isU2=cardElements[i+1]&&cardElements[i+1].unlocked;
+    c2.setAttribute('cx',x2); c2.setAttribute('cy',y2); c2.setAttribute('r','4');
+    c2.setAttribute('fill',cardElements[i+1]&&cardElements[i+1].isToday?'#c9924a':isU2?'#c4547a':'rgba(196,84,122,.18)');
+    c2.setAttribute('stroke','rgba(255,255,255,.7)'); c2.setAttribute('stroke-width','1.5');
+    svg.appendChild(c2);
   }
 }
-window.addEventListener('resize',buildConnectLines);
+window.addEventListener('resize',()=>buildConnectLines());
 
 // ══ COUNTDOWN ══
 const els={d:document.getElementById("cd-days"),h:document.getElementById("cd-hours"),m:document.getElementById("cd-mins"),s:document.getElementById("cd-secs")};
@@ -1298,18 +969,20 @@ function popEl(el,v){const s=pad(v);if(el.textContent!==s){el.textContent=s;el.c
 function tick(){
   const diff=BIRTHDAY-new Date();
   if(diff<=0){Object.values(els).forEach(e=>e.textContent="00");return;}
-  popEl(els.d,Math.floor(diff/86400000));popEl(els.h,Math.floor((diff%86400000)/3600000));
-  popEl(els.m,Math.floor((diff%3600000)/60000));popEl(els.s,Math.floor((diff%60000)/1000));
+  popEl(els.d,Math.floor(diff/86400000));
+  popEl(els.h,Math.floor((diff%86400000)/3600000));
+  popEl(els.m,Math.floor((diff%3600000)/60000));
+  popEl(els.s,Math.floor((diff%60000)/1000));
 }
-tick();setInterval(tick,1000);
+tick(); setInterval(tick,1000);
 
 // ══ MODAL ══
-function openModal(dayNum,date,msg,isBday,isLocked){
+function openModal(dayNum,date,msg,isBirthday,isLocked){
   const m=document.getElementById("modal");
   m.classList.remove("birthday-modal","locked-modal");
-  if(isBday)m.classList.add("birthday-modal");
-  if(isLocked)m.classList.add("locked-modal");
-  document.getElementById("modal-badge").textContent=isBday?"Ton Anniversaire":`Jour ${dayNum} · ${formatDate(date)}`;
+  if(isBirthday) m.classList.add("birthday-modal");
+  if(isLocked)   m.classList.add("locked-modal");
+  document.getElementById("modal-badge").textContent=isBirthday?"🎂 Ton Anniversaire !":isLocked?`Jour ${dayNum} · ${formatDate(date)}`:`Jour ${dayNum} · ${formatDate(date)}`;
   document.getElementById("modal-icon").textContent=msg.icon;
   document.getElementById("modal-title").textContent=msg.title;
   document.getElementById("modal-content").textContent=msg.content;
@@ -1322,36 +995,97 @@ function closeModalDirect(){document.getElementById("modal-bg").classList.remove
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModalDirect();});
 
 // ══ TOAST ══
-function showToast(msg,dur=3000){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
-
-// ══ RAPPELS ══
-function openReminder(type){
-  const now=new Date();const target=new Date(now);
-  if(type==='matin'){target.setDate(target.getDate()+1);target.setHours(9,0,0,0);}
-  else{const mn=type===30?30:0;target.setHours(23,mn,0,0);if(target<=now)target.setDate(target.getDate()+1);}
-  const iso=target.toISOString().replace(/\.\d{3}Z$/,'Z');
-  const title=encodeURIComponent("Nouvelle surprise de Rayan");
-  const notes=encodeURIComponent("Ouvre le site pour découvrir ta surprise du jour");
-  window.location.href=`x-apple-reminderkit://REMCDReminder/?title=${title}&notes=${notes}&dueDate=${iso}`;
-  setTimeout(()=>showToast('Rappel créé',2500),600);
-  closeNotifModal();return false;
+function showToast(msg,duration=3000){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),duration);
 }
 
-// ══ MODAL NOTIF ══
+// ══ NOTIFICATIONS ══
+let selectedNotifMin=null;
+let notifActive=localStorage.getItem('notif_active')==='true';
+let notifMin=parseInt(localStorage.getItem('notif_min')||'60');
+
+// Applique l'état sauvegardé
+if(notifActive){
+  document.getElementById('notifBtn').classList.add('active');
+  scheduleNotifications(notifMin);
+}
+
 function openNotifModal(){
-  const isNew=hasNewCard&&!getOpened().includes(todayCardIndex);
-  const nci=document.getElementById('newCardInfo');
-  if(isNew&&todayCardIndex>=0){
-    const msg=MESSAGES[todayCardIndex]||GENERIC[todayCardIndex%GENERIC.length];
-    document.getElementById('newCardIcon').textContent=msg.icon;
-    document.getElementById('newCardTitle').textContent=msg.title;
-    nci.style.display='block';setLastSeen(todayCardIndex);
-  } else {nci.style.display='none';}
+  // Si déjà actif, désactiver
+  if(notifActive){
+    notifActive=false;
+    localStorage.setItem('notif_active','false');
+    document.getElementById('notifBtn').classList.remove('active');
+    showToast('🔕 Notifications désactivées');
+    return;
+  }
   document.getElementById('notifModalBg').classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeNotifModal(){document.getElementById('notifModalBg').classList.remove('open');document.body.style.overflow='';}
-function closeNotifModalBg(e){if(e.target===document.getElementById('notifModalBg'))closeNotifModal();}
+function closeNotifModal(e){
+  if(!e||e.target===document.getElementById('notifModalBg')){
+    document.getElementById('notifModalBg').classList.remove('open');
+    document.body.style.overflow='';
+    selectedNotifMin=null;
+    document.querySelectorAll('.notif-option').forEach(o=>o.classList.remove('selected'));
+  }
+}
+function selectNotifTime(el,min){
+  document.querySelectorAll('.notif-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected'); selectedNotifMin=min;
+}
+function confirmNotif(){
+  if(selectedNotifMin===null){showToast('Choisis une option d\'abord 🌸');return;}
+  if(!('Notification' in window)){showToast('Les notifications ne sont pas supportées sur ce navigateur 😅');return;}
+
+  Notification.requestPermission().then(perm=>{
+    if(perm==='granted'){
+      notifActive=true; notifMin=selectedNotifMin;
+      localStorage.setItem('notif_active','true');
+      localStorage.setItem('notif_min',String(notifMin));
+      document.getElementById('notifBtn').classList.add('active');
+      scheduleNotifications(notifMin);
+      closeNotifModal();
+      document.body.style.overflow='';
+      const label=notifMin===0?'au moment du déblocage':`${notifMin} minutes avant`;
+      showToast(`🔔 Notifications activées — ${label} !`,3500);
+    } else {
+      showToast('Permission refusée — active les notifs dans les réglages 🙏');
+    }
+  });
+}
+
+function scheduleNotifications(minutesBefore){
+  // Calcule le prochain minuit
+  const now=new Date();
+  const nextMidnight=new Date(now);
+  nextMidnight.setHours(24,0,0,0);
+  const notifTime=new Date(nextMidnight.getTime()-minutesBefore*60*1000);
+  const msUntil=notifTime.getTime()-now.getTime();
+
+  if(msUntil>0){
+    setTimeout(()=>{
+      if(notifActive&&Notification.permission==='granted'){
+        const tomorrow=new Date(); tomorrow.setDate(tomorrow.getDate()+1);
+        const dayIdx=daysBetween(START_DATE,tomorrow);
+        const msg=dayIdx>=0&&dayIdx<totalDays?(MESSAGES[dayIdx]||GENERIC_MESSAGES[dayIdx%GENERIC_MESSAGES.length]):null;
+        const title=minutesBefore===0?'✨ Une nouvelle surprise t\'attend !':`⏰ Dans ${minutesBefore} min — nouvelle surprise !`;
+        const body=minutesBefore===0
+          ?`La case du jour ${dayIdx+1} est maintenant disponible, Salmouchee ! 🌸`
+          :`Dans ${minutesBefore} minutes, une nouvelle surprise de Rayan se débloque pour toi 💕${msg?` "${msg.title}"`:''}`
+        ;
+        new Notification(title,{body,icon:'logo.PNG',badge:'logo.PNG'});
+        // Replanifie pour demain
+        setTimeout(()=>scheduleNotifications(minutesBefore),1000);
+      }
+    },msUntil);
+  }
+}
+
+document.getElementById('notifModalBg').addEventListener('click',closeNotifModal);
 </script>
+
 </body>
 </html>
