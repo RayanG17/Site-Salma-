@@ -432,10 +432,7 @@ footer {
 
 /* ══ CASE 26 OCT — très distincte ══ */
 .card.final {
-  grid-column: span 2;
-  aspect-ratio: unset;
-  min-height: clamp(130px, 24vw, 190px);
-  border-radius: 20px;
+  border-radius: 16px;
 }
 .card.final.locked {
   background: rgba(201,146,74,.15);
@@ -712,10 +709,10 @@ for (let i = 0; i < totalDays; i++) {
     card.classList.add("locked");
     if (isBirthday) card.classList.add("final");
     card.innerHTML = `<div class="card-inner">
-      <span class="card-type-icon">🎂</span>
-      <span class="card-day-num">26</span>
-      <span class="card-date-label">26 oct</span>
-      <span class="bday-label">Anniversaire ✨</span>
+      ${isBirthday ? '<span class="card-type-icon">🎂</span>' : ''}
+      <span class="card-day-num">${i + 1}</span>
+      <span class="card-date-label">${formatDate(date)}</span>
+      ${isBirthday ? '<span class="bday-label">Anniversaire ✨</span>' : '<span class="lock-icon">🔒</span>'}
     </div>`;
   }
 
