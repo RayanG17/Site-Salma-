@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -9,510 +8,357 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-```
-:root {
-  --rose-deep:   #8b2252;
-  --rose-mid:    #c4547a;
-  --rose-soft:   #e8a0b4;
-  --gold:        #c9924a;
-  --cream:       #fff8f9;
-  --text-dark:   #3a1525;
-  --text-mid:    #7a3555;
-  --glass:       rgba(255,255,255,0.45);
-  --glass-border:rgba(196,84,122,0.18);
-}
+    :root {
+      --rose-deep:   #8b2252;
+      --rose-mid:    #c4547a;
+      --rose-soft:   #e8a0b4;
+      --gold:        #c9924a;
+      --cream:       #fff8f9;
+      --text-dark:   #3a1525;
+      --text-mid:    #7a3555;
+      --glass:       rgba(255,255,255,0.45);
+      --glass-border:rgba(196,84,122,0.18);
+    }
 
-html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-body {
-  min-height: 100vh;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text-dark);
-  overflow-x: hidden;
-}
+    body {
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
 
-/* BACKGROUND — intact, pas touché */
-.bg-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: url('bg%20.PNG') center/cover no-repeat;
-  background-color: #fdf0f4;
-}
-@media (max-width: 1024px) {
-  .bg-layer {
-    background-attachment: scroll;
-    background-position: center top;
-  }
-}
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: url('bg.PNG') center/cover no-repeat fixed;
+    }
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: rgba(253, 240, 244, 0.1);
+      pointer-events: none;
+    }
 
-.bg-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: rgba(253, 240, 244, 0.1);
-  pointer-events: none;
-}
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
 
-.wrapper {
-  position: relative;
-  z-index: 1;
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 0 20px 80px;
-}
+    /* HEADER */
+    header {
+      padding: 54px 0 38px;
+      text-align: center;
+      animation: fadeDown .9s ease both;
+    }
 
-/* ── LISIBILITÉ : fond doux derrière les blocs de texte ── */
-header {
-  padding: 54px 0 38px;
-  text-align: center;
-  animation: fadeDown .9s ease both;
-}
-/* Fond léger derrière le header pour lisibilité */
-header > *:not(.logo-wrap) {
-  text-shadow: 0 1px 8px rgba(255,248,249,.9), 0 0 20px rgba(255,248,249,.7);
-}
+    /* Logo un peu plus bas et plus grand */
+    .logo-wrap { margin-bottom: 20px; margin-top: 10px; }
+    .logo-img {
+      width: clamp(200px, 38vw, 320px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(139,34,82,.25));
+    }
 
-.logo-wrap { margin-bottom: 16px; }
-.logo-img {
-  width: clamp(180px, 35vw, 300px);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 15px 25px rgba(139,34,82,.25));
-}
+    .eyebrow {
+      font-weight: 300; font-size: 11px; letter-spacing: .4em;
+      text-transform: uppercase; color: var(--rose-deep); margin-bottom: 10px;
+      display: inline-block; background: rgba(255,248,249,.75);
+      backdrop-filter: blur(6px); padding: 4px 14px; border-radius: 50px;
+    }
 
-.eyebrow {
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: .4em;
-  text-transform: uppercase;
-  color: var(--rose-deep);
-  margin-bottom: 10px;
-  /* fond lisibilité */
-  display: inline-block;
-  background: rgba(255,248,249,.75);
-  backdrop-filter: blur(6px);
-  padding: 4px 14px;
-  border-radius: 50px;
-}
+    h1 {
+      font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+      font-size: clamp(32px, 6vw, 58px); color: var(--rose-deep); line-height: 1.1; margin-bottom: 6px;
+      text-shadow: 0 2px 12px rgba(255,248,249,.95), 0 0 30px rgba(255,248,249,.8);
+    }
+    h1 strong { font-style: normal; font-weight: 700; }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-style: italic;
-  font-size: clamp(32px, 6vw, 58px);
-  color: var(--rose-deep);
-  line-height: 1.1;
-  margin-bottom: 6px;
-  text-shadow: 0 2px 12px rgba(255,248,249,.95), 0 0 30px rgba(255,248,249,.8);
-}
-h1 strong { font-style: normal; font-weight: 700; }
+    .subtitle {
+      font-size: 13px; font-weight: 300; color: var(--text-dark); letter-spacing: .07em;
+      display: inline-block; background: rgba(255,248,249,.7);
+      backdrop-filter: blur(6px); padding: 3px 12px; border-radius: 50px;
+    }
 
-.subtitle {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--text-dark);
-  letter-spacing: .07em;
-  display: inline-block;
-  background: rgba(255,248,249,.7);
-  backdrop-filter: blur(6px);
-  padding: 3px 12px;
-  border-radius: 50px;
-  text-shadow: none;
-}
+    /* Réseaux */
+    .socials {
+      display: flex; justify-content: center; gap: 14px;
+      margin: 0 0 22px; animation: fadeDown .9s .05s ease both;
+    }
+    .social-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      text-decoration: none; background: rgba(255,248,249,.78);
+      backdrop-filter: blur(10px); border: 1px solid rgba(196,84,122,.2);
+      border-radius: 16px; padding: 10px 16px;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s;
+      box-shadow: 0 2px 12px rgba(139,34,82,.08); min-width: 64px;
+    }
+    .social-btn:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 24px rgba(139,34,82,.18); background: rgba(255,248,249,.95); }
+    .social-icon { font-size: 22px; line-height: 1; }
+    .social-label { font-size: 9px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--rose-mid); }
 
-.divider { display: flex; align-items: center; gap: 14px; margin: 0 auto 42px; max-width: 300px; animation: fadeDown .9s .1s ease both; }
-.div-line { flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--rose-soft)); }
-.div-line.r { transform: scaleX(-1); }
-.div-dot { width:6px; height:6px; border-radius:50%; background: var(--rose-mid); }
+    /* DIVIDER */
+    .divider { display: flex; align-items: center; gap: 14px; margin: 0 auto 42px; max-width: 300px; animation: fadeDown .9s .1s ease both; }
+    .div-line { flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--rose-soft)); }
+    .div-line.r { transform: scaleX(-1); }
+    .div-dot { width:6px; height:6px; border-radius:50%; background: var(--rose-mid); }
 
-.countdown-strip {
-  display: flex;
-  justify-content: center;
-  gap: clamp(10px,3vw,24px);
-  margin-bottom: 50px;
-  animation: fadeDown .9s .2s ease both;
-}
-.cd-unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
-.cd-box {
-  background: rgba(255,248,249,.82);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
-  border-radius: 10px;
-  width: clamp(58px,12vw,86px);
-  height: clamp(62px,13vw,92px);
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 4px 20px rgba(139,34,82,.12), inset 0 1px 0 rgba(255,255,255,.9);
-}
-.cd-num {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: clamp(24px,5vw,44px);
-  color: var(--rose-deep);
-  line-height:1;
-}
-.cd-num.pop { animation: numPop .25s ease; }
-@keyframes numPop { 0% { transform: scale(1.3); opacity: .4; } 100% { transform: scale(1); opacity: 1; } }
-.cd-label {
-  font-size:9px;
-  font-weight:400;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  color: var(--rose-deep);
-  background: rgba(255,248,249,.75);
-  backdrop-filter: blur(4px);
-  padding: 2px 8px;
-  border-radius: 50px;
-}
+    /* COUNTDOWN */
+    .countdown-strip {
+      display: flex; justify-content: center;
+      gap: clamp(10px,3vw,24px); margin-bottom: 50px;
+      animation: fadeDown .9s .2s ease both;
+    }
+    .cd-unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
+    .cd-box {
+      background: rgba(255,248,249,.82); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px); border-radius: 10px;
+      width: clamp(58px,12vw,86px); height: clamp(62px,13vw,92px);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 4px 20px rgba(139,34,82,.12), inset 0 1px 0 rgba(255,255,255,.9);
+    }
+    .cd-num {
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: clamp(24px,5vw,44px); color: var(--rose-deep); line-height:1;
+    }
+    .cd-num.pop { animation: numPop .25s ease; }
+    @keyframes numPop { 0% { transform: scale(1.3); opacity: .4; } 100% { transform: scale(1); opacity: 1; } }
+    .cd-label {
+      font-size:9px; font-weight:400; letter-spacing:.25em; text-transform:uppercase;
+      color: var(--rose-deep); background: rgba(255,248,249,.75);
+      backdrop-filter: blur(4px); padding: 2px 8px; border-radius: 50px;
+    }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 30px;
-  animation: fadeUp .8s .3s ease both;
-}
-.section-title h2 {
-  font-family: 'Playfair Display', serif;
-  font-style:italic;
-  font-weight: 400;
-  font-size: clamp(20px,3.5vw,30px);
-  color: var(--rose-deep);
-  text-shadow: 0 2px 12px rgba(255,248,249,.95);
-  display: inline-block;
-  background: rgba(255,248,249,.6);
-  backdrop-filter: blur(8px);
-  padding: 4px 18px;
-  border-radius: 50px;
-}
-.section-title p {
-  font-size:12px;
-  font-weight:400;
-  color: var(--text-dark);
-  margin-top:8px;
-  letter-spacing:.05em;
-  display: inline-block;
-  background: rgba(255,248,249,.7);
-  backdrop-filter: blur(6px);
-  padding: 3px 14px;
-  border-radius: 50px;
-}
+    /* SECTION TITLE */
+    .section-title { text-align: center; margin-bottom: 30px; animation: fadeUp .8s .3s ease both; }
+    .section-title h2 {
+      font-family: 'Playfair Display', serif; font-style:italic; font-weight: 400;
+      font-size: clamp(20px,3.5vw,30px); color: var(--rose-deep);
+      text-shadow: 0 2px 12px rgba(255,248,249,.95);
+      display: inline-block; background: rgba(255,248,249,.6);
+      backdrop-filter: blur(8px); padding: 4px 18px; border-radius: 50px;
+    }
+    .section-title p {
+      font-size:12px; font-weight:400; color: var(--text-dark); margin-top:8px; letter-spacing:.05em;
+      display: inline-block; background: rgba(255,248,249,.7);
+      backdrop-filter: blur(6px); padding: 3px 14px; border-radius: 50px;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(clamp(90px,16vw,120px), 1fr));
-  gap: 10px;
-  animation: fadeUp .8s .4s ease both;
-}
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(90px,16vw,120px), 1fr));
+      gap: 10px;
+      animation: fadeUp .8s .4s ease both;
+    }
 
-.card {
-  aspect-ratio: 1;
-  border-radius: 12px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: transform .22s ease, box-shadow .22s ease;
-  user-select: none;
-}
-.card:hover { transform: translateY(-3px) scale(1.025); }
+    /* ══ CARD ══ */
+    .card {
+      aspect-ratio: 1; border-radius: 12px; cursor: pointer;
+      position: relative; overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease;
+      user-select: none;
+    }
+    .card:hover { transform: translateY(-3px) scale(1.025); }
 
-.card.locked {
-  background: rgba(255,248,249,.5);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 10px rgba(139,34,82,.07), inset 0 1px 0 rgba(255,255,255,.7);
-  cursor: default;
-}
-.card.locked:hover { transform: none; }
+    /* LOCKED — fond semi-transparent */
+    .card.locked {
+      background: rgba(255,248,249,.45);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(139,34,82,.07), inset 0 1px 0 rgba(255,255,255,.7);
+      cursor: pointer;
+    }
 
-.card-inner {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  height:100%;
-  gap:4px;
-  padding:8px;
-}
+    .card-inner {
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; height:100%; gap:4px; padding:8px;
+    }
 
-.card-day-num {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(18px,3.5vw,26px);
-  font-weight:700;
-  color: var(--rose-deep);
-  line-height:1;
-  text-shadow: 0 1px 4px rgba(255,248,249,.8);
-}
-.card-date-label {
-  font-size: clamp(7px,1.2vw,9px);
-  font-weight:400;
-  color: var(--text-dark);
-  letter-spacing:.05em;
-  text-align:center;
-}
-.lock-icon { font-size: clamp(9px,1.8vw,13px); opacity:.45; margin-top:1px; }
+    .card-day-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px,3.5vw,26px); font-weight:700;
+      color: var(--rose-deep); line-height:1;
+      text-shadow: 0 1px 4px rgba(255,248,249,.8);
+    }
+    .card-date-label {
+      font-size: clamp(7px,1.2vw,9px); font-weight:400;
+      color: var(--text-dark); letter-spacing:.05em; text-align:center;
+    }
+    .lock-icon { font-size: clamp(9px,1.8vw,13px); opacity:.45; margin-top:1px; }
 
-.card.unlocked {
-  background: linear-gradient(135deg, var(--rose-mid), var(--rose-deep));
-  box-shadow: 0 6px 22px rgba(139,34,82,.3);
-  border: 1px solid rgba(255,255,255,.28);
-  animation: cardReveal .4s ease both;
-}
-@keyframes cardReveal { from { transform:scale(.88); opacity:0; } to { transform:scale(1); opacity:1; } }
-.card.unlocked .card-day-num { color:#fff; text-shadow: 0 1px 6px rgba(0,0,0,.2); }
-.card.unlocked .card-date-label { color:rgba(255,255,255,.85); }
-.card-type-icon { font-size: clamp(14px,3vw,20px); }
+    /* UNLOCKED — couleur pleine par défaut */
+    .card.unlocked {
+      background: linear-gradient(135deg, var(--rose-mid), var(--rose-deep));
+      box-shadow: 0 6px 22px rgba(139,34,82,.3);
+      border: 1px solid rgba(255,255,255,.28);
+      animation: cardReveal .4s ease both;
+    }
+    @keyframes cardReveal { from { transform:scale(.88); opacity:0; } to { transform:scale(1); opacity:1; } }
+    .card.unlocked .card-day-num { color:#fff; text-shadow: 0 1px 6px rgba(0,0,0,.2); }
+    .card.unlocked .card-date-label { color:rgba(255,255,255,.85); }
+    .card-type-icon { font-size: clamp(14px,3vw,20px); }
 
-.card.today {
-  background: linear-gradient(135deg, #d4855a, var(--gold));
-  box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6);
-  animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both;
-}
-@keyframes todayPulse {
-  0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); }
-  50% { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); }
-}
+    /* UNLOCKED OPENED — devient transparent après ouverture */
+    .card.unlocked.opened {
+      background: rgba(196,84,122,.15);
+      border: 1px solid rgba(196,84,122,.25);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(139,34,82,.07);
+    }
+    .card.unlocked.opened .card-day-num { color: var(--rose-deep); text-shadow: none; }
+    .card.unlocked.opened .card-date-label { color: var(--text-mid); }
+    .card.unlocked.opened .card-type-icon { opacity: .5; }
 
-/* ══ CASE SPÉCIALE 26 OCTOBRE ══ */
-.card.final.locked {
-  background: rgba(201,146,74,.18);
-  border: 1.5px dashed rgba(201,146,74,.5);
-}
-.card.final.locked .card-day-num { color: var(--gold); }
+    /* TODAY */
+    .card.today {
+      background: linear-gradient(135deg, #d4855a, var(--gold));
+      box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6);
+      animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both;
+    }
+    .card.today.opened {
+      background: rgba(201,146,74,.2);
+      border: 1px solid rgba(201,146,74,.35);
+      box-shadow: none;
+      animation: none;
+    }
+    .card.today.opened .card-day-num { color: var(--gold); text-shadow: none; }
+    @keyframes todayPulse {
+      0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); }
+      50%      { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); }
+    }
 
-.card.final.unlocked {
-  background: linear-gradient(135deg, #fde68a, #c9924a, #8b2252, #c9924a, #fde68a);
-  background-size: 300% 300%;
-  animation: birthdayShift 3s ease infinite, cardReveal .4s ease both;
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,.8),
-    0 0 25px rgba(201,146,74,.8),
-    0 0 55px rgba(201,146,74,.4),
-    0 8px 32px rgba(139,34,82,.4);
-  border: 2px solid rgba(255,255,255,.6);
-}
-@keyframes birthdayShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    /* FINAL (26 oct) */
+    .card.final { border-radius: 16px; }
+    .card.final.locked {
+      background: rgba(201,146,74,.15);
+      border: 2px dashed rgba(201,146,74,.5);
+    }
+    .card.final.locked .card-day-num { color: var(--gold); font-size: clamp(20px,3.5vw,28px); }
+    .card.final.locked .card-date-label { color: rgba(201,146,74,.75); font-size: clamp(8px,1.4vw,11px); }
+    .card.final.locked::before {
+      content: '';
+      position: absolute; inset: 8px; border-radius: 14px;
+      border: 1px solid rgba(201,146,74,.3);
+      animation: finalLockedPulse 3s ease-in-out infinite; pointer-events: none;
+    }
+    @keyframes finalLockedPulse {
+      0%,100% { opacity:.35; transform:scale(1); }
+      50%      { opacity:.85; transform:scale(1.03); }
+    }
+    .card.final.unlocked {
+      background: linear-gradient(135deg, #fde68a 0%, #f9a825 25%, #c9924a 50%, #8b2252 75%, #c4547a 100%);
+      background-size: 400% 400%;
+      animation: birthdayShift 3s ease infinite, cardReveal .4s ease both;
+      box-shadow: 0 0 0 4px rgba(255,255,255,.85), 0 0 30px rgba(201,146,74,.9), 0 0 70px rgba(201,146,74,.45), 0 12px 40px rgba(139,34,82,.45);
+      border: 3px solid rgba(255,255,255,.7); overflow: visible;
+    }
+    @keyframes birthdayShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .card.final.unlocked .card-day-num { color:#fff; font-size: clamp(20px,4vw,30px); text-shadow: 0 0 20px rgba(255,255,255,.9), 0 2px 8px rgba(0,0,0,.25); }
+    .card.final.unlocked .card-date-label { color:rgba(255,255,255,.95); font-weight:700; font-size: clamp(9px,1.6vw,12px); }
+    .card.final.unlocked .card-type-icon { font-size: clamp(30px,5.5vw,46px); filter: drop-shadow(0 0 12px rgba(255,255,255,.8)); }
+    .card.final.unlocked::before {
+      content: ''; position: absolute; inset: -6px; border-radius: 26px;
+      background: conic-gradient(from 0deg, #fde68a, #c9924a, #8b2252, #c4547a, #fde68a);
+      z-index: -1; animation: haloSpin 4s linear infinite; opacity: .75;
+    }
+    .card.final.unlocked::after {
+      content: ''; position: absolute; inset: -2px; border-radius: 22px;
+      background: #fff1; z-index: -1;
+    }
+    @keyframes haloSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    .bday-label {
+      font-size: clamp(8px,1.3vw,10px); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      color:rgba(255,255,255,.9); background:rgba(0,0,0,.18); padding:2px 10px; border-radius:50px;
+    }
 
-/* Étoiles brillantes autour de la case anniversaire */
-.card.final.unlocked::before,
-.card.final.unlocked::after {
-  content: '✨';
-  position: absolute;
-  font-size: 18px;
-  animation: starOrbit 2s ease-in-out infinite;
-  pointer-events: none;
-}
-.card.final.unlocked::before { top: -8px; right: -6px; animation-delay: 0s; }
-.card.final.unlocked::after  { bottom: -6px; left: -8px; animation-delay: .8s; }
-@keyframes starOrbit {
-  0%,100% { transform: scale(1) rotate(0deg); opacity:1; }
-  50%      { transform: scale(1.5) rotate(20deg); opacity:.6; }
-}
+    /* ══ MODAL ══ */
+    .modal-bg {
+      position:fixed; inset:0; z-index:100;
+      background: rgba(58,21,37,.55); backdrop-filter:blur(8px);
+      display:flex; align-items:center; justify-content:center; padding:20px;
+      opacity:0; pointer-events:none; transition:opacity .3s ease;
+    }
+    .modal-bg.open { opacity:1; pointer-events:all; }
 
-.card.final .card-day-num { font-size: clamp(16px,3vw,22px); }
-.card.final.unlocked .card-day-num { color:#fff; text-shadow: 0 0 12px rgba(255,255,255,.8); }
-.card.final.unlocked .card-date-label { color:rgba(255,255,255,.9); font-weight:600; }
+    .modal {
+      background: rgba(255,248,249,.97); backdrop-filter: blur(20px);
+      border-radius: 20px; padding: clamp(26px,5vw,44px); max-width:480px; width:100%;
+      box-shadow: 0 24px 80px rgba(139,34,82,.25);
+      transform: translateY(22px) scale(.96); transition: transform .3s ease;
+      border: 1px solid rgba(232,160,180,.35);
+    }
+    .modal-bg.open .modal { transform: translateY(0) scale(1); }
 
-/* ══ MODAL ══ */
-.modal-bg {
-  position:fixed; inset:0; z-index:100;
-  background: rgba(58,21,37,.55);
-  backdrop-filter:blur(8px);
-  display:flex; align-items:center; justify-content:center; padding:20px;
-  opacity:0; pointer-events:none; transition:opacity .3s ease;
-}
-.modal-bg.open { opacity:1; pointer-events:all; }
+    .modal.birthday-modal {
+      background: linear-gradient(145deg, rgba(255,248,249,.98), rgba(253,230,138,.15));
+      border: 1.5px solid rgba(201,146,74,.4);
+      box-shadow: 0 24px 80px rgba(201,146,74,.3), 0 0 0 1px rgba(255,255,255,.5);
+    }
 
-.modal {
-  background: rgba(255,248,249,.97);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: clamp(26px,5vw,44px);
-  max-width:480px; width:100%;
-  box-shadow: 0 24px 80px rgba(139,34,82,.25);
-  transform: translateY(22px) scale(.96);
-  transition: transform .3s ease;
-  border: 1px solid rgba(232,160,180,.35);
-}
-.modal-bg.open .modal { transform: translateY(0) scale(1); }
+    /* Modal case verrouillée */
+    .modal.locked-modal {
+      background: rgba(255,248,249,.97);
+      border: 1.5px solid rgba(196,84,122,.2);
+    }
 
-/* Modal spéciale anniversaire */
-.modal.birthday-modal {
-  background: linear-gradient(145deg, rgba(255,248,249,.98), rgba(253,230,138,.15));
-  border: 1.5px solid rgba(201,146,74,.4);
-  box-shadow: 0 24px 80px rgba(201,146,74,.3), 0 0 0 1px rgba(255,255,255,.5);
-}
+    .modal-header {
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;
+    }
+    .modal-day-badge {
+      font-size:10px; font-weight:400; letter-spacing:.3em; text-transform:uppercase;
+      color:var(--rose-mid); background:rgba(196,84,122,.1);
+      padding:5px 12px; border-radius:99px; border:1px solid rgba(196,84,122,.2);
+    }
+    .modal-close {
+      width:32px; height:32px; border-radius:50%;
+      border:1px solid rgba(196,84,122,.25); background:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--rose-mid); font-size:16px; transition:background .2s;
+    }
+    .modal-close:hover { background:rgba(196,84,122,.08); }
 
-.modal-header {
-  display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;
-}
-.modal-day-badge {
-  font-size:10px; font-weight:400; letter-spacing:.3em; text-transform:uppercase;
-  color:var(--rose-mid); background:rgba(196,84,122,.1);
-  padding:5px 12px; border-radius:99px; border:1px solid rgba(196,84,122,.2);
-}
-.modal-close {
-  width:32px; height:32px; border-radius:50%;
-  border:1px solid rgba(196,84,122,.25); background:none; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  color:var(--rose-mid); font-size:16px; transition:background .2s;
-}
-.modal-close:hover { background:rgba(196,84,122,.08); }
+    .modal-icon { font-size:42px; margin-bottom:10px; display:block; text-align:center; }
+    .modal-title {
+      font-family:'Playfair Display',serif; font-style:italic; font-weight:400;
+      font-size: clamp(18px,3.5vw,26px); color:var(--rose-deep);
+      text-align:center; margin-bottom:14px;
+    }
+    .modal-divider { height:1px; background:linear-gradient(90deg,transparent,var(--rose-soft),transparent); margin:14px 0; }
+    .modal-content {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(14px,2vw,15px); font-weight:300; color:var(--text-dark);
+      line-height:1.85; text-align:center; white-space:pre-line;
+    }
+    .modal-signature {
+      margin-top:20px; text-align:right;
+      font-family:'Playfair Display',serif; font-style:italic;
+      font-size:14px; color:var(--rose-mid);
+    }
 
-.modal-icon { font-size:42px; margin-bottom:10px; display:block; text-align:center; }
-.modal-title {
-  font-family:'Playfair Display',serif; font-style:italic; font-weight:400;
-  font-size: clamp(18px,3.5vw,26px); color:var(--rose-deep);
-  text-align:center; margin-bottom:14px;
-}
-.modal-divider { height:1px; background:linear-gradient(90deg,transparent,var(--rose-soft),transparent); margin:14px 0; }
-.modal-content {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(14px,2vw,15px);
-  font-weight:300; color:var(--text-dark);
-  line-height:1.85; text-align:center; white-space:pre-line;
-}
-.modal-signature {
-  margin-top:20px; text-align:right;
-  font-family:'Playfair Display',serif; font-style:italic;
-  font-size:14px; color:var(--rose-mid);
-}
+    /* FOOTER */
+    footer {
+      text-align:center; margin-top:60px; font-size:11px; font-weight:400; letter-spacing:.12em;
+      color: var(--rose-deep); background: rgba(255,248,249,.7); backdrop-filter: blur(6px);
+      display: inline-block; padding: 6px 20px; border-radius: 50px; opacity: .75;
+      margin-left: 50%; transform: translateX(-50%);
+    }
 
-footer {
-  text-align:center; margin-top:60px;
-  font-size:11px; font-weight:400; letter-spacing:.12em;
-  color: var(--rose-deep);
-  background: rgba(255,248,249,.7);
-  backdrop-filter: blur(6px);
-  display: inline-block;
-  padding: 6px 20px;
-  border-radius: 50px;
-  opacity: .75;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(22px);  } to { opacity:1; transform:translateY(0); } }
 
-@keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-
-@media (max-width:480px) { .grid { grid-template-columns: repeat(4,1fr); gap:7px; } }
-
-/* ══ RÉSEAUX SOCIAUX ══ */
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin: 0 0 22px;
-  animation: fadeDown .9s .05s ease both;
-}
-.social-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-  background: rgba(255,248,249,.78);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(196,84,122,.2);
-  border-radius: 16px;
-  padding: 10px 16px;
-  transition: transform .2s ease, box-shadow .2s ease, background .2s;
-  box-shadow: 0 2px 12px rgba(139,34,82,.08);
-  min-width: 64px;
-}
-.social-btn:hover {
-  transform: translateY(-3px) scale(1.06);
-  box-shadow: 0 8px 24px rgba(139,34,82,.18);
-  background: rgba(255,248,249,.95);
-}
-.social-icon { font-size: 22px; line-height: 1; }
-.social-label { font-size: 9px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--rose-mid); }
-
-/* ══ CASE 26 OCT — très distincte ══ */
-.card.final {
-  border-radius: 16px;
-}
-.card.final.locked {
-  background: rgba(201,146,74,.15);
-  border: 2px dashed rgba(201,146,74,.5);
-}
-.card.final.locked .card-day-num { color: var(--gold); font-size: clamp(20px,3.5vw,28px); }
-.card.final.locked .card-date-label { color: rgba(201,146,74,.75); font-size: clamp(8px,1.4vw,11px); }
-.card.final.locked::before {
-  content: '';
-  position: absolute;
-  inset: 8px;
-  border-radius: 14px;
-  border: 1px solid rgba(201,146,74,.3);
-  animation: finalLockedPulse 3s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes finalLockedPulse {
-  0%,100% { opacity:.35; transform:scale(1); }
-  50%      { opacity:.85; transform:scale(1.03); }
-}
-.card.final.unlocked {
-  background: linear-gradient(135deg, #fde68a 0%, #f9a825 25%, #c9924a 50%, #8b2252 75%, #c4547a 100%);
-  background-size: 400% 400%;
-  animation: birthdayShift 3s ease infinite, cardReveal .4s ease both;
-  box-shadow:
-    0 0 0 4px rgba(255,255,255,.85),
-    0 0 30px rgba(201,146,74,.9),
-    0 0 70px rgba(201,146,74,.45),
-    0 12px 40px rgba(139,34,82,.45);
-  border: 3px solid rgba(255,255,255,.7);
-  overflow: visible;
-}
-.card.final.unlocked .card-inner { gap: 6px; }
-.card.final.unlocked .card-day-num {
-  color: #fff;
-  font-size: clamp(20px,4vw,30px);
-  text-shadow: 0 0 20px rgba(255,255,255,.9), 0 2px 8px rgba(0,0,0,.25);
-}
-.card.final.unlocked .card-date-label {
-  color: rgba(255,255,255,.95);
-  font-weight: 700;
-  font-size: clamp(9px,1.6vw,12px);
-  letter-spacing: .06em;
-}
-.card.final.unlocked .card-type-icon {
-  font-size: clamp(30px,5.5vw,46px);
-  filter: drop-shadow(0 0 12px rgba(255,255,255,.8));
-}
-/* Halo rotatif autour */
-.card.final.unlocked::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 26px;
-  background: conic-gradient(from 0deg, #fde68a, #c9924a, #8b2252, #c4547a, #fde68a);
-  z-index: -1;
-  animation: haloSpin 4s linear infinite;
-  opacity: .75;
-}
-.card.final.unlocked::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 22px;
-  background: #fff1;
-  z-index: -1;
-}
-@keyframes haloSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
-.bday-label {
-  font-size: clamp(8px,1.3vw,10px);
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.9);
-  background: rgba(0,0,0,.18);
-  padding: 2px 10px;
-  border-radius: 50px;
-}
-```
-
+    @media (max-width:480px) { .grid { grid-template-columns: repeat(4,1fr); gap:7px; } }
   </style>
 </head>
 <body>
@@ -526,36 +372,32 @@ footer {
       <img src="logo.PNG" alt="notre logo" class="logo-img"/>
     </div>
 
-```
-<!-- Réseaux sociaux -->
-<div class="socials">
-  <a class="social-btn" href="tel:0753403436">
-    <span class="social-icon">📱</span>
-    <span class="social-label">Appeler</span>
-  </a>
-  <a class="social-btn" href="https://twitter.com/fan2salmouchee" target="_blank" rel="noopener">
-    <span class="social-icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" fill="#8b2252"/>
-      </svg>
-    </span>
-    <span class="social-label">Twitter</span>
-  </a>
-  <a class="social-btn" href="https://snapchat.com/t/1nceGF8B" target="_blank" rel="noopener">
-    <span class="social-icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12.001 2C8.68 2 6.5 4.42 6.5 7.5v.82c-.34.14-.94.3-1.7.3-.28 0-.5.2-.5.46 0 .56.72 1.04 1.68 1.3-.1.28-.22.56-.36.82C4.6 12.44 3 13.02 3 13.7c0 .3.22.56.54.62.8.14 1.42.56 1.86 1.24.2.3.28.58.14.9-.14.34-.46.52-.8.52-.26 0-.48-.1-.66-.24-.2-.14-.46-.1-.6.1-.12.18-.08.44.1.58.38.28.82.44 1.28.44.96 0 1.74-.6 2.12-1.52.02-.04.04-.1.06-.14.74.32 1.66.52 2.72.62.14.62.68 1.18 1.44 1.18.76 0 1.3-.56 1.44-1.18 1.06-.1 1.98-.3 2.72-.62.02.04.04.1.06.14.38.92 1.16 1.52 2.12 1.52.46 0 .9-.16 1.28-.44.18-.14.22-.4.1-.58-.14-.2-.4-.24-.6-.1-.18.14-.4.24-.66.24-.34 0-.66-.18-.8-.52-.14-.32-.06-.6.14-.9.44-.68 1.06-1.1 1.86-1.24.32-.06.54-.32.54-.62 0-.68-1.6-1.26-2.62-2.7-.14-.26-.26-.54-.36-.82.96-.26 1.68-.74 1.68-1.3 0-.26-.22-.46-.5-.46-.76 0-1.36-.16-1.7-.3V7.5C17.5 4.42 15.32 2 12 2Z" fill="#8b2252"/>
-      </svg>
-    </span>
-    <span class="social-label">Snapchat</span>
-  </a>
-</div>
+    <div class="socials">
+      <a class="social-btn" href="tel:0753403436">
+        <span class="social-icon">📱</span>
+        <span class="social-label">Appeler</span>
+      </a>
+      <a class="social-btn" href="https://twitter.com/fan2salmouchee" target="_blank" rel="noopener">
+        <span class="social-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" fill="#8b2252"/>
+          </svg>
+        </span>
+        <span class="social-label">Twitter</span>
+      </a>
+      <a class="social-btn" href="https://snapchat.com/t/1nceGF8B" target="_blank" rel="noopener">
+        <span class="social-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.001 2C8.68 2 6.5 4.42 6.5 7.5v.82c-.34.14-.94.3-1.7.3-.28 0-.5.2-.5.46 0 .56.72 1.04 1.68 1.3-.1.28-.22.56-.36.82C4.6 12.44 3 13.02 3 13.7c0 .3.22.56.54.62.8.14 1.42.56 1.86 1.24.2.3.28.58.14.9-.14.34-.46.52-.8.52-.26 0-.48-.1-.66-.24-.2-.14-.46-.1-.6.1-.12.18-.08.44.1.58.38.28.82.44 1.28.44.96 0 1.74-.6 2.12-1.52.02-.04.04-.1.06-.14.74.32 1.66.52 2.72.62.14.62.68 1.18 1.44 1.18.76 0 1.3-.56 1.44-1.18 1.06-.1 1.98-.3 2.72-.62.02.04.04.1.06.14.38.92 1.16 1.52 2.12 1.52.46 0 .9-.16 1.28-.44.18-.14.22-.4.1-.58-.14-.2-.4-.24-.6-.1-.18.14-.4.24-.66.24-.34 0-.66-.18-.8-.52-.14-.32-.06-.6.14-.9.44-.68 1.06-1.1 1.86-1.24.32-.06.54-.32.54-.62 0-.68-1.6-1.26-2.62-2.7-.14-.26-.26-.54-.36-.82.96-.26 1.68-.74 1.68-1.3 0-.26-.22-.46-.5-.46-.76 0-1.36-.16-1.7-.3V7.5C17.5 4.42 15.32 2 12 2Z" fill="#8b2252"/>
+          </svg>
+        </span>
+        <span class="social-label">Snapchat</span>
+      </a>
+    </div>
 
-<p class="eyebrow">De Rayan, avec tout son amour</p>
-<h1>Pour <strong>Salmouchee</strong></h1>
-<p class="subtitle">Un compte à rebours jusqu'à ton jour le plus spécial</p>
-```
-
+    <p class="eyebrow">De Rayan, avec tout son amour</p>
+    <h1>Pour <strong>Salmouchee</strong></h1>
+    <p class="subtitle">Un compte à rebours jusqu'à ton jour le plus spécial</p>
   </header>
 
   <div class="divider">
@@ -580,7 +422,6 @@ footer {
 </div>
 
 <!-- MODAL -->
-
 <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -591,18 +432,16 @@ footer {
     <h3 class="modal-title" id="modal-title"></h3>
     <div class="modal-divider"></div>
     <p class="modal-content" id="modal-content"></p>
-    <p class="modal-signature">— Rayan</p>
+    <p class="modal-signature" id="modal-signature">— Rayan</p>
   </div>
 </div>
 
 <script>
 // ══ CONFIG ══
-const START_DATE = new Date("2026-05-03T00:00:00"); // premier jour = aujourd'hui
-const BIRTHDAY   = new Date("2026-10-26T00:00:00"); // dernier jour inclus
+const START_DATE = new Date("2026-05-03T00:00:00");
+const BIRTHDAY   = new Date("2026-10-26T00:00:00");
 
-// ══ MESSAGES UNIQUES PAR JOUR ══
-// Remplis ici tes messages perso — un par index (0 = 3 mai, dernier = 26 oct)
-// Pour les jours sans message perso, un message généré automatiquement s'affiche.
+// ══ MESSAGES PAR JOUR ══
 const MESSAGES = {
   0:  { icon:"💬", title:"Le premier jour", content:"Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime." },
   1:  { icon:"🌙", title:"Bete de journée", content:"Hier on a passez une journée geniale avec ta maman.\n\n D'ailleurs fait lui savoir qu'elle cuisine vraiment bien hohoho. Je suis tellement heureux de te connaître." },
@@ -632,14 +471,12 @@ const MESSAGES = {
   25: { icon:"🌅", title:"La veille de ton jour", content:"Demain c'est ton anniversaire, Salmouchee.\n\nJe voulais prendre un moment, la veille, pour te dire merci. Merci d'exister. Merci d'être toi. La fête de demain c'est la fête de quelqu'un d'exceptionnel." },
 };
 
-// Message spécial anniversaire (26 octobre)
 const BIRTHDAY_MSG = {
   icon: "🎂",
   title: "Joyeux Anniversaire Salmouchee 🎉",
   content: "Aujourd'hui c'est TON jour. 🎂\n\nLe 26 octobre — la date où quelqu'un d'extraordinaire est arrivé dans ce monde et l'a rendu meilleur sans même le faire exprès.\n\nCes cases, ce compte à rebours, ces mois à penser à toi — tout ça pour te dire une chose :\n\nTu mérites tout le bonheur du monde, Salma. Tout. Sans exception.\n\nJoyeux anniversaire ma Salmouchee. 🌸✨"
 };
 
-// Message générique pour les jours sans message perso
 const GENERIC_MESSAGES = [
   { icon:"🌸", title:"Penser à toi", content:"Aujourd'hui comme tous les autres jours, tu occupes mes pensées.\n\nPas besoin d'une raison particulière — t'es juste là, et c'est tout ce qu'il faut." },
   { icon:"💕", title:"Petit message du jour", content:"Juste un petit rappel que t'es incroyable, Salmouchee.\n\nVoilà. C'est tout. Bonne journée. 🌸" },
@@ -648,6 +485,15 @@ const GENERIC_MESSAGES = [
   { icon:"💌", title:"Lettre du jour", content:"T'es quelqu'un de vraiment précieux, Salma. Pas juste pour ce que tu fais — pour ce que tu es.\n\nCette façon d'être toi sans t'excuser. Je t'admire pour ça." },
   { icon:"⭐", title:"Ton éclat", content:"T'as un éclat particulier. Pas juste à l'extérieur — intérieurement aussi.\n\nUne lumière qui transperce même tes moments de doute. Je la vois même quand toi tu la vois pas." },
   { icon:"🎀", title:"Ma Salmouchee", content:"Je suis fier de toi. Vraiment. De qui tu es, de ce que tu fais, de la façon dont tu navigues dans la vie.\n\nT'as une force que tu sous-estimes. Mais moi je la vois." },
+];
+
+// Messages pour les cases verrouillées
+const LOCKED_MESSAGES = [
+  { icon:"🔒", title:"Pas encore…", content:"Cette surprise t'attend sagement.\n\nReviens le bon jour et elle sera là, rien que pour toi. La patience, c'est aussi une forme d'amour. 🌸" },
+  { icon:"⏳", title:"Bientôt, promis", content:"Tu veux savoir ce qu'il y a dedans ?\n\nMoi aussi j'ai hâte que tu le découvres. Mais chaque chose en son temps, Salmouchee." },
+  { icon:"🌙", title:"Ce moment n'est pas encore venu", content:"Il faut attendre encore un peu.\n\nMais crois-moi, ça vaut le coup d'attendre. Rayan y a pensé avec tout son cœur." },
+  { icon:"🎁", title:"Surprise en cours…", content:"Ce cadeau se prépare encore.\n\nIl sera là le bon jour, exactement quand il le faut. T'as juste à patienter un tout petit peu." },
+  { icon:"✨", title:"Pas encore débloqué", content:"Cette case attend ton retour au bon moment.\n\nJusque-là, sache que Rayan pense à toi chaque jour, case ouverte ou pas." },
 ];
 
 // ══ LOGIQUE ══
@@ -662,58 +508,73 @@ function formatDate(d) {
   return `${d.getDate()} ${m[d.getMonth()]}`;
 }
 
+// Récupération des cases déjà ouvertes depuis localStorage
+function getOpened() {
+  try { return JSON.parse(localStorage.getItem("opened_cards") || "[]"); } catch { return []; }
+}
+function markOpened(i) {
+  const opened = getOpened();
+  if (!opened.includes(i)) { opened.push(i); localStorage.setItem("opened_cards", JSON.stringify(opened)); }
+}
+
 const todayDate = new Date();
 todayDate.setHours(0,0,0,0);
 
-// Calcul du nombre total de cases : START_DATE → BIRTHDAY inclus
-const totalDays = daysBetween(START_DATE, BIRTHDAY) + 1;
-
-// Nombre de cases débloquées : jours écoulés depuis START_DATE (inclus aujourd'hui)
+const totalDays    = daysBetween(START_DATE, BIRTHDAY) + 1;
 const unlockedCount = Math.min(daysBetween(START_DATE, todayDate) + 1, totalDays);
 
 const grid = document.getElementById("grid");
 
 for (let i = 0; i < totalDays; i++) {
-  const date = new Date(START_DATE);
+  const date       = new Date(START_DATE);
   date.setDate(START_DATE.getDate() + i);
+  const card       = document.createElement("div");
+  card.className   = "card";
+  const isToday    = daysBetween(START_DATE, todayDate) === i;
+  const isBirthday = i === totalDays - 1;
+  const unlocked   = i < unlockedCount;
+  const wasOpened  = getOpened().includes(i);
 
-  const card = document.createElement("div");
-  card.className = "card";
-
-  const isToday   = i === unlockedCount - 1 && unlockedCount > 0 && daysBetween(START_DATE, todayDate) === i;
-  const isBirthday = i === totalDays - 1; // dernière case = 26 octobre
-  const unlocked  = i < unlockedCount;
-
-  // Récupérer le message
   let msg;
-  if (isBirthday) {
-    msg = BIRTHDAY_MSG;
-  } else if (MESSAGES[i]) {
-    msg = MESSAGES[i];
-  } else {
-    msg = GENERIC_MESSAGES[i % GENERIC_MESSAGES.length];
-  }
+  if (isBirthday)       msg = BIRTHDAY_MSG;
+  else if (MESSAGES[i]) msg = MESSAGES[i];
+  else                  msg = GENERIC_MESSAGES[i % GENERIC_MESSAGES.length];
 
   if (unlocked) {
     card.classList.add("unlocked");
     if (isToday && !isBirthday) card.classList.add("today");
     if (isBirthday) card.classList.add("final");
+    if (wasOpened)  card.classList.add("opened");
+
     card.innerHTML = `<div class="card-inner">
       <span class="card-type-icon">${msg.icon}</span>
       <span class="card-day-num">${i + 1}</span>
       <span class="card-date-label">${formatDate(date)}</span>
       ${isBirthday ? '<span class="bday-label">Joyeux Anniversaire 🎂</span>' : ''}
     </div>`;
-    card.addEventListener("click", () => openModal(i + 1, date, msg, isBirthday));
+
+    card.addEventListener("click", () => {
+      markOpened(i);
+      card.classList.add("opened");
+      openModal(i + 1, date, msg, isBirthday, false);
+    });
+
   } else {
     card.classList.add("locked");
     if (isBirthday) card.classList.add("final");
+
     card.innerHTML = `<div class="card-inner">
       ${isBirthday ? '<span class="card-type-icon">🎂</span>' : ''}
       <span class="card-day-num">${i + 1}</span>
       <span class="card-date-label">${formatDate(date)}</span>
       ${isBirthday ? '<span class="bday-label">Anniversaire ✨</span>' : '<span class="lock-icon">🔒</span>'}
     </div>`;
+
+    // Clic sur case verrouillée → message sympa
+    if (!isBirthday) {
+      const lockedMsg = LOCKED_MESSAGES[i % LOCKED_MESSAGES.length];
+      card.addEventListener("click", () => openModal(i + 1, date, lockedMsg, false, true));
+    }
   }
 
   grid.appendChild(card);
@@ -744,17 +605,17 @@ function tick() {
 tick(); setInterval(tick, 1000);
 
 // ══ MODAL ══
-function openModal(dayNum, date, msg, isBirthday) {
+function openModal(dayNum, date, msg, isBirthday, isLocked) {
   const modalEl = document.getElementById("modal");
-  if (isBirthday) {
-    modalEl.classList.add("birthday-modal");
-  } else {
-    modalEl.classList.remove("birthday-modal");
-  }
-  document.getElementById("modal-badge").textContent = isBirthday ? "🎂 Ton Anniversaire !" : `Jour ${dayNum} · ${formatDate(date)}`;
-  document.getElementById("modal-icon").textContent = msg.icon;
-  document.getElementById("modal-title").textContent = msg.title;
+  modalEl.classList.remove("birthday-modal", "locked-modal");
+  if (isBirthday) modalEl.classList.add("birthday-modal");
+  if (isLocked)   modalEl.classList.add("locked-modal");
+
+  document.getElementById("modal-badge").textContent   = isBirthday ? "🎂 Ton Anniversaire !" : `Jour ${dayNum} · ${formatDate(date)}`;
+  document.getElementById("modal-icon").textContent    = msg.icon;
+  document.getElementById("modal-title").textContent   = msg.title;
   document.getElementById("modal-content").textContent = msg.content;
+  document.getElementById("modal-signature").style.display = isLocked ? "none" : "block";
   document.getElementById("modal-bg").classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -767,6 +628,5 @@ function closeModalDirect() {
 }
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModalDirect(); });
 </script>
-
 </body>
 </html>
