@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -8,171 +9,397 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --rose-deep:   #8b2252;
-      --rose-mid:    #c4547a;
-      --rose-soft:   #e8a0b4;
-      --gold:        #c9924a;
-      --cream:       #fff8f9;
-      --text-dark:   #3a1525;
-      --text-mid:    #7a3555;
-      --glass:       rgba(255,255,255,0.45);
-      --glass-border:rgba(196,84,122,0.18);
-    }
+```
+:root {
+  --rose-deep:   #8b2252;
+  --rose-mid:    #c4547a;
+  --rose-soft:   #e8a0b4;
+  --gold:        #c9924a;
+  --cream:       #fff8f9;
+  --text-dark:   #3a1525;
+  --text-mid:    #7a3555;
+  --glass:       rgba(255,255,255,0.45);
+  --glass-border:rgba(196,84,122,0.18);
+}
 
-    html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-    body {
-      min-height: 100vh;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
+body {
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
 
-    /* BACKGROUND — adapté téléphone/tablette/PC */
-    .bg-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: url('bg%20.PNG') center/cover no-repeat;
-      background-color: #fdf0f4;
-    }
-    @media (max-width: 1024px) {
-      .bg-layer {
-        background-attachment: scroll;
-        background-position: center top;
-      }
-    }
+/* BACKGROUND — intact, pas touché */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('bg%20.PNG') center/cover no-repeat;
+  background-color: #fdf0f4;
+}
+@media (max-width: 1024px) {
+  .bg-layer {
+    background-attachment: scroll;
+    background-position: center top;
+  }
+}
 
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: rgba(253, 240, 244, 0.1);
-      pointer-events: none;
-    }
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(253, 240, 244, 0.1);
+  pointer-events: none;
+}
 
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
 
-    header { padding: 54px 0 38px; text-align: center; animation: fadeDown .9s ease both; }
+/* ── LISIBILITÉ : fond doux derrière les blocs de texte ── */
+header {
+  padding: 54px 0 38px;
+  text-align: center;
+  animation: fadeDown .9s ease both;
+}
+/* Fond léger derrière le header pour lisibilité */
+header > *:not(.logo-wrap) {
+  text-shadow: 0 1px 8px rgba(255,248,249,.9), 0 0 20px rgba(255,248,249,.7);
+}
 
-    .logo-wrap { margin-bottom: 16px; }
-    .logo-img {
-      width: clamp(180px, 35vw, 300px);
-      height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 15px 25px rgba(139,34,82,.25));
-    }
+.logo-wrap { margin-bottom: 16px; }
+.logo-img {
+  width: clamp(180px, 35vw, 300px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(139,34,82,.25));
+}
 
-    .eyebrow { font-weight: 200; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--rose-mid); margin-bottom: 10px; }
+.eyebrow {
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  margin-bottom: 10px;
+  /* fond lisibilité */
+  display: inline-block;
+  background: rgba(255,248,249,.75);
+  backdrop-filter: blur(6px);
+  padding: 4px 14px;
+  border-radius: 50px;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400; font-style: italic;
-      font-size: clamp(32px, 6vw, 58px);
-      color: var(--rose-deep);
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-    h1 strong { font-style: normal; font-weight: 700; }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(32px, 6vw, 58px);
+  color: var(--rose-deep);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 12px rgba(255,248,249,.95), 0 0 30px rgba(255,248,249,.8);
+}
+h1 strong { font-style: normal; font-weight: 700; }
 
-    .subtitle { font-size: 13px; font-weight: 300; color: var(--text-mid); letter-spacing: .07em; }
+.subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-dark);
+  letter-spacing: .07em;
+  display: inline-block;
+  background: rgba(255,248,249,.7);
+  backdrop-filter: blur(6px);
+  padding: 3px 12px;
+  border-radius: 50px;
+  text-shadow: none;
+}
 
-    .divider { display: flex; align-items: center; gap: 14px; margin: 0 auto 42px; max-width: 300px; animation: fadeDown .9s .1s ease both; }
-    .div-line { flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--rose-soft)); }
-    .div-line.r { transform: scaleX(-1); }
-    .div-dot { width:6px; height:6px; border-radius:50%; background: var(--rose-mid); }
+.divider { display: flex; align-items: center; gap: 14px; margin: 0 auto 42px; max-width: 300px; animation: fadeDown .9s .1s ease both; }
+.div-line { flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--rose-soft)); }
+.div-line.r { transform: scaleX(-1); }
+.div-dot { width:6px; height:6px; border-radius:50%; background: var(--rose-mid); }
 
-    .countdown-strip { display: flex; justify-content: center; gap: clamp(10px,3vw,24px); margin-bottom: 50px; animation: fadeDown .9s .2s ease both; }
-    .cd-unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
-    .cd-box { background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); border-radius: 10px; width: clamp(58px,12vw,86px); height: clamp(62px,13vw,92px); display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 20px rgba(139,34,82,.1), inset 0 1px 0 rgba(255,255,255,.8); }
-    .cd-num { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(24px,5vw,44px); color: var(--rose-deep); line-height:1; }
-    .cd-num.pop { animation: numPop .25s ease; }
-    @keyframes numPop { 0% { transform: scale(1.3); opacity: .4; } 100% { transform: scale(1); opacity: 1; } }
-    .cd-label { font-size:9px; font-weight:300; letter-spacing:.25em; text-transform:uppercase; color:var(--rose-mid); }
+.countdown-strip {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px,3vw,24px);
+  margin-bottom: 50px;
+  animation: fadeDown .9s .2s ease both;
+}
+.cd-unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.cd-box {
+  background: rgba(255,248,249,.82);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  border-radius: 10px;
+  width: clamp(58px,12vw,86px);
+  height: clamp(62px,13vw,92px);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 4px 20px rgba(139,34,82,.12), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.cd-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(24px,5vw,44px);
+  color: var(--rose-deep);
+  line-height:1;
+}
+.cd-num.pop { animation: numPop .25s ease; }
+@keyframes numPop { 0% { transform: scale(1.3); opacity: .4; } 100% { transform: scale(1); opacity: 1; } }
+.cd-label {
+  font-size:9px;
+  font-weight:400;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color: var(--rose-deep);
+  background: rgba(255,248,249,.75);
+  backdrop-filter: blur(4px);
+  padding: 2px 8px;
+  border-radius: 50px;
+}
 
-    .section-title { text-align: center; margin-bottom: 30px; animation: fadeUp .8s .3s ease both; }
-    .section-title h2 { font-family: 'Playfair Display', serif; font-style:italic; font-weight: 400; font-size: clamp(20px,3.5vw,30px); color: var(--rose-deep); }
-    .section-title p { font-size:12px; font-weight:300; color:var(--text-mid); margin-top:6px; letter-spacing:.05em; }
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeUp .8s .3s ease both;
+}
+.section-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-style:italic;
+  font-weight: 400;
+  font-size: clamp(20px,3.5vw,30px);
+  color: var(--rose-deep);
+  text-shadow: 0 2px 12px rgba(255,248,249,.95);
+  display: inline-block;
+  background: rgba(255,248,249,.6);
+  backdrop-filter: blur(8px);
+  padding: 4px 18px;
+  border-radius: 50px;
+}
+.section-title p {
+  font-size:12px;
+  font-weight:400;
+  color: var(--text-dark);
+  margin-top:8px;
+  letter-spacing:.05em;
+  display: inline-block;
+  background: rgba(255,248,249,.7);
+  backdrop-filter: blur(6px);
+  padding: 3px 14px;
+  border-radius: 50px;
+}
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(90px,16vw,120px), 1fr)); gap: 10px; animation: fadeUp .8s .4s ease both; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(90px,16vw,120px), 1fr));
+  gap: 10px;
+  animation: fadeUp .8s .4s ease both;
+}
 
-    .card {
-      aspect-ratio: 1; border-radius: 12px; cursor: pointer; position: relative; overflow: hidden;
-      transition: transform .22s ease, box-shadow .22s ease; user-select: none;
-    }
-    .card:hover { transform: translateY(-3px) scale(1.025); }
+.card {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease;
+  user-select: none;
+}
+.card:hover { transform: translateY(-3px) scale(1.025); }
 
-    .card.locked { background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); box-shadow: 0 2px 10px rgba(139,34,82,.07), inset 0 1px 0 rgba(255,255,255,.7); cursor: default; }
-    .card.locked:hover { transform: none; }
+.card.locked {
+  background: rgba(255,248,249,.5);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(139,34,82,.07), inset 0 1px 0 rgba(255,255,255,.7);
+  cursor: default;
+}
+.card.locked:hover { transform: none; }
 
-    .card-inner { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:4px; padding:8px; }
+.card-inner {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  gap:4px;
+  padding:8px;
+}
 
-    .card-day-num { font-family: 'Playfair Display', serif; font-size: clamp(18px,3.5vw,26px); font-weight:700; color:var(--rose-deep); line-height:1; }
-    .card-date-label { font-size: clamp(7px,1.2vw,9px); font-weight:300; color:var(--text-mid); letter-spacing:.05em; text-align:center; }
-    .lock-icon { font-size: clamp(9px,1.8vw,13px); opacity:.35; margin-top:1px; }
+.card-day-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px,3.5vw,26px);
+  font-weight:700;
+  color: var(--rose-deep);
+  line-height:1;
+  text-shadow: 0 1px 4px rgba(255,248,249,.8);
+}
+.card-date-label {
+  font-size: clamp(7px,1.2vw,9px);
+  font-weight:400;
+  color: var(--text-dark);
+  letter-spacing:.05em;
+  text-align:center;
+}
+.lock-icon { font-size: clamp(9px,1.8vw,13px); opacity:.45; margin-top:1px; }
 
-    .card.unlocked { background: linear-gradient(135deg, var(--rose-mid), var(--rose-deep)); box-shadow: 0 6px 22px rgba(139,34,82,.3); border: 1px solid rgba(255,255,255,.28); animation: cardReveal .4s ease both; }
-    @keyframes cardReveal { from { transform:scale(.88); opacity:0; } to { transform:scale(1); opacity:1; } }
-    .card.unlocked .card-day-num { color:#fff; }
-    .card.unlocked .card-date-label { color:rgba(255,255,255,.7); }
-    .card-type-icon { font-size: clamp(14px,3vw,20px); }
+.card.unlocked {
+  background: linear-gradient(135deg, var(--rose-mid), var(--rose-deep));
+  box-shadow: 0 6px 22px rgba(139,34,82,.3);
+  border: 1px solid rgba(255,255,255,.28);
+  animation: cardReveal .4s ease both;
+}
+@keyframes cardReveal { from { transform:scale(.88); opacity:0; } to { transform:scale(1); opacity:1; } }
+.card.unlocked .card-day-num { color:#fff; text-shadow: 0 1px 6px rgba(0,0,0,.2); }
+.card.unlocked .card-date-label { color:rgba(255,255,255,.85); }
+.card-type-icon { font-size: clamp(14px,3vw,20px); }
 
-    .card.today { background: linear-gradient(135deg, #d4855a, var(--gold)); box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both; }
-    @keyframes todayPulse { 0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); } 50% { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); } }
+.card.today {
+  background: linear-gradient(135deg, #d4855a, var(--gold));
+  box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6);
+  animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both;
+}
+@keyframes todayPulse {
+  0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); }
+  50% { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); }
+}
 
-    /* CASE MAGIQUE DU 26 OCTOBRE */
-    .card.final::before {
-      content: '✨';
-      position: absolute;
-      top: -12px; right: -12px;
-      font-size: 32px;
-      animation: sparkle 1.4s ease-in-out infinite;
-      z-index: 10;
-      filter: drop-shadow(0 0 15px #c9924a);
-    }
-    .card.final.unlocked {
-      background: linear-gradient(135deg, #c9924a, #8b2252, #c9924a);
-      box-shadow: 0 0 45px #c9924a, 0 0 90px #c9924a, inset 0 0 40px rgba(255,255,255,.7);
-      animation: magicalPulse 2s ease-in-out infinite;
-    }
-    @keyframes magicalPulse {
-      0%, 100% { box-shadow: 0 0 45px #c9924a, 0 0 90px #c9924a; }
-      50% { box-shadow: 0 0 80px #c9924a, 0 0 140px #c9924a; }
-    }
-    @keyframes sparkle {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.4) rotate(20deg); }
-    }
+/* ══ CASE SPÉCIALE 26 OCTOBRE ══ */
+.card.final.locked {
+  background: rgba(201,146,74,.18);
+  border: 1.5px dashed rgba(201,146,74,.5);
+}
+.card.final.locked .card-day-num { color: var(--gold); }
 
-    .modal-bg { position:fixed; inset:0; z-index:100; background: rgba(58,21,37,.5); backdrop-filter:blur(7px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity .3s ease; }
-    .modal-bg.open { opacity:1; pointer-events:all; }
-    .modal { background: var(--cream); border-radius: 20px; padding: clamp(26px,5vw,44px); max-width:480px; width:100%; box-shadow: 0 24px 80px rgba(139,34,82,.25); transform: translateY(22px) scale(.96); transition: transform .3s ease; border: 1px solid rgba(232,160,180,.35); }
-    .modal-bg.open .modal { transform: translateY(0) scale(1); }
+.card.final.unlocked {
+  background: linear-gradient(135deg, #fde68a, #c9924a, #8b2252, #c9924a, #fde68a);
+  background-size: 300% 300%;
+  animation: birthdayShift 3s ease infinite, cardReveal .4s ease both;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.8),
+    0 0 25px rgba(201,146,74,.8),
+    0 0 55px rgba(201,146,74,.4),
+    0 8px 32px rgba(139,34,82,.4);
+  border: 2px solid rgba(255,255,255,.6);
+}
+@keyframes birthdayShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .modal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
-    .modal-day-badge { font-size:10px; font-weight:300; letter-spacing:.3em; text-transform:uppercase; color:var(--rose-mid); background:rgba(196,84,122,.1); padding:5px 12px; border-radius:99px; border:1px solid rgba(196,84,122,.2); }
-    .modal-close { width:32px; height:32px; border-radius:50%; border:1px solid rgba(196,84,122,.25); background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--rose-mid); font-size:16px; transition:background .2s; }
-    .modal-close:hover { background:rgba(196,84,122,.08); }
+/* Étoiles brillantes autour de la case anniversaire */
+.card.final.unlocked::before,
+.card.final.unlocked::after {
+  content: '✨';
+  position: absolute;
+  font-size: 18px;
+  animation: starOrbit 2s ease-in-out infinite;
+  pointer-events: none;
+}
+.card.final.unlocked::before { top: -8px; right: -6px; animation-delay: 0s; }
+.card.final.unlocked::after  { bottom: -6px; left: -8px; animation-delay: .8s; }
+@keyframes starOrbit {
+  0%,100% { transform: scale(1) rotate(0deg); opacity:1; }
+  50%      { transform: scale(1.5) rotate(20deg); opacity:.6; }
+}
 
-    .modal-icon { font-size:42px; margin-bottom:10px; display:block; text-align:center; }
-    .modal-title { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size: clamp(18px,3.5vw,26px); color:var(--rose-deep); text-align:center; margin-bottom:14px; }
-    .modal-divider { height:1px; background:linear-gradient(90deg,transparent,var(--rose-soft),transparent); margin:14px 0; }
-    .modal-content { font-size: clamp(13px,2vw,15px); font-weight:300; color:var(--text-dark); line-height:1.85; text-align:center; white-space:pre-line; }
-    .modal-signature { margin-top:20px; text-align:right; font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:var(--rose-mid); }
+.card.final .card-day-num { font-size: clamp(16px,3vw,22px); }
+.card.final.unlocked .card-day-num { color:#fff; text-shadow: 0 0 12px rgba(255,255,255,.8); }
+.card.final.unlocked .card-date-label { color:rgba(255,255,255,.9); font-weight:600; }
 
-    footer { text-align:center; margin-top:60px; font-size:11px; font-weight:300; letter-spacing:.12em; color:var(--rose-deep); opacity: .5; }
+/* ══ MODAL ══ */
+.modal-bg {
+  position:fixed; inset:0; z-index:100;
+  background: rgba(58,21,37,.55);
+  backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.modal-bg.open { opacity:1; pointer-events:all; }
 
-    @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+.modal {
+  background: rgba(255,248,249,.97);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: clamp(26px,5vw,44px);
+  max-width:480px; width:100%;
+  box-shadow: 0 24px 80px rgba(139,34,82,.25);
+  transform: translateY(22px) scale(.96);
+  transition: transform .3s ease;
+  border: 1px solid rgba(232,160,180,.35);
+}
+.modal-bg.open .modal { transform: translateY(0) scale(1); }
 
-    @media (max-width:480px) { .grid { grid-template-columns: repeat(4,1fr); gap:7px; } }
+/* Modal spéciale anniversaire */
+.modal.birthday-modal {
+  background: linear-gradient(145deg, rgba(255,248,249,.98), rgba(253,230,138,.15));
+  border: 1.5px solid rgba(201,146,74,.4);
+  box-shadow: 0 24px 80px rgba(201,146,74,.3), 0 0 0 1px rgba(255,255,255,.5);
+}
+
+.modal-header {
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;
+}
+.modal-day-badge {
+  font-size:10px; font-weight:400; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--rose-mid); background:rgba(196,84,122,.1);
+  padding:5px 12px; border-radius:99px; border:1px solid rgba(196,84,122,.2);
+}
+.modal-close {
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid rgba(196,84,122,.25); background:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--rose-mid); font-size:16px; transition:background .2s;
+}
+.modal-close:hover { background:rgba(196,84,122,.08); }
+
+.modal-icon { font-size:42px; margin-bottom:10px; display:block; text-align:center; }
+.modal-title {
+  font-family:'Playfair Display',serif; font-style:italic; font-weight:400;
+  font-size: clamp(18px,3.5vw,26px); color:var(--rose-deep);
+  text-align:center; margin-bottom:14px;
+}
+.modal-divider { height:1px; background:linear-gradient(90deg,transparent,var(--rose-soft),transparent); margin:14px 0; }
+.modal-content {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(14px,2vw,15px);
+  font-weight:300; color:var(--text-dark);
+  line-height:1.85; text-align:center; white-space:pre-line;
+}
+.modal-signature {
+  margin-top:20px; text-align:right;
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:14px; color:var(--rose-mid);
+}
+
+footer {
+  text-align:center; margin-top:60px;
+  font-size:11px; font-weight:400; letter-spacing:.12em;
+  color: var(--rose-deep);
+  background: rgba(255,248,249,.7);
+  backdrop-filter: blur(6px);
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 50px;
+  opacity: .75;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+@media (max-width:480px) { .grid { grid-template-columns: repeat(4,1fr); gap:7px; } }
+```
+
   </style>
 </head>
 <body>
@@ -203,7 +430,7 @@
 
   <div class="section-title">
     <h2>Tes surprises quotidiennes</h2>
-    <p>Une nouvelle case s'ouvre chaque jour — découvre-les une à une</p>
+    <p>Une nouvelle case s'ouvre chaque jour à minuit — découvre-les une à une</p>
   </div>
 
   <div class="grid" id="grid"></div>
@@ -212,6 +439,7 @@
 </div>
 
 <!-- MODAL -->
+
 <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -227,21 +455,65 @@
 </div>
 
 <script>
-const BIRTHDAY = new Date("2026-10-26T00:00:00");
+// ══ CONFIG ══
+const START_DATE = new Date("2026-05-03T00:00:00"); // premier jour = aujourd'hui
+const BIRTHDAY   = new Date("2026-10-26T00:00:00"); // dernier jour inclus
 
-const SURPRISES = [
-  { icon: "💬", title: "Le premier jour", content: "Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime." },
-  { icon: "🌙", title: "Ce soir-là…", content: "✏️ Raconte ici un souvenir qui te tient à cœur." },
-  { icon: "💌", title: "Une lettre pour toi", content: "✏️ Écris une vraie lettre ici." },
-  { icon: "🗺️", title: "Ce qu'on va faire ensemble", content: "✏️ Décris un projet, un voyage, une sortie…" },
-  { icon: "📸", title: "Ma photo préférée de nous", content: "✏️ Décris la photo et le moment." },
-  { icon: "🎵", title: "La chanson qui me fait penser à toi", content: "✏️ Titre + artiste, et pourquoi cette chanson." },
-  { icon: "💬", title: "Ce que j'aime chez toi", content: "✏️ Une liste des choses que j'aime chez toi." }
+// ══ MESSAGES UNIQUES PAR JOUR ══
+// Remplis ici tes messages perso — un par index (0 = 3 mai, dernier = 26 oct)
+// Pour les jours sans message perso, un message généré automatiquement s'affiche.
+const MESSAGES = {
+  0:  { icon:"💬", title:"Le premier jour", content:"Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime." },
+  1:  { icon:"🌙", title:"Ce soir-là…", content:"Je me souviens de ce moment où j'ai réalisé que t'étais vraiment spéciale.\n\nPas besoin de grands discours — juste cette certitude tranquille que t'es quelqu'un de rare. Je suis heureux de te connaître." },
+  2:  { icon:"💌", title:"Une lettre pour toi", content:"Salma,\n\nTu sais ce truc que t'as de rendre les gens autour de toi plus légers ? C'est un don. Un vrai.\n\nJe voulais juste que tu le saches ce soir." },
+  3:  { icon:"🗺️", title:"Ce qu'on va faire ensemble", content:"Un jour on ira quelque part ensemble, juste pour le plaisir.\n\nPas besoin que ce soit grand. Juste toi, moi, et un bon moment à raconter plus tard." },
+  4:  { icon:"📸", title:"Ma photo préférée de nous", content:"Il y a des moments qu'on n'a pas pris en photo mais qu'on n'oublie jamais.\n\nT'en as sûrement un toi aussi. Moi oui. Et tu joues dedans. 🌸" },
+  5:  { icon:"🎵", title:"La chanson qui me fait penser à toi", content:"Il y a des chansons qui sonnent différemment depuis que je te connais.\n\nCelle-là en particulier. Chaque fois qu'elle passe, je pense à toi automatiquement." },
+  6:  { icon:"✨", title:"Ce que j'aime chez toi", content:"Ta façon d'être toi-même sans t'excuser.\nTon sourire quand quelque chose te fait vraiment rire.\nTon caractère — même quand il me tient tête.\n\nTout ça ensemble, ça forme quelqu'un d'extraordinaire." },
+  7:  { icon:"🌸", title:"Juste pour te dire", content:"Aujourd'hui j'avais pas de grande idée. Pas de souvenir précis à raconter.\n\nJ'avais juste envie de te dire que je pense à toi, et que ça me suffit comme raison d'écrire." },
+  8:  { icon:"☕", title:"Les matins", content:"Les matins seraient tellement mieux avec toi.\n\nJuste un café, une conversation tranquille, et ton énergie du matin que j'imagine très bien. Ça doit être mignon." },
+  9:  { icon:"🌊", title:"Quelque chose de calme", content:"Il y a quelque chose de très calme dans ce que je ressens pour toi. Pas d'agitation, pas de doute.\n\nJuste une certitude douce que t'es importante. C'est rare ça." },
+  10: { icon:"🎀", title:"Hello Kitty t'envie", content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Sauf que toi t'as un niveau de personnalité en plus. Hello Kitty t'envie, je t'assure." },
+  11: { icon:"💪", title:"Ta force", content:"T'as une force en toi que tu vois pas forcément.\n\nMoi je la vois. Dans ta façon de gérer les choses, de continuer même quand c'est dur. Elle me bluffe, vraiment." },
+  12: { icon:"🌟", title:"Tu brilles", content:"T'as cette capacité à être lumineuse même sans t'en rendre compte.\n\nC'est le genre de qualité qu'on peut pas forcer. Soit t'as, soit t'as pas. Et toi t'as. En abondance." },
+  13: { icon:"🏴‍☠️", title:"She's my Nakama", content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nJe comprends maintenant ce qu'il veut dire. Mon trésor à moi il s'appelle Salmouchee." },
+  14: { icon:"🎮", title:"Tomodachi Life", content:"Si on était des personnages Tomodachi Life, je suis sûr que notre compatibilité serait à 100%.\n\nPas parce que je veux que ce soit parfait — mais parce qu'avec toi même les imperfections ont l'air d'aller de soi." },
+  15: { icon:"🌙", title:"Les nuits", content:"Les nuits où je dors pas bien, je pense à des trucs simples.\n\nUne conversation qu'on a eu. Un truc drôle que t'as dit. Et bizarrement ça suffit à rendre la nuit plus douce." },
+  16: { icon:"💭", title:"Dans ma tête", content:"T'es dans ma tête plus souvent que tu le réalises.\n\nDans une chanson qui passe, dans un truc drôle que je vois et que j'ai envie de te montrer. C'est dingue comme quelqu'un peut prendre autant de place." },
+  17: { icon:"🙏", title:"Merci", content:"Merci d'être toi, d'être là, de me rendre la vie plus colorée.\n\nT'as pas idée de l'effet que t'as sur moi — sur mon humeur, sur ma façon de voir les choses. T'es un cadeau." },
+  18: { icon:"🔮", title:"L'avenir", content:"Dans tous les scénarios que j'imagine pour l'avenir, t'es là.\n\nC'est involontaire — c'est juste que t'es devenue une évidence pour moi. Et les évidences, on les protège." },
+  19: { icon:"🕊️", title:"La paix", content:"Il y a quelque chose de très paisible dans le fait de penser à toi.\n\nPas de stress, pas de question. Juste une chaleur tranquille qui dit que tout va bien." },
+  20: { icon:"🌺", title:"Fleurir", content:"T'as la même façon que les fleurs de rendre l'espace autour de toi plus beau.\n\nSauf que toi tu fanes jamais. Et ça c'est encore mieux." },
+  21: { icon:"⚓", title:"L'ancre", content:"Certaines personnes dans ta vie te donnent envie d'aller plus loin.\n\nD'autres te donnent envie de rester, d'apprécier l'instant. T'es les deux en même temps pour moi." },
+  22: { icon:"💫", title:"Unique", content:"Il n'y a qu'une seule toi dans tout l'univers.\n\nUne seule personne avec exactement ta façon de penser, de rire, d'exister. J'ai la chance de connaître cette personne. Je mesure cette chance." },
+  23: { icon:"🎯", title:"La promesse", content:"Je te promets pas la perfection. Je te promets juste d'être là, sincèrement.\n\nDe penser à toi, de te respecter, de tenir à toi pour de vrai. Pas des grandes déclarations — juste des actes constants et honnêtes." },
+  24: { icon:"🧸", title:"Ton doudou", content:"Si j'étais un doudou, je voudrais être celui que tu gardes pas juste pour la déco.\n\nCelui que tu sortirais les soirs où ça va pas, et que tu rangeras plus jamais. Voilà mon ambition." },
+  25: { icon:"🌅", title:"La veille de ton jour", content:"Demain c'est ton anniversaire, Salmouchee.\n\nJe voulais prendre un moment, la veille, pour te dire merci. Merci d'exister. Merci d'être toi. La fête de demain c'est la fête de quelqu'un d'exceptionnel." },
+};
+
+// Message spécial anniversaire (26 octobre)
+const BIRTHDAY_MSG = {
+  icon: "🎂",
+  title: "Joyeux Anniversaire Salmouchee 🎉",
+  content: "Aujourd'hui c'est TON jour. 🎂\n\nLe 26 octobre — la date où quelqu'un d'extraordinaire est arrivé dans ce monde et l'a rendu meilleur sans même le faire exprès.\n\nCes cases, ce compte à rebours, ces mois à penser à toi — tout ça pour te dire une chose :\n\nTu mérites tout le bonheur du monde, Salma. Tout. Sans exception.\n\nJoyeux anniversaire ma Salmouchee. 🌸✨"
+};
+
+// Message générique pour les jours sans message perso
+const GENERIC_MESSAGES = [
+  { icon:"🌸", title:"Penser à toi", content:"Aujourd'hui comme tous les autres jours, tu occupes mes pensées.\n\nPas besoin d'une raison particulière — t'es juste là, et c'est tout ce qu'il faut." },
+  { icon:"💕", title:"Petit message du jour", content:"Juste un petit rappel que t'es incroyable, Salmouchee.\n\nVoilà. C'est tout. Bonne journée. 🌸" },
+  { icon:"✨", title:"Une pensée pour toi", content:"Tu sais ce que j'aime avec toi ? Même les petits moments deviennent mémorables.\n\nC'est un talent rare. Continue d'être toi." },
+  { icon:"🌙", title:"Ce soir je pense à toi", content:"La nuit tombe et je pense à toi.\n\nPas pour une raison précise — juste parce que c'est devenu naturel, et que naturellement tu prends la meilleure place." },
+  { icon:"💌", title:"Lettre du jour", content:"T'es quelqu'un de vraiment précieux, Salma. Pas juste pour ce que tu fais — pour ce que tu es.\n\nCette façon d'être toi sans t'excuser. Je t'admire pour ça." },
+  { icon:"⭐", title:"Ton éclat", content:"T'as un éclat particulier. Pas juste à l'extérieur — intérieurement aussi.\n\nUne lumière qui transperce même tes moments de doute. Je la vois même quand toi tu la vois pas." },
+  { icon:"🎀", title:"Ma Salmouchee", content:"Je suis fier de toi. Vraiment. De qui tu es, de ce que tu fais, de la façon dont tu navigues dans la vie.\n\nT'as une force que tu sous-estimes. Mais moi je la vois." },
 ];
 
+// ══ LOGIQUE ══
 function daysBetween(a, b) {
-  const d = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-  return Math.ceil(d / 86400000);
+  const utcA = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utcB = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+  return Math.round((utcB - utcA) / 86400000);
 }
 function pad(n) { return String(n).padStart(2,"0"); }
 function formatDate(d) {
@@ -249,46 +521,69 @@ function formatDate(d) {
   return `${d.getDate()} ${m[d.getMonth()]}`;
 }
 
-const today = new Date();
-const total = daysBetween(today, BIRTHDAY);
+const todayDate = new Date();
+todayDate.setHours(0,0,0,0);
+
+// Calcul du nombre total de cases : START_DATE → BIRTHDAY inclus
+const totalDays = daysBetween(START_DATE, BIRTHDAY) + 1;
+
+// Nombre de cases débloquées : jours écoulés depuis START_DATE (inclus aujourd'hui)
+const unlockedCount = Math.min(daysBetween(START_DATE, todayDate) + 1, totalDays);
+
 const grid = document.getElementById("grid");
 
-for (let i = 0; i < total; i++) {
-  const date = new Date(today);
-  date.setDate(today.getDate() + i);
+for (let i = 0; i < totalDays; i++) {
+  const date = new Date(START_DATE);
+  date.setDate(START_DATE.getDate() + i);
 
   const card = document.createElement("div");
   card.className = "card";
 
-  const isToday = i === 0;
-  const isFinalDay = (i === total - 1);        // ← C'EST ICI LA CORRECTION : la DERNIÈRE case = 26 octobre
-  const unlocked = i <= 0;
-  const surprise = SURPRISES[i] || null;
+  const isToday   = i === unlockedCount - 1 && unlockedCount > 0 && daysBetween(START_DATE, todayDate) === i;
+  const isBirthday = i === totalDays - 1; // dernière case = 26 octobre
+  const unlocked  = i < unlockedCount;
+
+  // Récupérer le message
+  let msg;
+  if (isBirthday) {
+    msg = BIRTHDAY_MSG;
+  } else if (MESSAGES[i]) {
+    msg = MESSAGES[i];
+  } else {
+    msg = GENERIC_MESSAGES[i % GENERIC_MESSAGES.length];
+  }
 
   if (unlocked) {
     card.classList.add("unlocked");
-    if (isToday) card.classList.add("today");
-    if (isFinalDay) card.classList.add("final");
+    if (isToday && !isBirthday) card.classList.add("today");
+    if (isBirthday) card.classList.add("final");
     card.innerHTML = `<div class="card-inner">
-      <span class="card-type-icon">${isFinalDay ? "✨" : (surprise ? surprise.icon : "💌")}</span>
-      <span class="card-day-num">${i+1}</span>
+      <span class="card-type-icon">${msg.icon}</span>
+      <span class="card-day-num">${i + 1}</span>
       <span class="card-date-label">${formatDate(date)}</span>
     </div>`;
-    card.addEventListener("click", () => openModal(i+1, date, surprise));
+    card.addEventListener("click", () => openModal(i + 1, date, msg, isBirthday));
   } else {
     card.classList.add("locked");
-    if (isFinalDay) card.classList.add("final");
+    if (isBirthday) card.classList.add("final");
     card.innerHTML = `<div class="card-inner">
-      <span class="card-day-num">${i+1}</span>
+      ${isBirthday ? '<span class="card-type-icon">🎂</span>' : ''}
+      <span class="card-day-num">${isBirthday ? '🎂' : i + 1}</span>
       <span class="card-date-label">${formatDate(date)}</span>
       <span class="lock-icon">🔒</span>
     </div>`;
   }
+
   grid.appendChild(card);
 }
 
-// Countdown + Modal (inchangé)
-const els = { d: document.getElementById("cd-days"), h: document.getElementById("cd-hours"), m: document.getElementById("cd-mins"), s: document.getElementById("cd-secs") };
+// ══ COUNTDOWN ══
+const els = {
+  d: document.getElementById("cd-days"),
+  h: document.getElementById("cd-hours"),
+  m: document.getElementById("cd-mins"),
+  s: document.getElementById("cd-secs")
+};
 function popEl(el, v) {
   const s = pad(v);
   if (el.textContent !== s) {
@@ -299,27 +594,37 @@ function popEl(el, v) {
 function tick() {
   const diff = BIRTHDAY - new Date();
   if (diff <= 0) { Object.values(els).forEach(e => e.textContent = "00"); return; }
-  popEl(els.d, Math.floor(diff/86400000));
-  popEl(els.h, Math.floor((diff%86400000)/3600000));
-  popEl(els.m, Math.floor((diff%3600000)/60000));
-  popEl(els.s, Math.floor((diff%60000)/1000));
+  popEl(els.d, Math.floor(diff / 86400000));
+  popEl(els.h, Math.floor((diff % 86400000) / 3600000));
+  popEl(els.m, Math.floor((diff % 3600000) / 60000));
+  popEl(els.s, Math.floor((diff % 60000) / 1000));
 }
 tick(); setInterval(tick, 1000);
 
-function openModal(dayNum, date, surprise) {
-  document.getElementById("modal-badge").textContent = `Jour ${dayNum} · ${formatDate(date)}`;
-  document.getElementById("modal-icon").textContent = surprise ? surprise.icon : "💌";
-  document.getElementById("modal-title").textContent = surprise ? surprise.title : `Surprise du jour ${dayNum}`;
-  document.getElementById("modal-content").textContent = surprise ? surprise.content : "Rayan n'a pas encore rempli cette lettre… mais il pense très fort à toi ❤️";
+// ══ MODAL ══
+function openModal(dayNum, date, msg, isBirthday) {
+  const modalEl = document.getElementById("modal");
+  if (isBirthday) {
+    modalEl.classList.add("birthday-modal");
+  } else {
+    modalEl.classList.remove("birthday-modal");
+  }
+  document.getElementById("modal-badge").textContent = isBirthday ? "🎂 Ton Anniversaire !" : `Jour ${dayNum} · ${formatDate(date)}`;
+  document.getElementById("modal-icon").textContent = msg.icon;
+  document.getElementById("modal-title").textContent = msg.title;
+  document.getElementById("modal-content").textContent = msg.content;
   document.getElementById("modal-bg").classList.add("open");
   document.body.style.overflow = "hidden";
 }
-function closeModal(e) { if (e.target === document.getElementById("modal-bg")) closeModalDirect(); }
+function closeModal(e) {
+  if (e.target === document.getElementById("modal-bg")) closeModalDirect();
+}
 function closeModalDirect() {
   document.getElementById("modal-bg").classList.remove("open");
   document.body.style.overflow = "";
 }
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModalDirect(); });
 </script>
+
 </body>
 </html>
