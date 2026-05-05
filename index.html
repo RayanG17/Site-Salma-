@@ -51,21 +51,41 @@
       padding: 0 20px 80px;
     }
 
-    /* HEADER */
+    /* ── HEADER ── */
     header {
-      padding: 54px 0 38px;
+      padding: 36px 0 24px;
       text-align: center;
       animation: fadeDown .9s ease both;
     }
 
-    /* Logo un peu plus bas et plus grand */
-    .logo-wrap { margin-bottom: 20px; margin-top: 10px; }
+    /* Logo serré juste au-dessus des boutons réseaux */
+    .logo-wrap {
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
     .logo-img {
-      width: clamp(200px, 38vw, 320px);
+      width: clamp(160px, 28vw, 240px);
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 15px 25px rgba(139,34,82,.25));
+      filter: drop-shadow(0 10px 18px rgba(139,34,82,.22));
     }
+
+    /* Réseaux */
+    .socials {
+      display: flex; justify-content: center; gap: 14px;
+      margin: 0 0 18px; animation: fadeDown .9s .05s ease both;
+    }
+    .social-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      text-decoration: none; background: rgba(255,248,249,.78);
+      backdrop-filter: blur(10px); border: 1px solid rgba(196,84,122,.2);
+      border-radius: 16px; padding: 10px 16px;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s;
+      box-shadow: 0 2px 12px rgba(139,34,82,.08); min-width: 64px;
+    }
+    .social-btn:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 24px rgba(139,34,82,.18); background: rgba(255,248,249,.95); }
+    .social-icon { font-size: 22px; line-height: 1; }
+    .social-label { font-size: 9px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--rose-mid); }
 
     .eyebrow {
       font-weight: 300; font-size: 11px; letter-spacing: .4em;
@@ -86,23 +106,6 @@
       display: inline-block; background: rgba(255,248,249,.7);
       backdrop-filter: blur(6px); padding: 3px 12px; border-radius: 50px;
     }
-
-    /* Réseaux */
-    .socials {
-      display: flex; justify-content: center; gap: 14px;
-      margin: 0 0 22px; animation: fadeDown .9s .05s ease both;
-    }
-    .social-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
-      text-decoration: none; background: rgba(255,248,249,.78);
-      backdrop-filter: blur(10px); border: 1px solid rgba(196,84,122,.2);
-      border-radius: 16px; padding: 10px 16px;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s;
-      box-shadow: 0 2px 12px rgba(139,34,82,.08); min-width: 64px;
-    }
-    .social-btn:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 24px rgba(139,34,82,.18); background: rgba(255,248,249,.95); }
-    .social-icon { font-size: 22px; line-height: 1; }
-    .social-label { font-size: 9px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--rose-mid); }
 
     /* DIVIDER */
     .divider { display: flex; align-items: center; gap: 14px; margin: 0 auto 42px; max-width: 300px; animation: fadeDown .9s .1s ease both; }
@@ -151,7 +154,7 @@
       backdrop-filter: blur(6px); padding: 3px 14px; border-radius: 50px;
     }
 
-    /* GRID */
+    /* ══ GRID ══ */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(clamp(90px,16vw,120px), 1fr));
@@ -168,7 +171,7 @@
     }
     .card:hover { transform: translateY(-3px) scale(1.025); }
 
-    /* LOCKED — fond semi-transparent */
+    /* LOCKED */
     .card.locked {
       background: rgba(255,248,249,.45);
       border: 1px solid var(--glass-border);
@@ -194,7 +197,7 @@
     }
     .lock-icon { font-size: clamp(9px,1.8vw,13px); opacity:.45; margin-top:1px; }
 
-    /* UNLOCKED — couleur pleine par défaut */
+    /* UNLOCKED — couleur pleine = pas encore vue */
     .card.unlocked {
       background: linear-gradient(135deg, var(--rose-mid), var(--rose-deep));
       box-shadow: 0 6px 22px rgba(139,34,82,.3);
@@ -206,16 +209,25 @@
     .card.unlocked .card-date-label { color:rgba(255,255,255,.85); }
     .card-type-icon { font-size: clamp(14px,3vw,20px); }
 
-    /* UNLOCKED OPENED — devient transparent après ouverture */
+    /* UNLOCKED OPENED — opaque/délavé après ouverture */
     .card.unlocked.opened {
-      background: rgba(196,84,122,.15);
-      border: 1px solid rgba(196,84,122,.25);
+      background: rgba(196,84,122,.13);
+      border: 1px solid rgba(196,84,122,.22);
       backdrop-filter: blur(8px);
-      box-shadow: 0 2px 10px rgba(139,34,82,.07);
+      box-shadow: none;
     }
-    .card.unlocked.opened .card-day-num { color: var(--rose-deep); text-shadow: none; }
-    .card.unlocked.opened .card-date-label { color: var(--text-mid); }
-    .card.unlocked.opened .card-type-icon { opacity: .5; }
+    .card.unlocked.opened .card-day-num   { color: var(--rose-deep); opacity: .6; text-shadow: none; }
+    .card.unlocked.opened .card-date-label { color: var(--text-mid); opacity: .7; }
+    .card.unlocked.opened .card-type-icon  { opacity: .35; }
+
+    /* Petite coche discrète sur les cases vues */
+    .card.unlocked.opened::after {
+      content: '✓';
+      position: absolute; top: 6px; right: 7px;
+      font-size: 9px; color: var(--rose-mid); opacity: .55;
+      font-family: 'DM Sans', sans-serif; font-weight: 400;
+      pointer-events: none;
+    }
 
     /* TODAY */
     .card.today {
@@ -224,63 +236,122 @@
       animation: todayPulse 2.5s ease-in-out infinite, cardReveal .4s ease both;
     }
     .card.today.opened {
-      background: rgba(201,146,74,.2);
-      border: 1px solid rgba(201,146,74,.35);
+      background: rgba(201,146,74,.15);
+      border: 1px solid rgba(201,146,74,.3);
       box-shadow: none;
       animation: none;
     }
-    .card.today.opened .card-day-num { color: var(--gold); text-shadow: none; }
+    .card.today.opened .card-day-num   { color: var(--gold); opacity: .65; text-shadow: none; }
+    .card.today.opened .card-type-icon { opacity: .35; }
+    .card.today.opened::after {
+      content: '✓';
+      position: absolute; top: 6px; right: 7px;
+      font-size: 9px; color: var(--gold); opacity: .6;
+      font-family: 'DM Sans', sans-serif;
+      pointer-events: none;
+    }
     @keyframes todayPulse {
       0%,100% { box-shadow: 0 8px 28px rgba(201,146,74,.45), 0 0 0 3px rgba(255,255,255,.6); }
       50%      { box-shadow: 0 8px 38px rgba(201,146,74,.65), 0 0 0 5px rgba(255,255,255,.35); }
     }
 
-    /* FINAL (26 oct) */
-    .card.final { border-radius: 16px; }
-    .card.final.locked {
-      background: rgba(201,146,74,.15);
-      border: 2px dashed rgba(201,146,74,.5);
+    /* ══ CARTE ANNIVERSAIRE — 2×2 dans la grille ══ */
+    .card.final {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: unset; /* on enlève l'aspect-ratio 1:1 pour qu'elle occupe vraiment 2×2 */
+      border-radius: 20px;
     }
-    .card.final.locked .card-day-num { color: var(--gold); font-size: clamp(20px,3.5vw,28px); }
-    .card.final.locked .card-date-label { color: rgba(201,146,74,.75); font-size: clamp(8px,1.4vw,11px); }
+
+    .card.final.locked {
+      background: rgba(201,146,74,.12);
+      border: 2px dashed rgba(201,146,74,.45);
+    }
+    .card.final.locked .card-day-num    { color: var(--gold); font-size: clamp(26px,5vw,38px); }
+    .card.final.locked .card-date-label { color: rgba(201,146,74,.75); font-size: clamp(10px,1.8vw,13px); }
+    .card.final.locked .card-type-icon  { font-size: clamp(28px,5vw,42px); opacity: .5; }
     .card.final.locked::before {
       content: '';
-      position: absolute; inset: 8px; border-radius: 14px;
+      position: absolute; inset: 8px; border-radius: 16px;
       border: 1px solid rgba(201,146,74,.3);
       animation: finalLockedPulse 3s ease-in-out infinite; pointer-events: none;
     }
     @keyframes finalLockedPulse {
       0%,100% { opacity:.35; transform:scale(1); }
-      50%      { opacity:.85; transform:scale(1.03); }
+      50%      { opacity:.85; transform:scale(1.02); }
     }
+
     .card.final.unlocked {
       background: linear-gradient(135deg, #fde68a 0%, #f9a825 25%, #c9924a 50%, #8b2252 75%, #c4547a 100%);
       background-size: 400% 400%;
       animation: birthdayShift 3s ease infinite, cardReveal .4s ease both;
-      box-shadow: 0 0 0 4px rgba(255,255,255,.85), 0 0 30px rgba(201,146,74,.9), 0 0 70px rgba(201,146,74,.45), 0 12px 40px rgba(139,34,82,.45);
-      border: 3px solid rgba(255,255,255,.7); overflow: visible;
+      box-shadow: 0 0 0 4px rgba(255,255,255,.85),
+                  0 0 30px rgba(201,146,74,.9),
+                  0 0 70px rgba(201,146,74,.45),
+                  0 12px 40px rgba(139,34,82,.45);
+      border: 3px solid rgba(255,255,255,.7);
+      overflow: visible;
     }
     @keyframes birthdayShift {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .card.final.unlocked .card-day-num { color:#fff; font-size: clamp(20px,4vw,30px); text-shadow: 0 0 20px rgba(255,255,255,.9), 0 2px 8px rgba(0,0,0,.25); }
-    .card.final.unlocked .card-date-label { color:rgba(255,255,255,.95); font-weight:700; font-size: clamp(9px,1.6vw,12px); }
-    .card.final.unlocked .card-type-icon { font-size: clamp(30px,5.5vw,46px); filter: drop-shadow(0 0 12px rgba(255,255,255,.8)); }
+
+    /* Halo tournant */
     .card.final.unlocked::before {
-      content: ''; position: absolute; inset: -6px; border-radius: 26px;
+      content: ''; position: absolute; inset: -8px; border-radius: 32px;
       background: conic-gradient(from 0deg, #fde68a, #c9924a, #8b2252, #c4547a, #fde68a);
       z-index: -1; animation: haloSpin 4s linear infinite; opacity: .75;
     }
     .card.final.unlocked::after {
-      content: ''; position: absolute; inset: -2px; border-radius: 22px;
-      background: #fff1; z-index: -1;
+      content: ''; position: absolute; inset: -2px; border-radius: 26px;
+      background: rgba(255,255,255,.06); z-index: -1;
     }
     @keyframes haloSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+
+    /* Contenu interne de la carte finale */
+    .card.final .card-inner { gap: 8px; padding: 20px; }
+    .card.final.unlocked .card-type-icon {
+      font-size: clamp(42px,8vw,68px);
+      filter: drop-shadow(0 0 14px rgba(255,255,255,.8));
+      animation: iconFloat 2.5s ease-in-out infinite;
+    }
+    @keyframes iconFloat {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .card.final.unlocked .card-day-num {
+      color:#fff; font-size: clamp(28px,5vw,44px);
+      text-shadow: 0 0 20px rgba(255,255,255,.9), 0 2px 8px rgba(0,0,0,.25);
+    }
+    .card.final.unlocked .card-date-label {
+      color:rgba(255,255,255,.95); font-weight:400; font-size: clamp(11px,2vw,14px);
+    }
+
     .bday-label {
-      font-size: clamp(8px,1.3vw,10px); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-      color:rgba(255,255,255,.9); background:rgba(0,0,0,.18); padding:2px 10px; border-radius:50px;
+      font-size: clamp(9px,1.6vw,12px); font-weight:400; letter-spacing:.14em; text-transform:uppercase;
+      color:rgba(255,255,255,.95); background:rgba(0,0,0,.2); padding:4px 14px; border-radius:50px;
+      margin-top: 4px;
+    }
+    .bday-label-locked {
+      font-size: clamp(9px,1.6vw,12px); font-weight:400; letter-spacing:.14em; text-transform:uppercase;
+      color:rgba(201,146,74,.75); background:rgba(201,146,74,.1); padding:4px 14px; border-radius:50px;
+      margin-top: 4px;
+    }
+
+    /* Étoiles décoratives sur la carte anniversaire débloquée */
+    .star-ring {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 18px;
+    }
+    .star-ring span {
+      position: absolute; font-size: 14px;
+      animation: starTwinkle 2s ease-in-out infinite;
+      opacity: 0;
+    }
+    @keyframes starTwinkle {
+      0%,100% { opacity:0; transform:scale(.5); }
+      50%      { opacity:.9; transform:scale(1); }
     }
 
     /* ══ MODAL ══ */
@@ -306,8 +377,6 @@
       border: 1.5px solid rgba(201,146,74,.4);
       box-shadow: 0 24px 80px rgba(201,146,74,.3), 0 0 0 1px rgba(255,255,255,.5);
     }
-
-    /* Modal case verrouillée */
     .modal.locked-modal {
       background: rgba(255,248,249,.97);
       border: 1.5px solid rgba(196,84,122,.2);
@@ -358,7 +427,9 @@
     @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeUp   { from { opacity:0; transform:translateY(22px);  } to { opacity:1; transform:translateY(0); } }
 
-    @media (max-width:480px) { .grid { grid-template-columns: repeat(4,1fr); gap:7px; } }
+    @media (max-width:480px) {
+      .grid { grid-template-columns: repeat(4,1fr); gap:7px; }
+    }
   </style>
 </head>
 <body>
@@ -368,6 +439,7 @@
 
 <div class="wrapper">
   <header>
+    <!-- Logo juste au-dessus des réseaux sociaux -->
     <div class="logo-wrap">
       <img src="logo.PNG" alt="notre logo" class="logo-img"/>
     </div>
@@ -487,7 +559,6 @@ const GENERIC_MESSAGES = [
   { icon:"🎀", title:"Ma Salmouchee", content:"Je suis fier de toi. Vraiment. De qui tu es, de ce que tu fais, de la façon dont tu navigues dans la vie.\n\nT'as une force que tu sous-estimes. Mais moi je la vois." },
 ];
 
-// Messages pour les cases verrouillées
 const LOCKED_MESSAGES = [
   { icon:"🔒", title:"Pas encore…", content:"Cette surprise t'attend sagement.\n\nReviens le bon jour et elle sera là, rien que pour toi. La patience, c'est aussi une forme d'amour. 🌸" },
   { icon:"⏳", title:"Bientôt, promis", content:"Tu veux savoir ce qu'il y a dedans ?\n\nMoi aussi j'ai hâte que tu le découvres. Mais chaque chose en son temps, Salmouchee." },
@@ -508,7 +579,6 @@ function formatDate(d) {
   return `${d.getDate()} ${m[d.getMonth()]}`;
 }
 
-// Récupération des cases déjà ouvertes depuis localStorage
 function getOpened() {
   try { return JSON.parse(localStorage.getItem("opened_cards") || "[]"); } catch { return []; }
 }
@@ -520,7 +590,7 @@ function markOpened(i) {
 const todayDate = new Date();
 todayDate.setHours(0,0,0,0);
 
-const totalDays    = daysBetween(START_DATE, BIRTHDAY) + 1;
+const totalDays     = daysBetween(START_DATE, BIRTHDAY) + 1;
 const unlockedCount = Math.min(daysBetween(START_DATE, todayDate) + 1, totalDays);
 
 const grid = document.getElementById("grid");
@@ -546,12 +616,33 @@ for (let i = 0; i < totalDays; i++) {
     if (isBirthday) card.classList.add("final");
     if (wasOpened)  card.classList.add("opened");
 
-    card.innerHTML = `<div class="card-inner">
-      <span class="card-type-icon">${msg.icon}</span>
-      <span class="card-day-num">${i + 1}</span>
-      <span class="card-date-label">${formatDate(date)}</span>
-      ${isBirthday ? '<span class="bday-label">Joyeux Anniversaire 🎂</span>' : ''}
-    </div>`;
+    if (isBirthday) {
+      // Étoiles décoratives
+      const starPositions = [
+        {top:'8%',left:'6%',delay:'0s'},{top:'12%',left:'88%',delay:'.4s'},
+        {top:'80%',left:'5%',delay:'.8s'},{top:'85%',left:'90%',delay:'.2s'},
+        {top:'45%',left:'3%',delay:'1.2s'},{top:'40%',left:'93%',delay:'.6s'},
+        {top:'20%',left:'50%',delay:'1s'},{top:'70%',left:'48%',delay:'.3s'},
+      ];
+      const stars = starPositions.map(p =>
+        `<span style="top:${p.top};left:${p.left};animation-delay:${p.delay}">✨</span>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="star-ring">${stars}</div>
+        <div class="card-inner">
+          <span class="card-type-icon">🎂</span>
+          <span class="card-day-num">${i + 1}</span>
+          <span class="card-date-label">${formatDate(date)}</span>
+          <span class="bday-label">Joyeux Anniversaire 🎉</span>
+        </div>`;
+    } else {
+      card.innerHTML = `<div class="card-inner">
+        <span class="card-type-icon">${msg.icon}</span>
+        <span class="card-day-num">${i + 1}</span>
+        <span class="card-date-label">${formatDate(date)}</span>
+      </div>`;
+    }
 
     card.addEventListener("click", () => {
       markOpened(i);
@@ -563,15 +654,19 @@ for (let i = 0; i < totalDays; i++) {
     card.classList.add("locked");
     if (isBirthday) card.classList.add("final");
 
-    card.innerHTML = `<div class="card-inner">
-      ${isBirthday ? '<span class="card-type-icon">🎂</span>' : ''}
-      <span class="card-day-num">${i + 1}</span>
-      <span class="card-date-label">${formatDate(date)}</span>
-      ${isBirthday ? '<span class="bday-label">Anniversaire ✨</span>' : '<span class="lock-icon">🔒</span>'}
-    </div>`;
-
-    // Clic sur case verrouillée → message sympa
-    if (!isBirthday) {
+    if (isBirthday) {
+      card.innerHTML = `<div class="card-inner">
+        <span class="card-type-icon" style="font-size:clamp(32px,6vw,50px);opacity:.5;">🎂</span>
+        <span class="card-day-num">${i + 1}</span>
+        <span class="card-date-label">${formatDate(date)}</span>
+        <span class="bday-label-locked">Anniversaire ✨</span>
+      </div>`;
+    } else {
+      card.innerHTML = `<div class="card-inner">
+        <span class="card-day-num">${i + 1}</span>
+        <span class="card-date-label">${formatDate(date)}</span>
+        <span class="lock-icon">🔒</span>
+      </div>`;
       const lockedMsg = LOCKED_MESSAGES[i % LOCKED_MESSAGES.length];
       card.addEventListener("click", () => openModal(i + 1, date, lockedMsg, false, true));
     }
