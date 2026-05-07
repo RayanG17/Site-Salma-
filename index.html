@@ -869,9 +869,16 @@ function viewPhoto(src){
 // ── PLAYLIST ──
 // Tracks par défaut avec liens YouTube
 const defaultTracks=[
-  {title:"Amour plastique",artist:"Videoclub",yt:"https://www.youtube.com/watch?v=5NjJLFI_oYs",why:"Cette mélodie me fait penser à toi à chaque fois."},
-  {title:"Love Story (Taylor's Version)",artist:"Taylor Swift",yt:"https://www.youtube.com/watch?v=aXzVF3XeS8M",why:"Parce que tu mérites une belle histoire."},
-  {title:"Thinking Out Loud",artist:"Ed Sheeran",yt:"https://www.youtube.com/watch?v=lp-EBkYFBq4",why:"Les paroles te ressemblent tellement."},
+  {[
+  {title:"Un jour je l’aurais",artist:"Jul",yt:"https://www.youtube.com/watch?v=K4D7Fqna4PE",why:""},
+  {title:"M.",artist:"Anıl Emre Daldal",yt:"https://www.youtube.com/watch?v=cLqP5p9x6_Q",why:""},
+  {title:"Plage coquillage",artist:"Tao Mon Amour",yt:"https://www.youtube.com/watch?v=2Y6Nne6n2iQ",why:""},
+  {title:"Ma chérie",artist:"Jul feat Gims",yt:"https://www.youtube.com/watch?v=9g6H0I6q2mY",why:""},
+  {title:"Every Day",artist:"Ninho feat Griff",yt:"https://www.youtube.com/watch?v=5gW0Q7Vj8yM",why:""},
+  {title:"Tu sais",artist:"Djadja Dinaz",yt:"https://www.youtube.com/watch?v=2q8rK8g8n6E",why:""},
+  {title:"BB",artist:"Djadja Dinaz",yt:"https://www.youtube.com/watch?v=V4f2sL8kK0U",why:""},
+  {title:"Elle t’a tué",artist:"Alonzo",yt:"https://www.youtube.com/watch?v=4xU2kzKx8nQ",why:""},
+  {title:"À toi…",artist:"Mister You",yt:"https://www.youtube.com/watch?v=7m2Yt6m5y4A",why:""},
 ];
 let tracks=JSON.parse(localStorage.getItem('tracks')||'null')||defaultTracks;
 
