@@ -1138,18 +1138,7 @@ function renderObj(){
 }
 function addObj(){const v=document.getElementById('objInput').value.trim();if(!v)return;const ob=getObjs();ob.push({text:v,done:false});saveObjs(ob);document.getElementById('objInput').value='';renderObj();toast('📝 Objectif ajouté !');}
 
-// — 9. ASTROLOGIE —
-const ASTRO_TRAITS=[{ico:'💕',title:'Compatibilité émotionnelle',desc:'Profonde et instinctive'},{ico:'🔥',title:'Passion',desc:'Intense et sincère'},{ico:'🤝',title:'Confiance',desc:'Solide avec le temps'},{ico:'✨',title:'Complicité',desc:'Naturelle et légère'}];
-const ASTRO_MSGS=[
-  "Les étoiles vous sourient aujourd'hui. C'est une belle journée pour vous dire des choses qu'on garde souvent pour soi.",
-  "Votre lien est guidé par Vénus en ce moment. L'amour que vous partagez est rare — chérissez-le.",
-  "La Lune met en lumière vos émotions. Prenez le temps de vous écouter mutuellement aujourd'hui.",
-  "Jupiter vous apporte de l'expansion. Un projet commun serait particulièrement béni en ce moment.",
-  "Mars renforce votre complicité. C'est le moment d'oser, ensemble.",
-  "Mercure facilite la communication. Dites-vous ce que vous ressentez vraiment — les mots porteront.",
-  "Saturne bénit les relations sincères. La vôtre est l'une d'elles. Continuez ainsi.",
-];
-function initAstro(){
+
   // Score animé
   setTimeout(()=>{document.getElementById('astroFill').style.width='92%';},200);
   // Traits
