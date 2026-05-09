@@ -15,11 +15,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-height:100vh;background:#fdf0f4;}
-
 .bg{position:fixed;inset:0;z-index:0;background:url('bg .PNG') center/cover no-repeat;}
 @media(max-width:1024px){.bg{background-attachment:scroll;background-position:50% 30%;}}
 .bg-tint{position:fixed;inset:0;z-index:1;background:rgba(253,240,244,0.06);pointer-events:none;}
 
+/* INTRO */
 #intro{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#fdf0f4,#f0c8da,#e0b0d0);transition:opacity .8s ease,transform .8s ease;}
 #intro.hide{opacity:0;transform:scale(1.05);pointer-events:none;}
 .intro-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
@@ -38,13 +38,13 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .intro-tap{position:absolute;bottom:28px;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--rose);opacity:0;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;animation:fadeInBtn .5s 1.8s forwards;}
 @keyframes fadeInBtn{to{opacity:.6;}}
 
+/* HAM + SIDEBAR */
 .ham{position:fixed;top:16px;right:16px;z-index:300;width:46px;height:46px;border-radius:14px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.25);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;box-shadow:0 4px 18px rgba(139,34,82,.14);transition:transform .2s;}
 .ham:hover{transform:scale(1.06);}
 .hl{width:20px;height:2px;border-radius:2px;background:var(--deep);transition:all .3s cubic-bezier(.4,0,.2,1);}
 .ham.open .hl:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .ham.open .hl:nth-child(2){opacity:0;transform:scaleX(0);}
 .ham.open .hl:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
 .sidebar{position:fixed;top:0;right:-310px;width:290px;height:100%;z-index:290;background:#fff8f9;border-left:1.5px solid rgba(196,84,122,.12);box-shadow:-10px 0 40px rgba(139,34,82,.1);transition:right .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:72px 20px 28px;overflow-y:auto;}
 .sidebar.open{right:0;}
 .sb-title{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--rose);letter-spacing:.15em;text-transform:uppercase;margin-bottom:24px;opacity:.7;}
@@ -60,24 +60,24 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .nr{background:linear-gradient(135deg,#e74c3c,#a93226);}
 .nb{background:linear-gradient(135deg,#3498db,#2980b9);}
 .ns{background:linear-gradient(135deg,#f39c12,#e67e22);}
-/* Nouvelles couleurs sidebar */
 .nq{background:linear-gradient(135deg,#e91e8c,#9c27b0);}
 .nw{background:linear-gradient(135deg,#ff6b9d,#c44569);}
 .nx{background:linear-gradient(135deg,#26d0ce,#1a2980);}
 .ny{background:linear-gradient(135deg,#f7971e,#ffd200);}
 .nz{background:linear-gradient(135deg,#56ab2f,#a8e063);}
+.nj{background:linear-gradient(135deg,#667eea,#764ba2);}
+.nk{background:linear-gradient(135deg,#f953c6,#b91d73);}
 .ni-sub{font-size:10px;color:var(--mid);opacity:.6;display:block;margin-top:1px;}
 .sb-div{height:1px;background:rgba(196,84,122,.1);margin:12px 0;}
 .sb-foot{margin-top:auto;padding-top:16px;font-size:10px;color:var(--mid);opacity:.5;text-align:center;letter-spacing:.1em;}
-
 .overlay{position:fixed;inset:0;z-index:280;background:rgba(58,21,37,.35);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .4s;}
 .overlay.open{opacity:1;pointer-events:all;}
 
+/* PAGES */
 .page{display:none;}
 .page.active{display:block;}
 .wrap{position:relative;z-index:10;max-width:900px;margin:0 auto;padding:0 18px 100px;opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease;}
 .wrap.visible{opacity:1;transform:translateY(0);}
-
 .site-hd{padding:26px 0 0;text-align:center;}
 .logo-img{width:clamp(170px,36vw,270px);filter:drop-shadow(0 10px 22px rgba(139,34,82,.28));margin-bottom:12px;}
 .deco-strip{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:14px;}
@@ -97,7 +97,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .dl{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--soft));}
 .dl.r{transform:scaleX(-1);}
 .dd{width:5px;height:5px;border-radius:50%;background:var(--rose);}
-
 .cd-strip{display:flex;justify-content:center;gap:clamp(8px,2.5vw,20px);margin-bottom:20px;}
 .cd-unit{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .cd-box{background:#fff0f5;border:1.5px solid rgba(196,84,122,.2);border-radius:12px;width:clamp(54px,11vw,80px);height:clamp(58px,12vw,86px);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(139,34,82,.1),inset 0 1px 0 rgba(255,255,255,.9);}
@@ -105,7 +104,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .cd-num.pop{animation:numPop .25s ease;}
 @keyframes numPop{0%{transform:scale(1.35);opacity:.3;}100%{transform:scale(1);opacity:1;}}
 .cd-lbl{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--deep);background:#fff0f5;border:1px solid rgba(196,84,122,.15);padding:2px 8px;border-radius:50px;}
-
 .between{display:flex;align-items:center;gap:10px;margin:0 auto 24px;max-width:480px;}
 .bp{background:#fff0f5;border:1px solid rgba(196,84,122,.18);border-radius:50px;padding:7px 18px;font-size:11px;color:var(--rose);letter-spacing:.06em;white-space:nowrap;}
 .bl{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(196,84,122,.3),transparent);}
@@ -115,6 +113,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .leg{display:flex;align-items:center;gap:6px;background:#fff0f5;border:1px solid rgba(196,84,122,.15);border-radius:50px;padding:5px 12px;font-size:10px;color:var(--mid);font-weight:500;}
 .ld{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
+/* CARDS */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(75px,13vw,104px),1fr));gap:9px;}
 .card{aspect-ratio:1;border-radius:14px;cursor:pointer;position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease;user-select:none;}
 .card-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:4px;padding:8px;}
@@ -122,7 +121,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .card-date{font-size:clamp(6px,1.1vw,9px);font-weight:400;letter-spacing:.04em;text-align:center;}
 .card-ico{font-size:clamp(12px,2.4vw,17px);}
 .card-lock{font-size:clamp(10px,1.6vw,13px);margin-top:1px;}
-
 .card.locked{background:var(--c-locked);border:none;box-shadow:0 2px 8px rgba(139,34,82,.1),inset 0 1px 0 rgba(255,255,255,.35);}
 .card.locked:hover{transform:translateY(-2px) scale(1.02);}
 .card.locked .card-num{color:var(--deep);opacity:.8;}
@@ -145,11 +143,9 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .card.today .card-date{color:rgba(255,255,255,.85);}
 .card.today.opened::after{content:'✓';position:absolute;top:6px;right:8px;font-size:9px;color:rgba(255,255,255,.6);pointer-events:none;}
 @keyframes todayPulse{0%,100%{box-shadow:0 6px 22px rgba(201,146,74,.45),0 0 0 3px rgba(255,255,255,.45);}50%{box-shadow:0 6px 32px rgba(201,146,74,.65),0 0 0 5px rgba(255,255,255,.3);}}
-
 .bday-sep{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:14px 0 8px;}
 .bday-sep .sl{flex:1;height:1.5px;background:linear-gradient(90deg,transparent,rgba(201,146,74,.6),transparent);}
 .bday-sep .st{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:#fff8ee;border:1px solid rgba(201,146,74,.3);padding:4px 16px;border-radius:50px;white-space:nowrap;}
-
 .card.final{grid-column:span 2;aspect-ratio:unset;min-height:clamp(110px,20vw,155px);border-radius:18px;}
 .card.final.locked{background:linear-gradient(145deg,#e0b86a,#c9924a,#b8803a);border:2px dashed rgba(255,255,255,.4);box-shadow:0 4px 20px rgba(201,146,74,.3);}
 .card.final.locked::before{content:'';position:absolute;inset:8px;border-radius:12px;border:1px solid rgba(255,255,255,.3);animation:fLockedPulse 3s ease-in-out infinite;pointer-events:none;}
@@ -174,11 +170,13 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .star-ring span{position:absolute;font-size:11px;opacity:0;animation:starTwinkle 2s ease-in-out infinite;}
 @keyframes starTwinkle{0%,100%{opacity:0;transform:scale(.5);}50%{opacity:.9;transform:scale(1);}}
 
+/* PAGE HEADERS */
 .page-hd{text-align:center;padding:72px 18px 24px;position:relative;z-index:10;}
 .page-hd h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(22px,5vw,34px);color:var(--deep);text-shadow:0 2px 12px rgba(255,248,249,.98);}
 .page-hd p{font-size:13px;color:var(--mid);margin-top:6px;background:#fff0f5;display:inline-block;padding:4px 14px;border-radius:50px;}
 .page-body{position:relative;z-index:10;max-width:680px;margin:0 auto;padding:0 18px 100px;}
 
+/* GALLERY */
 .login-screen{display:flex;flex-direction:column;align-items:center;background:#fff8f9;border-radius:24px;padding:36px 28px;max-width:380px;margin:0 auto;box-shadow:0 16px 48px rgba(139,34,82,.15);border:1px solid rgba(196,84,122,.15);}
 .login-screen h3{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--deep);margin-bottom:6px;}
 .login-screen p{font-size:13px;color:var(--mid);margin-bottom:24px;text-align:center;line-height:1.6;}
@@ -212,7 +210,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .photo-empty .pe-txt{font-size:10px;color:var(--mid);opacity:.6;text-align:center;}
 .photo-upload-btn{display:flex;align-items:center;gap:8px;justify-content:center;margin:18px auto 0;background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:13px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(139,34,82,.3);transition:transform .2s;}
 .photo-upload-btn:hover{transform:scale(1.04);}
-
+/* LETTRE */
 .letter-paper{background:linear-gradient(180deg,transparent 0px,transparent 31px,rgba(196,84,122,.1) 31px,rgba(196,84,122,.1) 32px,transparent 32px);background-size:100% 32px;background-color:#fff8f5;border-radius:20px;padding:36px 32px;box-shadow:0 16px 48px rgba(139,34,82,.15),0 0 0 1px rgba(196,84,122,.1);max-width:560px;margin:0 auto;}
 .letter-hd{text-align:center;margin-bottom:20px;}
 .letter-hd h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(20px,4vw,28px);color:var(--deep);}
@@ -220,7 +218,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .letter-div{height:1px;background:linear-gradient(90deg,transparent,var(--soft),transparent);margin:14px 0;}
 .letter-body{font-family:'Playfair Display',serif;font-size:clamp(15px,2.5vw,17px);line-height:32px;color:var(--ink);white-space:pre-line;}
 .letter-sig{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--rose);text-align:right;margin-top:14px;}
-
+/* PLAYLIST */
 .track-list{display:flex;flex-direction:column;gap:10px;max-width:580px;margin:0 auto;}
 .track{display:flex;align-items:center;gap:14px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.15);border-radius:16px;padding:14px 18px;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s;}
 .track:hover{transform:translateX(4px);box-shadow:0 6px 20px rgba(139,34,82,.12);}
@@ -230,7 +228,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .track-artist{font-size:11px;color:var(--mid);margin-top:2px;opacity:.7;}
 .track-why{font-size:11px;color:var(--rose);margin-top:3px;font-style:italic;}
 .track-yt{font-size:22px;flex-shrink:0;}
-
+/* MOMENTS */
 .timeline{max-width:560px;margin:0 auto;position:relative;padding-left:32px;}
 .timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--rose),var(--soft),transparent);}
 .moment{position:relative;margin-bottom:22px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.15);border-radius:16px;padding:16px 18px;}
@@ -244,6 +242,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .moment.live::before{background:linear-gradient(135deg,var(--rose),var(--deep));animation:livePulse 2s ease-in-out infinite;}
 @keyframes livePulse{0%,100%{box-shadow:0 0 0 rgba(196,84,122,0);}50%{box-shadow:0 0 0 4px rgba(196,84,122,.2);}}
 
+/* FAB */
 .fab-group{position:fixed;bottom:20px;right:16px;z-index:50;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
 .fab{width:46px;height:46px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(139,34,82,.28);}
 .fab:hover{transform:scale(1.12) translateY(-2px);}
@@ -253,10 +252,10 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .fab-top{width:40px;height:40px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.2);color:var(--rose);font-size:16px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(139,34,82,.12);transition:transform .2s,opacity .3s;opacity:0;pointer-events:none;}
 .fab-top.vis{opacity:1;pointer-events:all;}
 .fab-top:hover{transform:scale(1.1) translateY(-2px);}
-
+/* TOAST */
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);z-index:500;background:rgba(139,34,82,.9);backdrop-filter:blur(10px);color:#fff;border-radius:50px;padding:11px 22px;font-size:13px;white-space:nowrap;box-shadow:0 8px 26px rgba(139,34,82,.3);transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .4s;opacity:0;}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
-
+/* MODAL CASES */
 .modal-bg{position:fixed;inset:0;z-index:400;background:rgba(58,21,37,.52);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;}
 .modal-bg.open{opacity:1;pointer-events:all;}
 .modal{background:#fff8f9;border-radius:22px;padding:clamp(22px,5vw,40px);max-width:480px;width:100%;box-shadow:0 24px 80px rgba(139,34,82,.2);transform:translateY(22px) scale(.96);transition:transform .3s ease;border:1px solid rgba(196,84,122,.15);}
@@ -272,60 +271,91 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .modal-div{height:1px;background:linear-gradient(90deg,transparent,var(--soft),transparent);margin:12px 0;}
 .modal-txt{font-family:'DM Sans',sans-serif;font-size:clamp(14px,2vw,15px);font-weight:300;color:var(--ink);line-height:1.85;text-align:center;white-space:pre-line;}
 .modal-sig{margin-top:16px;text-align:right;font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--rose);}
-
 .lightbox{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .lightbox img{max-width:92vw;max-height:92vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
-
+/* FOOTER */
 .site-footer{text-align:center;margin-top:48px;}
 .fp{display:inline-flex;align-items:center;gap:10px;background:#fff0f5;border:1px solid rgba(196,84,122,.15);border-radius:50px;padding:8px 22px;font-size:11px;letter-spacing:.12em;color:var(--deep);opacity:.8;}
 .hb{animation:hb 1.4s ease-in-out infinite;display:inline-block;}
 @keyframes hb{0%,100%{transform:scale(1);}14%{transform:scale(1.28);}28%{transform:scale(1);}42%{transform:scale(1.18);}70%{transform:scale(1);}}
 
-@media(max-width:480px){.grid{grid-template-columns:repeat(4,1fr);gap:7px;}.photo-grid{grid-template-columns:repeat(2,1fr);}}
-@media(min-width:481px) and (max-width:1024px){.grid{grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:9px;}}
-
-/* ═══════════════════════════════════════════
-   10 NOUVELLES FONCTIONNALITÉS — CSS
-═══════════════════════════════════════════ */
-
-/* 1. WIDGET "JOURS ENSEMBLE" sur la page accueil */
-.together-widget{
-  background:linear-gradient(135deg,var(--rose),var(--deep));
-  border-radius:20px;padding:20px 24px;margin:0 auto 28px;max-width:480px;
-  display:flex;align-items:center;gap:16px;
-  box-shadow:0 8px 28px rgba(139,34,82,.3);
-  cursor:default;
-}
+/* ════════════════════════════════
+   WIDGETS ACCUEIL
+════════════════════════════════ */
+/* Widget jours ensemble */
+.together-widget{background:linear-gradient(135deg,var(--rose),var(--deep));border-radius:20px;padding:20px 24px;margin:0 auto 22px;max-width:480px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 28px rgba(139,34,82,.3);}
 .tw-icon{font-size:34px;animation:heartPop 1.5s ease-in-out infinite;}
 @keyframes heartPop{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
 .tw-text{flex:1;}
 .tw-num{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,38px);font-weight:700;color:#fff;line-height:1;}
-.tw-label{font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.15em;text-transform:uppercase;margin-top:2px;}
+.tw-label{font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.12em;text-transform:uppercase;margin-top:2px;}
 
-/* 2. PAGE HUMEUR */
-#page-humeur .mood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:12px;max-width:500px;margin:0 auto 28px;}
+/* Widget météo relation rapide */
+.mini-meteo-widget{background:#fff0f5;border:1.5px solid rgba(196,84,122,.18);border-radius:20px;padding:16px 20px;margin:0 auto 16px;max-width:480px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s;}
+.mini-meteo-widget:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,34,82,.12);}
+.mmw-ico{font-size:32px;}
+.mmw-info{flex:1;}
+.mmw-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--deep);}
+.mmw-sub{font-size:11px;color:var(--mid);margin-top:2px;}
+.mmw-arrow{color:var(--rose);font-size:16px;}
+
+/* Widget message du jour */
+.qdj-widget{background:linear-gradient(145deg,#fff8f9,#ffe8f0);border:1.5px solid rgba(196,84,122,.18);border-radius:20px;padding:18px 22px;margin:0 auto 16px;max-width:480px;cursor:pointer;transition:all .2s;}
+.qdj-widget:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,34,82,.12);}
+.qdj-w-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.qdj-w-ico{font-size:22px;}
+.qdj-w-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);font-weight:600;}
+.qdj-w-question{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(14px,2.8vw,16px);color:var(--deep);line-height:1.5;}
+
+/* Widgets stats duo */
+.stats-row{display:flex;gap:12px;max-width:480px;margin:0 auto 16px;flex-wrap:wrap;}
+.stat-widget{flex:1;min-width:100px;background:#fff0f5;border:1px solid rgba(196,84,122,.15);border-radius:18px;padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s;}
+.stat-widget:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(139,34,82,.12);}
+.sw-ico{font-size:24px;display:block;margin-bottom:6px;}
+.sw-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--deep);}
+.sw-lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
+
+/* Boutons découverte */
+.discover-section{margin:28px auto 0;max-width:680px;}
+.discover-title{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,3vw,20px);color:var(--deep);text-align:center;margin-bottom:16px;background:#fff0f5;display:inline-block;padding:5px 20px;border-radius:50px;border:1px solid rgba(196,84,122,.15);}
+.discover-header{text-align:center;margin-bottom:14px;}
+.discover-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:520px){.discover-grid{grid-template-columns:repeat(4,1fr);}}
+.disc-btn{display:flex;flex-direction:column;align-items:center;gap:7px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.15);border-radius:20px;padding:16px 10px;cursor:pointer;transition:all .28s;text-align:center;font-family:'DM Sans',sans-serif;}
+.disc-btn:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 10px 28px rgba(139,34,82,.18);background:#ffe8f2;border-color:var(--rose);}
+.disc-ico{font-size:28px;}
+.disc-label{font-size:11px;font-weight:600;color:var(--deep);}
+.disc-sub{font-size:9px;color:var(--mid);opacity:.7;}
+
+/* ════════════════════════════════
+   NOUVELLES FONCTIONNALITÉS CSS
+════════════════════════════════ */
+
+/* HUMEUR */
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:12px;max-width:500px;margin:0 auto 28px;}
 .mood-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff0f5;border:2px solid rgba(196,84,122,.15);border-radius:18px;padding:16px 10px;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;}
 .mood-btn:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 8px 20px rgba(139,34,82,.15);}
 .mood-btn.selected{background:linear-gradient(135deg,var(--rose),var(--deep));border-color:transparent;box-shadow:0 6px 20px rgba(139,34,82,.3);}
 .mood-btn.selected .mood-lbl{color:#fff;}
 .mood-ico{font-size:28px;}
 .mood-lbl{font-size:10px;color:var(--mid);font-weight:500;text-align:center;}
-.mood-btn.selected .mood-ico{animation:iconBounce .4s cubic-bezier(.68,-.55,.27,1.55);}
-@keyframes iconBounce{0%{transform:scale(.5);}100%{transform:scale(1);}}
-.mood-history{max-width:500px;margin:0 auto;}
+.mood-send-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:block;margin:0 auto 24px;box-shadow:0 4px 16px rgba(139,34,82,.3);transition:transform .2s;}
+.mood-send-btn:hover{transform:scale(1.04);}
 .mood-history h3{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--deep);margin-bottom:14px;text-align:center;}
 .mood-entry{display:flex;align-items:center;gap:12px;background:#fff0f5;border:1px solid rgba(196,84,122,.12);border-radius:14px;padding:12px 16px;margin-bottom:8px;}
 .mood-entry-ico{font-size:22px;}
 .mood-entry-info{flex:1;}
 .mood-entry-user{font-size:12px;font-weight:600;color:var(--deep);}
 .mood-entry-date{font-size:10px;color:var(--mid);opacity:.7;margin-top:1px;}
-.mood-send-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:block;margin:0 auto 24px;box-shadow:0 4px 16px rgba(139,34,82,.3);transition:transform .2s;}
-.mood-send-btn:hover{transform:scale(1.04);}
 .mood-login-needed{text-align:center;padding:20px;font-size:13px;color:var(--mid);}
 .mood-login-needed button{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:10px 24px;cursor:pointer;margin-top:12px;font-family:'DM Sans',sans-serif;font-size:13px;}
 
-/* 3. PAGE DÉFIS */
-#page-defis .defi-list{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+/* DÉFIS */
+.defi-progress{max-width:560px;margin:0 auto 24px;background:#fff0f5;border-radius:16px;padding:16px 20px;border:1px solid rgba(196,84,122,.15);}
+.defi-progress-label{font-size:12px;color:var(--mid);margin-bottom:8px;display:flex;justify-content:space-between;}
+.defi-progress-bar-bg{background:rgba(196,84,122,.15);border-radius:50px;height:8px;overflow:hidden;}
+.defi-progress-bar{background:linear-gradient(90deg,var(--rose),var(--deep));height:100%;border-radius:50px;transition:width .5s ease;}
+.defi-list{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
 .defi-card{background:#fff0f5;border:1.5px solid rgba(196,84,122,.15);border-radius:18px;padding:18px 20px;display:flex;align-items:center;gap:16px;transition:transform .2s;}
 .defi-card:hover{transform:translateX(4px);}
 .defi-card.done{background:linear-gradient(135deg,rgba(196,84,122,.1),rgba(139,34,82,.07));border-color:var(--rose);}
@@ -336,42 +366,34 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .defi-check{width:32px;height:32px;border-radius:50%;border:2px solid rgba(196,84,122,.3);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .25s;flex-shrink:0;}
 .defi-check.checked{background:linear-gradient(135deg,var(--rose),var(--deep));border-color:transparent;color:#fff;animation:checkPop .4s cubic-bezier(.68,-.55,.27,1.55);}
 @keyframes checkPop{0%{transform:scale(.4);}100%{transform:scale(1);}}
-.defi-progress{max-width:560px;margin:0 auto 24px;background:#fff0f5;border-radius:16px;padding:16px 20px;border:1px solid rgba(196,84,122,.15);}
-.defi-progress-label{font-size:12px;color:var(--mid);margin-bottom:8px;display:flex;justify-content:space-between;}
-.defi-progress-bar-bg{background:rgba(196,84,122,.15);border-radius:50px;height:8px;overflow:hidden;}
-.defi-progress-bar{background:linear-gradient(90deg,var(--rose),var(--deep));height:100%;border-radius:50px;transition:width .5s ease;}
 
-/* 4. PAGE CARTE VIRTUELLE */
-#page-carte .carte-wrap{max-width:420px;margin:0 auto;}
+/* CARTE VIRTUELLE */
+.carte-wrap{max-width:420px;margin:0 auto;}
 .carte-preview{background:linear-gradient(145deg,#fff8f5,#ffeef5);border-radius:24px;padding:36px 28px;text-align:center;box-shadow:0 16px 48px rgba(139,34,82,.2);border:2px solid rgba(196,84,122,.2);margin-bottom:20px;position:relative;overflow:hidden;}
-.carte-preview::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(196,84,122,.12),transparent);}
-.carte-preview::after{content:'';position:absolute;bottom:-30px;left:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,74,.1),transparent);}
-.carte-emoji-big{font-size:52px;margin-bottom:12px;display:block;animation:floatEmoji 3s ease-in-out infinite;}
-@keyframes floatEmoji{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.carte-emoji-big{font-size:52px;margin-bottom:12px;display:block;animation:iconFloat 3s ease-in-out infinite;}
 .carte-from{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;}
 .carte-msg-display{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,3vw,18px);color:var(--deep);line-height:1.7;margin-bottom:16px;}
 .carte-sig-display{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--rose);}
 .carte-form{background:#fff0f5;border-radius:18px;padding:20px;border:1px solid rgba(196,84,122,.15);}
 .carte-form label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:6px;margin-top:14px;}
 .carte-form label:first-child{margin-top:0;}
-.carte-form textarea,.carte-form select{width:100%;background:#fff8f9;border:1.5px solid rgba(196,84,122,.2);border-radius:12px;padding:10px 14px;font-family:'Playfair Display',serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;resize:none;}
-.carte-form textarea:focus,.carte-form select:focus{border-color:var(--rose);}
-.carte-form textarea{height:80px;}
+.carte-form textarea{width:100%;background:#fff8f9;border:1.5px solid rgba(196,84,122,.2);border-radius:12px;padding:10px 14px;font-family:'Playfair Display',serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;resize:none;height:80px;}
+.carte-form textarea:focus{border-color:var(--rose);}
 .carte-emoji-picker{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
 .ep-btn{font-size:22px;background:none;border:2px solid transparent;border-radius:10px;cursor:pointer;padding:4px;transition:all .2s;}
 .ep-btn:hover,.ep-btn.active{border-color:var(--rose);background:rgba(196,84,122,.08);transform:scale(1.15);}
 .carte-save-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:13px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:block;margin:16px auto 0;box-shadow:0 4px 16px rgba(139,34,82,.3);transition:transform .2s;}
 .carte-save-btn:hover{transform:scale(1.04);}
 
-/* 5. PAGE QUIZ */
-#page-quiz .quiz-wrap{max-width:500px;margin:0 auto;}
+/* QUIZ */
+.quiz-wrap{max-width:500px;margin:0 auto;}
 .quiz-card{background:#fff8f9;border-radius:22px;padding:28px 24px;box-shadow:0 12px 40px rgba(139,34,82,.15);border:1px solid rgba(196,84,122,.15);text-align:center;}
 .quiz-q-num{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:12px;}
 .quiz-question{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,3.5vw,22px);color:var(--deep);margin-bottom:24px;line-height:1.5;}
 .quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
 .quiz-opt{background:#fff0f5;border:1.5px solid rgba(196,84,122,.2);border-radius:14px;padding:13px 18px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);transition:all .2s;}
 .quiz-opt:hover{background:#ffe0ec;border-color:var(--rose);transform:translateX(4px);}
-.quiz-opt.correct{background:linear-gradient(135deg,#27ae60,#1e8449);border-color:transparent;color:#fff;animation:checkPop .4s cubic-bezier(.68,-.55,.27,1.55);}
+.quiz-opt.correct{background:linear-gradient(135deg,#27ae60,#1e8449);border-color:transparent;color:#fff;}
 .quiz-opt.wrong{background:linear-gradient(135deg,#e74c3c,#c0392b);border-color:transparent;color:#fff;}
 .quiz-result{font-size:13px;color:var(--mid);line-height:1.6;margin-top:8px;min-height:40px;}
 .quiz-next-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:11px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:transform .2s;margin-top:8px;}
@@ -383,48 +405,33 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .quiz-restart-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:20px;transition:transform .2s;}
 .quiz-restart-btn:hover{transform:scale(1.04);}
 
-/* 6. PAGE MÉTÉO RELATION */
-#page-meteo .meteo-wrap{max-width:480px;margin:0 auto;}
+/* MÉTÉO RELATION */
+.meteo-wrap{max-width:480px;margin:0 auto;}
 .meteo-big{text-align:center;background:linear-gradient(145deg,#fff8f9,#ffeef5);border-radius:24px;padding:32px 24px;margin-bottom:20px;box-shadow:0 12px 40px rgba(139,34,82,.15);border:1px solid rgba(196,84,122,.15);}
-.meteo-ico-big{font-size:64px;display:block;margin-bottom:12px;animation:floatEmoji 3s ease-in-out infinite;}
+.meteo-ico-big{font-size:64px;display:block;margin-bottom:12px;animation:iconFloat 3s ease-in-out infinite;}
 .meteo-title{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,28px);color:var(--deep);margin-bottom:8px;}
 .meteo-desc{font-size:13px;color:var(--mid);line-height:1.6;}
-.meteo-days{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.meteo-days{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
 .meteo-day{background:#fff0f5;border:1px solid rgba(196,84,122,.15);border-radius:16px;padding:14px 10px;text-align:center;}
 .meteo-day-ico{font-size:24px;margin-bottom:6px;display:block;}
 .meteo-day-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);}
 .meteo-day-val{font-family:'Playfair Display',serif;font-size:13px;color:var(--deep);margin-top:4px;}
-.meteo-set-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:block;margin:16px auto 0;transition:transform .2s;}
+.meteo-set-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:block;margin:0 auto;transition:transform .2s;}
 .meteo-set-btn:hover{transform:scale(1.04);}
-.meteo-picker{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0;}
-.mp-btn{font-size:20px;background:#fff0f5;border:2px solid transparent;border-radius:12px;padding:8px 12px;cursor:pointer;transition:all .2s;}
-.mp-btn:hover,.mp-btn.selected{border-color:var(--rose);background:rgba(196,84,122,.1);transform:scale(1.1);}
+.meteo-picker{background:#fff0f5;border-radius:16px;padding:16px;margin-top:14px;border:1px solid rgba(196,84,122,.12);}
+.meteo-picker p{text-align:center;font-size:12px;color:var(--mid);margin-bottom:10px;}
+.mp-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px;}
+.mp-btn{font-size:22px;background:#fff8f9;border:2px solid transparent;border-radius:12px;padding:8px 12px;cursor:pointer;transition:all .2s;}
+.mp-btn:hover,.mp-btn.selected{border-color:var(--rose);background:rgba(196,84,122,.1);}
 
-/* 7. PAGE BOÎTE À BISOUS */
-#page-bisous .bisous-wrap{max-width:480px;margin:0 auto;text-align:center;}
-.bisous-counter{background:linear-gradient(145deg,var(--rose),var(--deep));border-radius:28px;padding:32px;margin-bottom:20px;box-shadow:0 12px 40px rgba(139,34,82,.35);}
-.bisous-num{font-family:'Playfair Display',serif;font-size:72px;font-weight:700;color:#fff;line-height:1;}
-.bisous-label{font-size:12px;color:rgba(255,255,255,.75);letter-spacing:.25em;text-transform:uppercase;margin-top:4px;}
-.bisous-btn{background:#fff0f5;border:2px solid var(--rose);border-radius:50%;width:70px;height:70px;font-size:32px;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
-.bisous-btn:hover{background:var(--rose);transform:scale(1.15);box-shadow:0 8px 24px rgba(139,34,82,.4);}
-.bisous-btn:active{transform:scale(.95);}
-.bisous-who{display:flex;justify-content:center;gap:12px;margin-bottom:20px;}
-.bw-btn{flex:1;max-width:160px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.2);border-radius:50px;padding:10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--deep);transition:all .2s;}
-.bw-btn.active{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border-color:transparent;}
-.bisous-log{max-height:220px;overflow-y:auto;}
-.bisous-entry{display:flex;align-items:center;gap:10px;background:#fff0f5;border-radius:12px;padding:10px 14px;margin-bottom:8px;border:1px solid rgba(196,84,122,.1);}
-.be-ico{font-size:20px;}
-.be-info{flex:1;font-size:12px;color:var(--mid);}
-.be-user{font-weight:600;color:var(--deep);}
-
-/* 8. PAGE OBJECTIFS */
-#page-objectifs .obj-wrap{max-width:560px;margin:0 auto;}
+/* OBJECTIFS */
+.obj-wrap{max-width:560px;margin:0 auto;}
 .obj-add{display:flex;gap:10px;margin-bottom:20px;}
 .obj-input{flex:1;background:#fff0f5;border:1.5px solid rgba(196,84,122,.2);border-radius:14px;padding:11px 16px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}
 .obj-input:focus{border-color:var(--rose);}
 .obj-add-btn{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:14px;padding:11px 20px;cursor:pointer;font-size:18px;transition:transform .2s;}
 .obj-add-btn:hover{transform:scale(1.06);}
-.obj-item{display:flex;align-items:center;gap:12px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.12);border-radius:16px;padding:14px 16px;margin-bottom:10px;transition:all .2s;}
+.obj-item{display:flex;align-items:center;gap:12px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.12);border-radius:16px;padding:14px 16px;margin-bottom:10px;}
 .obj-item.done-item{opacity:.6;background:rgba(196,84,122,.07);}
 .obj-check-btn{width:28px;height:28px;border-radius:50%;border:2px solid rgba(196,84,122,.35);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:14px;}
 .obj-check-btn.checked{background:linear-gradient(135deg,var(--rose),var(--deep));border-color:transparent;color:#fff;}
@@ -434,47 +441,82 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .obj-del-btn:hover{opacity:.8;}
 .obj-empty{text-align:center;padding:28px;font-size:13px;color:var(--mid);font-family:'Playfair Display',serif;font-style:italic;}
 
-/* 9. PAGE ASTROLOGIE */
-#page-astro .astro-wrap{max-width:500px;margin:0 auto;}
-.astro-compat{background:linear-gradient(145deg,#fff8f9,#ffeef5);border-radius:24px;padding:28px 24px;text-align:center;margin-bottom:20px;box-shadow:0 12px 40px rgba(139,34,82,.15);border:1px solid rgba(196,84,122,.15);}
-.astro-signs{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px;}
-.astro-sign{text-align:center;}
-.astro-sign-ico{font-size:40px;display:block;margin-bottom:4px;}
-.astro-sign-name{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);}
-.astro-x{font-size:20px;color:var(--rose);}
-.astro-score-bar{background:rgba(196,84,122,.15);border-radius:50px;height:12px;overflow:hidden;margin:16px 0 8px;}
-.astro-score-fill{background:linear-gradient(90deg,var(--rose),var(--deep));height:100%;border-radius:50px;transition:width 1.2s cubic-bezier(.16,1,.3,1);}
-.astro-score-label{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--deep);}
-.astro-traits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
-.astro-trait{background:#fff0f5;border:1px solid rgba(196,84,122,.12);border-radius:14px;padding:14px;text-align:center;}
-.astro-trait-ico{font-size:22px;margin-bottom:6px;}
-.astro-trait-title{font-size:11px;font-weight:600;color:var(--deep);}
-.astro-trait-desc{font-size:10px;color:var(--mid);margin-top:3px;line-height:1.4;}
-.astro-daily{background:#fff0f5;border-radius:18px;padding:20px;border:1px solid rgba(196,84,122,.12);}
-.astro-daily-title{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--deep);margin-bottom:10px;text-align:center;}
-.astro-daily-msg{font-family:'Playfair Display',serif;font-size:14px;color:var(--mid);line-height:1.7;text-align:center;font-style:italic;}
+/* NOUVELLE FONC 1 : JOURNAL COMMUN */
+.journal-wrap{max-width:560px;margin:0 auto;}
+.journal-login-bar{display:flex;gap:8px;margin-bottom:16px;}
+.jlb-btn{flex:1;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;transition:all .2s;}
+.jlb-r{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;}
+.jlb-s{background:linear-gradient(135deg,#9b59b6,#6c3483);color:#fff;}
+.jlb-btn.active{box-shadow:0 4px 14px rgba(0,0,0,.2);transform:scale(1.03);}
+.journal-composer{background:#fff8f9;border-radius:20px;padding:20px;border:1px solid rgba(196,84,122,.15);margin-bottom:20px;box-shadow:0 6px 24px rgba(139,34,82,.08);}
+.journal-composer h4{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--deep);margin-bottom:12px;}
+.journal-textarea{width:100%;min-height:100px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.18);border-radius:14px;padding:14px;font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);resize:none;outline:none;line-height:1.6;transition:border-color .2s;}
+.journal-textarea:focus{border-color:var(--rose);}
+.journal-date-label{font-size:11px;color:var(--mid);margin-bottom:8px;display:block;}
+.journal-submit{margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:transform .2s;}
+.journal-submit:hover{transform:scale(1.03);}
+.journal-entries{display:flex;flex-direction:column;gap:14px;}
+.journal-entry{background:#fff0f5;border:1.5px solid rgba(196,84,122,.12);border-radius:18px;padding:18px 20px;}
+.journal-entry.from-salma{background:linear-gradient(135deg,rgba(155,89,182,.06),rgba(108,52,131,.03));border-color:rgba(155,89,182,.2);}
+.je-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.je-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0;}
+.je-from{font-size:11px;font-weight:600;color:var(--deep);}
+.je-date{font-size:10px;color:var(--mid);opacity:.6;margin-left:auto;}
+.je-text{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);line-height:1.7;}
+.je-del{background:none;border:none;cursor:pointer;font-size:13px;opacity:.3;transition:opacity .2s;margin-top:8px;}
+.je-del:hover{opacity:.7;}
+.journal-empty{text-align:center;padding:28px;font-size:13px;color:var(--mid);font-family:'Playfair Display',serif;font-style:italic;}
 
-/* 10. BOUTONS DÉCOUVERTE sur la page accueil */
-.discover-section{margin:28px auto 0;max-width:680px;}
-.discover-title{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,3vw,22px);color:var(--deep);text-align:center;margin-bottom:18px;}
-.discover-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-@media(min-width:600px){.discover-grid{grid-template-columns:repeat(3,1fr);}}
-.disc-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.15);border-radius:20px;padding:18px 12px;cursor:pointer;transition:all .28s;text-align:center;font-family:'DM Sans',sans-serif;}
-.disc-btn:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 10px 28px rgba(139,34,82,.18);background:#ffe8f2;border-color:var(--rose);}
-.disc-ico{font-size:30px;}
-.disc-label{font-size:12px;font-weight:600;color:var(--deep);}
-.disc-sub{font-size:10px;color:var(--mid);opacity:.7;}
+/* NOUVELLE FONC 2 : JUKEBOX */
+.jukebox-wrap{max-width:500px;margin:0 auto;}
+.jukebox-now{background:linear-gradient(145deg,var(--rose),var(--deep));border-radius:24px;padding:28px 24px;text-align:center;margin-bottom:20px;box-shadow:0 12px 40px rgba(139,34,82,.35);}
+.jk-disc{font-size:56px;display:block;margin-bottom:12px;animation:jkSpin 4s linear infinite;}
+@keyframes jkSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.jk-title{font-family:'Playfair Display',serif;font-size:clamp(17px,3.5vw,22px);color:#fff;margin-bottom:4px;}
+.jk-artist{font-size:12px;color:rgba(255,255,255,.75);letter-spacing:.08em;}
+.jk-why{font-size:12px;color:rgba(255,255,255,.6);font-style:italic;margin-top:6px;}
+.jk-controls{display:flex;gap:12px;justify-content:center;margin-top:18px;}
+.jk-btn{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.jk-btn:hover{background:rgba(255,255,255,.3);transform:scale(1.1);}
+.jk-btn.main{width:56px;height:56px;background:rgba(255,255,255,.25);font-size:22px;}
+.jk-yt-btn{display:flex;align-items:center;gap:8px;justify-content:center;margin:14px auto 0;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;padding:10px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;}
+.jk-yt-btn:hover{background:rgba(255,255,255,.25);}
+.jk-list{display:flex;flex-direction:column;gap:8px;}
+.jk-item{display:flex;align-items:center;gap:12px;background:#fff0f5;border:1px solid rgba(196,84,122,.12);border-radius:14px;padding:12px 16px;cursor:pointer;transition:all .2s;}
+.jk-item:hover{background:#ffe0ec;transform:translateX(4px);}
+.jk-item.active{background:linear-gradient(135deg,rgba(196,84,122,.15),rgba(139,34,82,.1));border-color:var(--rose);}
+.jki-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.jki-info{flex:1;}
+.jki-title{font-family:'Playfair Display',serif;font-size:14px;color:var(--deep);}
+.jki-artist{font-size:10px;color:var(--mid);opacity:.7;}
+.jki-ico{font-size:16px;}
 
-/* Modal générique pour les nouvelles pages */
-.new-modal-bg{position:fixed;inset:0;z-index:350;background:rgba(58,21,37,.52);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease;}
-.new-modal-bg.open{opacity:1;pointer-events:all;}
-.new-modal{background:#fff8f9;border-radius:24px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(139,34,82,.2);transform:translateY(22px) scale(.96);transition:transform .3s ease;border:1px solid rgba(196,84,122,.15);}
-.new-modal-bg.open .new-modal{transform:translateY(0) scale(1);}
-.new-modal-hd{display:flex;align-items:center;justify-content:space-between;padding:20px 22px 0;}
-.new-modal-title{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--deep);}
-.new-modal-close{width:30px;height:30px;border-radius:50%;border:1px solid rgba(196,84,122,.2);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--rose);font-size:15px;transition:background .2s;}
-.new-modal-close:hover{background:rgba(196,84,122,.07);}
-.new-modal-body{padding:16px 22px 24px;}
+/* QUESTION DU JOUR dans une page dédiée */
+.qdj-page-wrap{max-width:500px;margin:0 auto;}
+.qdj-card{background:#fff8f9;border-radius:22px;padding:28px 24px;box-shadow:0 12px 40px rgba(139,34,82,.15);border:1px solid rgba(196,84,122,.15);}
+.qdj-date{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;font-weight:600;text-align:center;}
+.qdj-ico{font-size:44px;display:block;text-align:center;margin-bottom:12px;animation:iconFloat 3s ease-in-out infinite;}
+.qdj-q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,3.5vw,22px);color:var(--deep);text-align:center;line-height:1.5;margin-bottom:20px;}
+.qdj-login-bar{display:flex;gap:8px;margin-bottom:14px;}
+.qdj-who-btn{flex:1;padding:10px;border-radius:50px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;transition:all .2s;}
+.qdj-who-btn.r{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;}
+.qdj-who-btn.s{background:linear-gradient(135deg,#9b59b6,#6c3483);color:#fff;}
+.qdj-who-btn.inactive{opacity:.4;}
+.qdj-answer-section{margin-bottom:16px;}
+.qdj-answer-label{font-size:11px;color:var(--mid);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.qdj-textarea{width:100%;min-height:80px;background:#fff0f5;border:1.5px solid rgba(196,84,122,.18);border-radius:12px;padding:12px 14px;font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);resize:none;outline:none;}
+.qdj-textarea:focus{border-color:var(--rose);}
+.qdj-save{background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;border:none;border-radius:50px;padding:11px 26px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:transform .2s;}
+.qdj-save:hover{transform:scale(1.04);}
+.qdj-answers-display{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+.qdj-ans-item{background:#fff0f5;border:1px solid rgba(196,84,122,.12);border-radius:14px;padding:12px 16px;}
+.qdj-ans-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.qdj-ans-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;}
+.qdj-ans-name{font-size:11px;font-weight:600;color:var(--deep);}
+.qdj-ans-text{font-family:'Playfair Display',serif;font-size:14px;color:var(--ink);line-height:1.65;}
+
+@media(max-width:480px){.grid{grid-template-columns:repeat(4,1fr);gap:7px;}.photo-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:481px) and (max-width:1024px){.grid{grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:9px;}}
 </style>
 </head>
 <body>
@@ -497,7 +539,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 <div class="ham" id="ham" onclick="toggleSB()"><div class="hl"></div><div class="hl"></div><div class="hl"></div></div>
 <div class="overlay" id="overlay" onclick="closeSB()"></div>
 
-<!-- SIDEBAR — code original + 10 nouveaux items -->
+<!-- SIDEBAR -->
 <nav class="sidebar" id="sidebar">
   <div class="sb-title">Navigation</div>
   <button class="ni active" id="nav-home" onclick="goPage('home')"><div class="ni-ico np">🏠</div><div><span>Accueil</span><span class="ni-sub">Surprises quotidiennes</span></div></button>
@@ -506,15 +548,15 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
   <button class="ni" id="nav-playlist" onclick="goPage('playlist')"><div class="ni-ico nm">🎵</div><div><span>Notre Playlist</span><span class="ni-sub">Nos chansons</span></div></button>
   <button class="ni" id="nav-moments" onclick="goPage('moments')"><div class="ni-ico no">⭐</div><div><span>Nos Moments</span><span class="ni-sub">Notre timeline</span></div></button>
   <div class="sb-div"></div>
-  <!-- 10 NOUVELLES PAGES -->
   <button class="ni" id="nav-humeur" onclick="goPage('humeur')"><div class="ni-ico nq">😊</div><div><span>Humeur du jour</span><span class="ni-sub">Comment tu te sens ?</span></div></button>
   <button class="ni" id="nav-defis" onclick="goPage('defis')"><div class="ni-ico nw">🎯</div><div><span>Défis en couple</span><span class="ni-sub">À faire ensemble</span></div></button>
   <button class="ni" id="nav-carte" onclick="goPage('carte')"><div class="ni-ico nx">💐</div><div><span>Carte Virtuelle</span><span class="ni-sub">Envoyer un message</span></div></button>
   <button class="ni" id="nav-quiz" onclick="goPage('quiz')"><div class="ni-ico ny">🧠</div><div><span>Quiz "Nous Deux"</span><span class="ni-sub">Teste ta connaissance</span></div></button>
   <button class="ni" id="nav-meteo" onclick="goPage('meteo')"><div class="ni-ico nz">🌤️</div><div><span>Météo Relation</span><span class="ni-sub">L'ambiance du moment</span></div></button>
-  <button class="ni" id="nav-bisous" onclick="goPage('bisous')"><div class="ni-ico np">💋</div><div><span>Boîte à Bisous</span><span class="ni-sub">Envoie un bisou</span></div></button>
+  <button class="ni" id="nav-journal" onclick="goPage('journal')"><div class="ni-ico nj">📔</div><div><span>Journal Commun</span><span class="ni-sub">Notre cahier partagé</span></div></button>
+  <button class="ni" id="nav-jukebox" onclick="goPage('jukebox')"><div class="ni-ico nk">🎧</div><div><span>Jukebox</span><span class="ni-sub">Écouter notre musique</span></div></button>
   <button class="ni" id="nav-objectifs" onclick="goPage('objectifs')"><div class="ni-ico nm">📝</div><div><span>Nos Objectifs</span><span class="ni-sub">Nos projets ensemble</span></div></button>
-  <button class="ni" id="nav-astro" onclick="goPage('astro')"><div class="ni-ico no">✨</div><div><span>Astrologie</span><span class="ni-sub">Compatibilité & horoscope</span></div></button>
+  <button class="ni" id="nav-qdj" onclick="goPage('qdj')"><div class="ni-ico no">💭</div><div><span>Question du Jour</span><span class="ni-sub">Répondez ensemble</span></div></button>
   <div class="sb-div"></div>
   <a class="ni" href="tel:0753403436"><div class="ni-ico nr">📱</div><div><span>Appeler Rayan</span><span class="ni-sub">07 53 40 34 36</span></div></a>
   <a class="ni" href="https://twitter.com/fan2salmouchee" target="_blank"><div class="ni-ico nb">𝕏</div><div><span>Twitter</span><span class="ni-sub">@fan2salmouchee</span></div></a>
@@ -528,7 +570,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
   <button class="fab-top" id="fabTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </div>
 
-<!-- ═══ PAGE ACCUEIL (code original + widget jours ensemble + boutons découverte) ═══ -->
+<!-- ═══ PAGE ACCUEIL ═══ -->
 <div class="page active" id="page-home">
   <div class="wrap" id="mainWrap">
     <header class="site-hd">
@@ -546,13 +588,53 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
     </header>
     <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
 
-    <!-- ★ NOUVEAU 1 : Widget jours ensemble -->
-    <div class="together-widget" id="togetherWidget">
+    <!-- WIDGET JOURS ENSEMBLE -->
+    <div class="together-widget">
       <span class="tw-icon">💕</span>
       <div class="tw-text">
         <div class="tw-num" id="twNum">0</div>
         <div class="tw-label">jours ensemble depuis le 19 sept. 2025</div>
       </div>
+    </div>
+
+    <!-- WIDGETS STATS -->
+    <div class="stats-row" style="max-width:480px;margin:0 auto 16px;">
+      <div class="stat-widget" onclick="goPage('defis')">
+        <span class="sw-ico">🎯</span>
+        <div class="sw-num" id="statDefis">0</div>
+        <div class="sw-lbl">Défis faits</div>
+      </div>
+      <div class="stat-widget" onclick="goPage('objectifs')">
+        <span class="sw-ico">📝</span>
+        <div class="sw-num" id="statObjs">0</div>
+        <div class="sw-lbl">Objectifs</div>
+      </div>
+      <div class="stat-widget" onclick="goPage('gallery')">
+        <span class="sw-ico">📸</span>
+        <div class="sw-num" id="statPhotos">0</div>
+        <div class="sw-lbl">Photos</div>
+      </div>
+      <div class="stat-widget" onclick="goPage('journal')">
+        <span class="sw-ico">📔</span>
+        <div class="sw-num" id="statJournal">0</div>
+        <div class="sw-lbl">Entrées</div>
+      </div>
+    </div>
+
+    <!-- WIDGET MÉTÉO RAPIDE -->
+    <div class="mini-meteo-widget" onclick="goPage('meteo')">
+      <span class="mmw-ico" id="homeMeteoIco">☀️</span>
+      <div class="mmw-info">
+        <div class="mmw-title" id="homeMeteoTitle">Météo de notre relation</div>
+        <div class="mmw-sub" id="homeMeteoSub">Appuie pour voir et mettre à jour</div>
+      </div>
+      <span class="mmw-arrow">→</span>
+    </div>
+
+    <!-- WIDGET QUESTION DU JOUR -->
+    <div class="qdj-widget" onclick="goPage('qdj')">
+      <div class="qdj-w-header"><span class="qdj-w-ico">💭</span><span class="qdj-w-label">Question du jour</span></div>
+      <div class="qdj-w-question" id="homeQdj">Chargement…</div>
     </div>
 
     <div class="cd-strip">
@@ -572,18 +654,18 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
     </div>
     <div class="grid" id="grid"></div>
 
-    <!-- ★ NOUVEAU 10 : Boutons découverte -->
+    <!-- BOUTONS DÉCOUVERTE -->
     <div class="discover-section">
-      <div class="discover-title">Explore le site 🌸</div>
+      <div class="discover-header"><span class="discover-title">Explorer 🌸</span></div>
       <div class="discover-grid">
         <div class="disc-btn" onclick="goPage('humeur')"><span class="disc-ico">😊</span><span class="disc-label">Humeur</span><span class="disc-sub">Du jour</span></div>
         <div class="disc-btn" onclick="goPage('defis')"><span class="disc-ico">🎯</span><span class="disc-label">Défis</span><span class="disc-sub">En couple</span></div>
         <div class="disc-btn" onclick="goPage('carte')"><span class="disc-ico">💐</span><span class="disc-label">Carte</span><span class="disc-sub">Virtuelle</span></div>
         <div class="disc-btn" onclick="goPage('quiz')"><span class="disc-ico">🧠</span><span class="disc-label">Quiz</span><span class="disc-sub">Nous deux</span></div>
-        <div class="disc-btn" onclick="goPage('meteo')"><span class="disc-ico">🌤️</span><span class="disc-label">Météo</span><span class="disc-sub">Relation</span></div>
-        <div class="disc-btn" onclick="goPage('bisous')"><span class="disc-ico">💋</span><span class="disc-label">Bisous</span><span class="disc-sub">Boîte</span></div>
+        <div class="disc-btn" onclick="goPage('jukebox')"><span class="disc-ico">🎧</span><span class="disc-label">Jukebox</span><span class="disc-sub">Notre musique</span></div>
+        <div class="disc-btn" onclick="goPage('journal')"><span class="disc-ico">📔</span><span class="disc-label">Journal</span><span class="disc-sub">Commun</span></div>
         <div class="disc-btn" onclick="goPage('objectifs')"><span class="disc-ico">📝</span><span class="disc-label">Objectifs</span><span class="disc-sub">Ensemble</span></div>
-        <div class="disc-btn" onclick="goPage('astro')"><span class="disc-ico">✨</span><span class="disc-label">Astro</span><span class="disc-sub">Compatibilité</span></div>
+        <div class="disc-btn" onclick="goPage('qdj')"><span class="disc-ico">💭</span><span class="disc-label">Question</span><span class="disc-sub">Du jour</span></div>
       </div>
     </div>
 
@@ -591,42 +673,19 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
   </div>
 </div>
 
-<!-- ═══ PAGES ORIGINALES (inchangées) ═══ -->
+<!-- ═══ PAGE GALERIE ═══ -->
 <div class="page" id="page-gallery">
   <div class="page-hd"><h2>Notre Galerie 📸</h2><p>Photos partagées par nous deux</p></div>
   <div class="page-body">
-    <div id="galleryLogin">
-      <div class="login-screen">
-        <h3>Qui es-tu ? 🌸</h3>
-        <p>Connecte-toi pour accéder à la galerie et ajouter tes photos.</p>
-        <div class="tuto"><strong>📋 Comment ajouter vos photos ?</strong><br>1. Connecte-toi avec ton profil<br>2. Appuie sur <strong>« Ajouter une photo »</strong><br>3. Choisis tes photos depuis ta galerie<br>4. Elles apparaissent avec ton nom en bas 👦👧<br>5. Quand l'autre se connecte, il voit tout ! ✅</div>
-        <div class="login-options">
-          <button class="login-btn login-rayan" onclick="loginAs('rayan')"><span class="login-ico">👦</span><div><span class="login-name">Rayan</span><span class="login-role">Le créateur du site</span></div></button>
-          <button class="login-btn login-salma" onclick="loginAs('salma')"><span class="login-ico">👧</span><div><span class="login-name">Salmouchee</span><span class="login-role">La personne la plus spéciale</span></div></button>
-        </div>
-      </div>
-    </div>
-    <div id="galleryContent" style="display:none">
-      <div class="gallery-user-bar">
-        <div class="gub-left"><div class="gub-avatar" id="galleryAvatar"></div><span id="galleryUsername"></span></div>
-        <button class="logout-btn" onclick="logout()">Changer ↩</button>
-      </div>
-      <div class="photo-grid" id="photoGrid"></div>
-      <div style="text-align:center;margin-top:16px;">
-        <button class="photo-upload-btn" onclick="document.getElementById('photoInput').click()">📷 Ajouter une photo</button>
-        <input type="file" id="photoInput" accept="image/*" multiple style="display:none" onchange="handlePhotos(event)"/>
-      </div>
-    </div>
+    <div id="galleryLogin"><div class="login-screen"><h3>Qui es-tu ? 🌸</h3><p>Connecte-toi pour accéder à la galerie.</p><div class="tuto"><strong>📋 Comment ajouter vos photos ?</strong><br>1. Connecte-toi avec ton profil<br>2. Appuie sur « Ajouter une photo »<br>3. Choisis tes photos depuis ta galerie<br>4. Elles apparaissent avec ton nom en bas 👦👧<br>5. Quand l'autre se connecte, il voit tout ! ✅</div><div class="login-options"><button class="login-btn login-rayan" onclick="loginAs('rayan')"><span class="login-ico">👦</span><div><span class="login-name">Rayan</span><span class="login-role">Le créateur du site</span></div></button><button class="login-btn login-salma" onclick="loginAs('salma')"><span class="login-ico">👧</span><div><span class="login-name">Salmouchee</span><span class="login-role">La personne la plus spéciale</span></div></button></div></div></div>
+    <div id="galleryContent" style="display:none"><div class="gallery-user-bar"><div class="gub-left"><div class="gub-avatar" id="galleryAvatar"></div><span id="galleryUsername"></span></div><button class="logout-btn" onclick="logout()">Changer ↩</button></div><div class="photo-grid" id="photoGrid"></div><div style="text-align:center;margin-top:16px;"><button class="photo-upload-btn" onclick="document.getElementById('photoInput').click()">📷 Ajouter une photo</button><input type="file" id="photoInput" accept="image/*" multiple style="display:none" onchange="handlePhotos(event)"/></div></div>
   </div>
 </div>
 
+<!-- ═══ PAGE LETTRE ═══ -->
 <div class="page" id="page-letter">
   <div class="page-hd"><h2>Ma Lettre pour toi 💌</h2><p>Un message rien que pour toi, Salmouchee</p></div>
-  <div class="page-body">
-    <div class="letter-paper">
-      <div class="letter-hd"><h2>Salma,</h2><p>Lis ça tranquillement 🌸</p></div>
-      <div class="letter-div"></div>
-      <div class="letter-body">Je sais pas toujours bien m'exprimer à l'oral. T'as dû le remarquer. Alors j'ai préféré écrire, parce que là au moins j'arrive à dire vraiment ce que je ressens.
+  <div class="page-body"><div class="letter-paper"><div class="letter-hd"><h2>Salma,</h2><p>Lis ça tranquillement 🌸</p></div><div class="letter-div"></div><div class="letter-body">Je sais pas toujours bien m'exprimer à l'oral. T'as dû le remarquer. Alors j'ai préféré écrire, parce que là au moins j'arrive à dire vraiment ce que je ressens.
 
 Depuis que je te connais, les choses ont changé. Pas de façon dramatique, mais dans les petits trucs. Dans la façon dont une journée peut passer différemment juste parce qu'on s'est parlé. Dans les moments où je pense à toi sans raison, juste comme ça, entre deux trucs.
 
@@ -638,33 +697,26 @@ J'ai créé ce site pour que chaque jour, tu aies quelque chose à ouvrir. Pour 
 
 Tu mérites tout le bonheur du monde, Salmouchee. Et je suis là, à côté.
 
-Prends soin de toi.</div>
-      <div class="letter-div"></div>
-      <div class="letter-sig">— Rayan ❤️</div>
-    </div>
-  </div>
+Prends soin de toi.</div><div class="letter-div"></div><div class="letter-sig">— Rayan ❤️</div></div></div>
 </div>
 
+<!-- ═══ PAGE PLAYLIST ═══ -->
 <div class="page" id="page-playlist">
-  <div class="page-hd"><h2>Notre Playlist 🎵</h2><p>Appuie sur une chanson pour l'écouter sur YouTube ▶️</p></div>
+  <div class="page-hd"><h2>Notre Playlist 🎵</h2><p>Appuie pour écouter sur YouTube ▶️</p></div>
   <div class="page-body"><div class="track-list" id="trackList"></div></div>
 </div>
 
+<!-- ═══ PAGE MOMENTS ═══ -->
 <div class="page" id="page-moments">
   <div class="page-hd"><h2>Nos Moments ⭐</h2><p>La timeline de nous deux</p></div>
   <div class="page-body"><div class="timeline" id="timeline"></div></div>
 </div>
 
-<!-- ═══ 10 NOUVELLES PAGES ═══ -->
-
-<!-- 2. HUMEUR DU JOUR -->
+<!-- ═══ PAGE HUMEUR ═══ -->
 <div class="page" id="page-humeur">
   <div class="page-hd"><h2>Humeur du jour 😊</h2><p>Comment tu te sens aujourd'hui ?</p></div>
   <div class="page-body" id="humeurBody">
-    <div id="humeurLoginMsg" class="mood-login-needed" style="display:none">
-      <p>Connecte-toi d'abord dans la galerie pour partager ton humeur.</p>
-      <button onclick="goPage('gallery')">Se connecter 👤</button>
-    </div>
+    <div id="humeurLoginMsg" class="mood-login-needed" style="display:none"><p>Connecte-toi d'abord dans la galerie pour partager ton humeur.</p><button onclick="goPage('gallery')">Se connecter 👤</button></div>
     <div id="humeurMain" style="display:none">
       <div class="mood-grid" id="moodGrid"></div>
       <button class="mood-send-btn" onclick="sendMood()">Envoyer mon humeur 💕</button>
@@ -672,146 +724,116 @@ Prends soin de toi.</div>
     </div>
   </div>
 </div>
-<!-- 3. DÉFIS EN COUPLE -->
+
+<!-- ═══ PAGE DÉFIS ═══ -->
 <div class="page" id="page-defis">
   <div class="page-hd"><h2>Défis en couple 🎯</h2><p>Petits défis mignons à faire ensemble</p></div>
   <div class="page-body">
-    <div class="defi-progress">
-      <div class="defi-progress-label"><span>Progression</span><span id="defiProgressTxt">0 / 10</span></div>
-      <div class="defi-progress-bar-bg"><div class="defi-progress-bar" id="defiBar" style="width:0%"></div></div>
-    </div>
+    <div class="defi-progress"><div class="defi-progress-label"><span>Progression</span><span id="defiProgressTxt">0 / 10</span></div><div class="defi-progress-bar-bg"><div class="defi-progress-bar" id="defiBar" style="width:0%"></div></div></div>
     <div class="defi-list" id="defiList"></div>
   </div>
 </div>
 
-<!-- 4. CARTE VIRTUELLE -->
+<!-- ═══ PAGE CARTE VIRTUELLE ═══ -->
 <div class="page" id="page-carte">
   <div class="page-hd"><h2>Carte Virtuelle 💐</h2><p>Crée un message spécial pour Salmouchee</p></div>
-  <div class="page-body">
-    <div class="carte-wrap">
-      <div class="carte-preview">
-        <span class="carte-emoji-big" id="carteEmojiDisplay">🌸</span>
-        <div class="carte-from">De Rayan, avec tout son amour</div>
-        <div class="carte-msg-display" id="carteMsgDisplay">Écris ton message ci-dessous…</div>
-        <div class="carte-sig-display">— Rayan ❤️</div>
-      </div>
-      <div class="carte-form">
-        <label>Choisis un émoji</label>
-        <div class="carte-emoji-picker" id="carteEmojiPicker"></div>
-        <label>Ton message</label>
-        <textarea id="carteMsgInput" placeholder="Écris quelque chose de beau…" oninput="updateCarte()"></textarea>
-        <button class="carte-save-btn" onclick="saveCarte()">Sauvegarder cette carte 💾</button>
-      </div>
-    </div>
-  </div>
+  <div class="page-body"><div class="carte-wrap"><div class="carte-preview"><span class="carte-emoji-big" id="carteEmojiDisplay">🌸</span><div class="carte-from">De Rayan, avec tout son amour</div><div class="carte-msg-display" id="carteMsgDisplay">Écris ton message ci-dessous…</div><div class="carte-sig-display">— Rayan ❤️</div></div><div class="carte-form"><label>Choisis un émoji</label><div class="carte-emoji-picker" id="carteEmojiPicker"></div><label>Ton message</label><textarea id="carteMsgInput" placeholder="Écris quelque chose de beau…" oninput="updateCarte()"></textarea><button class="carte-save-btn" onclick="saveCarte()">Sauvegarder cette carte 💾</button></div></div></div>
 </div>
 
-<!-- 5. QUIZ -->
+<!-- ═══ PAGE QUIZ ═══ -->
 <div class="page" id="page-quiz">
   <div class="page-hd"><h2>Quiz "Nous Deux" 🧠</h2><p>Teste ta connaissance de notre histoire</p></div>
-  <div class="page-body">
-    <div class="quiz-wrap">
-      <div class="quiz-card" id="quizCard"></div>
-    </div>
-  </div>
+  <div class="page-body"><div class="quiz-wrap"><div class="quiz-card" id="quizCard"></div></div></div>
 </div>
-
-<!-- 6. MÉTÉO RELATION -->
+<!-- ═══ PAGE MÉTÉO ═══ -->
 <div class="page" id="page-meteo">
   <div class="page-hd"><h2>Météo Relation 🌤️</h2><p>L'ambiance de notre relation en ce moment</p></div>
   <div class="page-body">
-    <div id="meteoLoginMsg" class="mood-login-needed" style="display:none">
-      <p>Connecte-toi pour mettre à jour la météo.</p>
-      <button onclick="goPage('gallery')">Se connecter 👤</button>
-    </div>
-    <div id="meteoMain">
-      <div class="meteo-wrap">
-        <div class="meteo-big" id="meteoBig">
-          <span class="meteo-ico-big" id="meteoIco">☀️</span>
-          <div class="meteo-title" id="meteoTitle">Ensoleillé</div>
-          <div class="meteo-desc" id="meteoDesc">Tout va bien, l'amour brille fort aujourd'hui. On est au top.</div>
-        </div>
-        <div class="meteo-days">
-          <div class="meteo-day"><span class="meteo-day-ico">😊</span><div class="meteo-day-label">Rayan</div><div class="meteo-day-val" id="meteoRayan">–</div></div>
-          <div class="meteo-day"><span class="meteo-day-ico">💕</span><div class="meteo-day-label">Ensemble</div><div class="meteo-day-val" id="meteoTogether">–</div></div>
-          <div class="meteo-day"><span class="meteo-day-ico">🌸</span><div class="meteo-day-label">Salmouchee</div><div class="meteo-day-val" id="meteoSalma">–</div></div>
-        </div>
-        <div id="meteoPicker" style="display:none">
-          <p style="text-align:center;font-size:12px;color:var(--mid);margin:16px 0 8px;">Quelle est ton humeur ?</p>
-          <div class="meteo-picker" id="meteoPickerBtns"></div>
-          <button class="meteo-set-btn" onclick="closeMeteoModal()">Fermer</button>
-        </div>
-        <button class="meteo-set-btn" onclick="openMeteoPicker()" id="meteoSetBtn">Mettre à jour ma météo</button>
-      </div>
+    <div class="meteo-wrap">
+      <div class="meteo-big"><span class="meteo-ico-big" id="meteoIco">☀️</span><div class="meteo-title" id="meteoTitle">Ensoleillé</div><div class="meteo-desc" id="meteoDesc">Tout va bien, l'amour brille fort aujourd'hui.</div></div>
+      <div class="meteo-days"><div class="meteo-day"><span class="meteo-day-ico">👦</span><div class="meteo-day-label">Rayan</div><div class="meteo-day-val" id="meteoRayan">–</div></div><div class="meteo-day"><span class="meteo-day-ico">💕</span><div class="meteo-day-label">Ensemble</div><div class="meteo-day-val" id="meteoTogether">–</div></div><div class="meteo-day"><span class="meteo-day-ico">👧</span><div class="meteo-day-label">Salmouchee</div><div class="meteo-day-val" id="meteoSalma">–</div></div></div>
+      <div id="meteoPicker" style="display:none" class="meteo-picker"><p>Quelle est ton humeur ?</p><div class="mp-row" id="meteoPickerBtns"></div><button class="meteo-set-btn" style="background:rgba(196,84,122,.2);color:var(--deep);" onclick="document.getElementById('meteoPicker').style.display='none'">Fermer</button></div>
+      <button class="meteo-set-btn" onclick="openMeteoPicker()" id="meteoSetBtn" style="margin-top:14px;">Mettre à jour ma météo</button>
     </div>
   </div>
 </div>
 
-<!-- 7. BOÎTE À BISOUS -->
-<div class="page" id="page-bisous">
-  <div class="page-hd"><h2>Boîte à Bisous 💋</h2><p>Envoie un bisou à Salmouchee</p></div>
+<!-- ═══ PAGE JOURNAL COMMUN ═══ -->
+<div class="page" id="page-journal">
+  <div class="page-hd"><h2>Journal Commun 📔</h2><p>Notre cahier partagé — écrivez ce que vous voulez</p></div>
   <div class="page-body">
-    <div class="bisous-wrap">
-      <div class="bisous-who">
-        <button class="bw-btn active" id="bwRayan" onclick="setBisouUser('rayan')">👦 Rayan</button>
-        <button class="bw-btn" id="bwSalma" onclick="setBisouUser('salma')">👧 Salmouchee</button>
+    <div class="journal-wrap">
+      <div class="journal-composer">
+        <h4>Nouvelle entrée</h4>
+        <div class="journal-login-bar">
+          <button class="jlb-btn jlb-r active" id="jlbRayan" onclick="setJournalUser('rayan')">👦 Rayan</button>
+          <button class="jlb-btn jlb-s" id="jlbSalma" onclick="setJournalUser('salma')" style="opacity:.4;">👧 Salmouchee</button>
+        </div>
+        <span class="journal-date-label" id="journalDateLabel"></span>
+        <textarea class="journal-textarea" id="journalTextarea" placeholder="Écris ce que tu ressens, un souvenir, une pensée…"></textarea>
+        <button class="journal-submit" onclick="submitJournal()">Publier dans le journal ✍️</button>
       </div>
-      <div class="bisous-counter">
-        <div class="bisous-num" id="bisousNum">0</div>
-        <div class="bisous-label">bisous envoyés 💋</div>
-      </div>
-      <button class="bisous-btn" onclick="sendBisou()">💋</button>
-      <p style="text-align:center;font-size:12px;color:var(--mid);margin-bottom:16px;">Appuie pour envoyer un bisou !</p>
-      <div class="bisous-log" id="bisousLog"></div>
+      <div class="journal-entries" id="journalEntries"></div>
+      <div class="journal-empty" id="journalEmpty">Aucune entrée pour l'instant.<br>Soyez les premiers à écrire quelque chose ! 🌸</div>
     </div>
   </div>
 </div>
 
-<!-- 8. OBJECTIFS -->
+<!-- ═══ PAGE JUKEBOX ═══ -->
+<div class="page" id="page-jukebox">
+  <div class="page-hd"><h2>Jukebox 🎧</h2><p>Notre playlist interactive</p></div>
+  <div class="page-body">
+    <div class="jukebox-wrap">
+      <div class="jukebox-now">
+        <span class="jk-disc" id="jkDisc">🎵</span>
+        <div class="jk-title" id="jkTitle">Un jour je l'aurai</div>
+        <div class="jk-artist" id="jkArtist">Jul</div>
+        <div class="jk-why" id="jkWhy">"Cette chanson me fait penser à toi depuis le début."</div>
+        <div class="jk-controls">
+          <button class="jk-btn" onclick="jkPrev()">⏮</button>
+          <a class="jk-btn main" id="jkPlayBtn" href="#" target="_blank" rel="noopener">▶</a>
+          <button class="jk-btn" onclick="jkNext()">⏭</button>
+        </div>
+      </div>
+      <div class="jk-list" id="jkList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE OBJECTIFS ═══ -->
 <div class="page" id="page-objectifs">
   <div class="page-hd"><h2>Nos Objectifs 📝</h2><p>Ce qu'on veut faire ensemble</p></div>
-  <div class="page-body">
-    <div class="obj-wrap">
-      <div class="obj-add">
-        <input class="obj-input" id="objInput" placeholder="Ajouter un objectif…" onkeydown="if(event.key==='Enter')addObj()"/>
-        <button class="obj-add-btn" onclick="addObj()">+</button>
-      </div>
-      <div id="objList"></div>
-      <div class="obj-empty" id="objEmpty">Aucun objectif pour l'instant… Ajoute-en un ! 🌸</div>
-    </div>
-  </div>
+  <div class="page-body"><div class="obj-wrap"><div class="obj-add"><input class="obj-input" id="objInput" placeholder="Ajouter un objectif…" onkeydown="if(event.key==='Enter')addObj()"/><button class="obj-add-btn" onclick="addObj()">+</button></div><div id="objList"></div><div class="obj-empty" id="objEmpty">Aucun objectif pour l'instant… Ajoute-en un ! 🌸</div></div></div>
 </div>
 
-<!-- 9. ASTROLOGIE -->
-<div class="page" id="page-astro">
-  <div class="page-hd"><h2>Astrologie ✨</h2><p>Compatibilité & horoscope du jour</p></div>
+<!-- ═══ PAGE QUESTION DU JOUR ═══ -->
+<div class="page" id="page-qdj">
+  <div class="page-hd"><h2>Question du Jour 💭</h2><p>Répondez chacun de votre côté</p></div>
   <div class="page-body">
-    <div class="astro-wrap">
-      <div class="astro-compat">
-        <div class="astro-signs">
-          <div class="astro-sign"><span class="astro-sign-ico">♈</span><div class="astro-sign-name">Rayan</div></div>
-          <div class="astro-x">✕</div>
-          <div class="astro-sign"><span class="astro-sign-ico">♎</span><div class="astro-sign-name">Salma</div></div>
+    <div class="qdj-page-wrap">
+      <div class="qdj-card">
+        <div class="qdj-date" id="qdjDate"></div>
+        <span class="qdj-ico" id="qdjIco">💭</span>
+        <div class="qdj-q" id="qdjQuestion">Chargement…</div>
+        <div class="qdj-login-bar">
+          <button class="qdj-who-btn r" id="qdjBtnR" onclick="setQdjUser('rayan')">👦 Rayan</button>
+          <button class="qdj-who-btn s inactive" id="qdjBtnS" onclick="setQdjUser('salma')">👧 Salmouchee</button>
         </div>
-        <div class="astro-score-bar"><div class="astro-score-fill" id="astroFill" style="width:0%"></div></div>
-        <div class="astro-score-label" id="astroScore">92% compatibles</div>
-        <div class="astro-traits" id="astroTraits"></div>
-      </div>
-      <div class="astro-daily">
-        <div class="astro-daily-title">Message du jour pour vous deux 🌙</div>
-        <div class="astro-daily-msg" id="astroDailyMsg">Chargement…</div>
+        <div class="qdj-answer-section" id="qdjAnswerSection">
+          <span class="qdj-answer-label" id="qdjAnswerLabel">Ta réponse :</span>
+          <textarea class="qdj-textarea" id="qdjTextarea" placeholder="Écris ta réponse ici…"></textarea>
+          <br><button class="qdj-save" onclick="saveQdj()" style="margin-top:10px;">Sauvegarder 💾</button>
+        </div>
+        <div class="qdj-answers-display" id="qdjAnswersDisplay"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL CASES ORIGINAL -->
+<!-- MODAL CASES -->
 <div class="modal-bg" id="modalBg" onclick="closeModal(event)">
   <div class="modal" id="modal">
-    <div class="modal-hd">
-      <span class="modal-badge" id="modalBadge">Jour 1</span>
-      <button class="modal-close" onclick="closeModalD()">✕</button>
-    </div>
+    <div class="modal-hd"><span class="modal-badge" id="modalBadge">Jour 1</span><button class="modal-close" onclick="closeModalD()">✕</button></div>
     <span class="modal-ico" id="modalIco">🌸</span>
     <h3 class="modal-title" id="modalTitle"></h3>
     <div class="modal-div"></div>
@@ -819,67 +841,41 @@ Prends soin de toi.</div>
     <p class="modal-sig" id="modalSig">— Rayan</p>
   </div>
 </div>
-
 <audio id="bgAudio" src="musique.mp3" loop></audio>
 
 <script>
-// ══ CODE ORIGINAL (inchangé) ══
+// ══ CONFIG ══
 const START=new Date("2026-05-03T00:00:00");
 const BDAY=new Date("2026-10-26T00:00:00");
-
-const MSGS={
-  0:{icon:"💬",title:"Le premier jour",content:"Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime."},
-  1:{icon:"🌙",title:"Bête de journée",content:"Hier on a passé une journée géniale avec ta maman.\n\nD'ailleurs fait lui savoir qu'elle cuisine vraiment bien hohoho. Je suis tellement heureux de te connaître."},
-  2:{icon:"💌",title:"Une lettre",content:"Salma,\n\nJe pense beaucoup à toi ça me fait tellement bizarre d'aller à la fac sans que tu sois là.\n\nOn se voit pour manger après tfaçon nan ? je t'aime mimiche."},
-  3:{icon:"🗺️",title:"Ensemble",content:"Un jour on ira quelque part ensemble, juste pour le plaisir.\n\nPas besoin que ce soit grand. Juste toi, moi, et un bon moment à raconter plus tard."},
-  4:{icon:"📸",title:"Notre photo",content:"Il y a des moments qu'on n'a pas pris en photo mais qu'on n'oublie jamais.\n\nT'en as sûrement un toi aussi. Moi oui. Et tu joues dedans. 🌸"},
-  5:{icon:"❤️",title:"Salma ecoute moi",content:"N'ecoute pas cefte vicieuse moi je t'aimerais jusqu'à la fin de ma vie .\n\nPersonne pourra te remplacer. La condescendance ne mene a nul part, elle me degoute, cest signe d'un coeur noir or que le tien est blanc comme les consommateurs du Ciao Kombucha."},
-  6:{icon:"✨",title:"Ce que j'aime",content:"Ta façon d'être toi-même sans t'excuser.\nTon sourire quand quelque chose te fait vraiment rire.\nTon caractère — même quand il me tient tête.\n\nTout ça ensemble, ça forme quelqu'un d'extraordinaire."},
-  7:{icon:"🌸",title:"Juste pour toi",content:"Aujourd'hui j'avais juste envie de te dire que je pense à toi, et que ça me suffit comme raison d'écrire."},
-  8:{icon:"☕",title:"Les matins",content:"Les matins seraient tellement mieux avec toi.\n\nJuste un café, une conversation tranquille. Ça doit être mignon."},
-  9:{icon:"🌊",title:"Quelque chose de calme",content:"Il y a quelque chose de très calme dans ce que je ressens pour toi.\n\nJuste une certitude douce que t'es importante. C'est rare ça."},
-  10:{icon:"🎀",title:"Hello Kitty t'envie",content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Hello Kitty t'envie, je t'assure."},
-  11:{icon:"💪",title:"Ta force",content:"T'as une force en toi que tu vois pas forcément.\n\nMoi je la vois. Dans ta façon de gérer les choses, de continuer même quand c'est dur. Elle me bluffe, vraiment."},
-  12:{icon:"🌟",title:"Tu brilles",content:"T'as cette capacité à être lumineuse même sans t'en rendre compte.\n\nSoit t'as, soit t'as pas. Et toi t'as. En abondance."},
-  13:{icon:"🏴‍☠️",title:"She's my Nakama",content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nMon trésor à moi il s'appelle Salmouchee."},
-  14:{icon:"🎮",title:"Tomodachi Life",content:"Si on était des personnages Tomodachi Life, je suis sûr que notre compatibilité serait à 100%.\n\nAvec toi même les imperfections ont l'air d'aller de soi."},
-  15:{icon:"🌙",title:"Les nuits",content:"Les nuits où je dors pas bien, je pense à des trucs simples.\n\nUne conversation qu'on a eu. Un truc drôle que t'as dit. Et bizarrement ça suffit à rendre la nuit plus douce."},
-  16:{icon:"💭",title:"Dans ma tête",content:"T'es dans ma tête plus souvent que tu le réalises.\n\nC'est dingue comme quelqu'un peut prendre autant de place sans même être là."},
-  17:{icon:"🙏",title:"Merci",content:"Merci d'être toi, d'être là, de me rendre la vie plus colorée.\n\nT'es un cadeau même si tu réalises pas à quel point."},
-  18:{icon:"🔮",title:"L'avenir",content:"Dans tous les scénarios que j'imagine pour l'avenir, t'es là.\n\nT'es devenue une évidence pour moi. Et les évidences, on les protège."},
-  19:{icon:"🕊️",title:"La paix",content:"Il y a quelque chose de très paisible dans le fait de penser à toi.\n\nJuste une chaleur tranquille qui dit que tout va bien."},
-  20:{icon:"🌺",title:"Fleurir",content:"T'as la même façon que les fleurs de rendre l'espace autour de toi plus beau.\n\nSauf que toi tu fanes jamais. Et ça c'est encore mieux."},
-  21:{icon:"⚓",title:"L'ancre",content:"T'es les deux en même temps pour moi — celle qui me donne envie d'aller plus loin, et celle qui me donne envie de rester."},
-  22:{icon:"💫",title:"Unique",content:"Il n'y a qu'une seule toi dans tout l'univers. J'ai la chance de connaître cette personne. Je mesure cette chance."},
-  23:{icon:"🎯",title:"La promesse",content:"Je te promets pas la perfection. Je te promets juste d'être là, sincèrement.\n\nDes actes constants et honnêtes. C'est ça que je t'offre."},
-  24:{icon:"🧸",title:"Ton doudou",content:"Si j'étais un doudou, je voudrais être celui que tu sortirais les soirs où ça va pas, et que tu rangeras plus jamais. Voilà mon ambition."},
-  25:{icon:"🌅",title:"La veille",content:"Demain c'est ton anniversaire, Salmouchee.\n\nJe voulais juste te dire merci. Merci d'exister. Merci d'être toi."},
-};
+const MSGS={0:{icon:"💬",title:"Le premier jour",content:"Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime."},1:{icon:"🌙",title:"Bête de journée",content:"Hier on a passé une journée géniale avec ta maman.\n\nD'ailleurs fait lui savoir qu'elle cuisine vraiment bien hohoho. Je suis tellement heureux de te connaître."},2:{icon:"💌",title:"Une lettre",content:"Salma,\n\nJe pense beaucoup à toi ça me fait tellement bizarre d'aller à la fac sans que tu sois là.\n\nOn se voit pour manger après tfaçon nan ? je t'aime mimiche."},3:{icon:"🗺️",title:"Ensemble",content:"Un jour on ira quelque part ensemble, juste pour le plaisir.\n\nPas besoin que ce soit grand. Juste toi, moi, et un bon moment à raconter plus tard."},4:{icon:"📸",title:"Notre photo",content:"Il y a des moments qu'on n'a pas pris en photo mais qu'on n'oublie jamais.\n\nT'en as sûrement un toi aussi. Moi oui. Et tu joues dedans. 🌸"},5:{icon:"❤️",title:"Salma écoute moi",content:"N'écoute pas cette vicieuse moi je t'aimerais jusqu'à la fin de ma vie.\n\nPersonne pourra te remplacer. La condescendance ne mène à nul part, elle me dégoûte, c'est signe d'un cœur noir or que le tien est blanc. 🌸"},6:{icon:"✨",title:"Ce que j'aime",content:"Ta façon d'être toi-même sans t'excuser.\nTon sourire quand quelque chose te fait vraiment rire.\nTon caractère — même quand il me tient tête.\n\nTout ça ensemble, ça forme quelqu'un d'extraordinaire."},7:{icon:"🌸",title:"Juste pour toi",content:"Aujourd'hui j'avais juste envie de te dire que je pense à toi, et que ça me suffit comme raison d'écrire."},8:{icon:"☕",title:"Les matins",content:"Les matins seraient tellement mieux avec toi.\n\nJuste un café, une conversation tranquille. Ça doit être mignon."},9:{icon:"🌊",title:"Quelque chose de calme",content:"Il y a quelque chose de très calme dans ce que je ressens pour toi.\n\nJuste une certitude douce que t'es importante. C'est rare ça."},10:{icon:"🎀",title:"Hello Kitty t'envie",content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Hello Kitty t'envie, je t'assure."},11:{icon:"💪",title:"Ta force",content:"T'as une force en toi que tu vois pas forcément.\n\nMoi je la vois. Dans ta façon de gérer les choses, de continuer même quand c'est dur. Elle me bluffe, vraiment."},12:{icon:"🌟",title:"Tu brilles",content:"T'as cette capacité à être lumineuse même sans t'en rendre compte.\n\nSoit t'as, soit t'as pas. Et toi t'as. En abondance."},13:{icon:"🏴‍☠️",title:"She's my Nakama",content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nMon trésor à moi il s'appelle Salmouchee."},14:{icon:"🎮",title:"Tomodachi Life",content:"Si on était des personnages Tomodachi Life, je suis sûr que notre compatibilité serait à 100%.\n\nAvec toi même les imperfections ont l'air d'aller de soi."},15:{icon:"🌙",title:"Les nuits",content:"Les nuits où je dors pas bien, je pense à des trucs simples.\n\nUne conversation qu'on a eu. Un truc drôle que t'as dit. Et bizarrement ça suffit à rendre la nuit plus douce."},16:{icon:"💭",title:"Dans ma tête",content:"T'es dans ma tête plus souvent que tu le réalises.\n\nC'est dingue comme quelqu'un peut prendre autant de place sans même être là."},17:{icon:"🙏",title:"Merci",content:"Merci d'être toi, d'être là, de me rendre la vie plus colorée.\n\nT'es un cadeau même si tu réalises pas à quel point."},18:{icon:"🔮",title:"L'avenir",content:"Dans tous les scénarios que j'imagine pour l'avenir, t'es là.\n\nT'es devenue une évidence pour moi. Et les évidences, on les protège."},19:{icon:"🕊️",title:"La paix",content:"Il y a quelque chose de très paisible dans le fait de penser à toi.\n\nJuste une chaleur tranquille qui dit que tout va bien."},20:{icon:"🌺",title:"Fleurir",content:"T'as la même façon que les fleurs de rendre l'espace autour de toi plus beau.\n\nSauf que toi tu fanes jamais. Et ça c'est encore mieux."},21:{icon:"⚓",title:"L'ancre",content:"T'es les deux en même temps pour moi — celle qui me donne envie d'aller plus loin, et celle qui me donne envie de rester."},22:{icon:"💫",title:"Unique",content:"Il n'y a qu'une seule toi dans tout l'univers. J'ai la chance de connaître cette personne. Je mesure cette chance."},23:{icon:"🎯",title:"La promesse",content:"Je te promets pas la perfection. Je te promets juste d'être là, sincèrement.\n\nDes actes constants et honnêtes. C'est ça que je t'offre."},24:{icon:"🧸",title:"Ton doudou",content:"Si j'étais un doudou, je voudrais être celui que tu sortirais les soirs où ça va pas, et que tu rangeras plus jamais. Voilà mon ambition."},25:{icon:"🌅",title:"La veille",content:"Demain c'est ton anniversaire, Salmouchee.\n\nJe voulais juste te dire merci. Merci d'exister. Merci d'être toi."},};
 const BDAY_MSG={icon:"🎂",title:"Joyeux Anniversaire Salmouchee 🎉",content:"Aujourd'hui c'est TON jour. 🎂\n\nLe 26 octobre — la date où quelqu'un d'extraordinaire est arrivé dans ce monde.\n\nTu mérites tout le bonheur du monde, Salma. Tout. Sans exception.\n\nJoyeux anniversaire ma Salmouchee. 🌸✨"};
 const BDAY_LOCKED={icon:"🎂",title:"Bientôt ton jour magique ✨",content:"Cette case est réservée à ton anniversaire, Salmouchee !\n\nElle ne s'ouvrira que le 26 octobre… Tu es ma plus belle surprise. 🌸"};
 const GEN=[{icon:"🌸",title:"Penser à toi",content:"Aujourd'hui comme tous les autres jours, tu occupes mes pensées.\n\nT'es juste là, et c'est tout ce qu'il faut."},{icon:"💕",title:"Petit message",content:"Juste un petit rappel que t'es incroyable, Salmouchee. Bonne journée. 🌸"},{icon:"✨",title:"Une pensée",content:"Tu sais ce que j'aime avec toi ? Même les petits moments deviennent mémorables. C'est un talent rare."},{icon:"🌙",title:"Ce soir",content:"La nuit tombe et je pense à toi.\n\nNaturellement tu prends la meilleure place."},{icon:"💌",title:"Lettre du jour",content:"T'es quelqu'un de vraiment précieux, Salma. Cette façon d'être toi sans t'excuser. Je t'admire pour ça."},{icon:"⭐",title:"Ton éclat",content:"T'as un éclat particulier. Une lumière qui transperce même tes moments de doute."},{icon:"🎀",title:"Ma Salmouchee",content:"Je suis fier de toi. De qui tu es, de ce que tu fais. T'as une force que tu sous-estimes. Mais moi je la vois."},];
 const LOCKED=[{icon:"🔒",title:"Pas encore…",content:"Cette surprise t'attend sagement.\n\nReviens le bon jour et elle sera là, rien que pour toi. La patience, c'est aussi une forme d'amour. 🌸"},{icon:"⏳",title:"Bientôt, promis",content:"Tu veux savoir ce qu'il y a dedans ?\n\nChaque chose en son temps, Salmouchee."},{icon:"🌙",title:"Pas encore venu",content:"Il faut attendre encore un peu.\n\nMais crois-moi, ça vaut le coup d'attendre."},{icon:"🎁",title:"Surprise en cours…",content:"Ce cadeau se prépare encore.\n\nIl sera là le bon jour, exactement quand il le faut."},{icon:"✨",title:"Pas encore débloqué",content:"Cette case attend ton retour au bon moment.\n\nJusque-là, Rayan pense à toi chaque jour."},];
 const TRACKS=[{title:"Un jour je l'aurai",artist:"Jul",yt:"https://www.youtube.com/watch?v=OydY1P8aLC4",why:"Cette chanson me fait penser à toi depuis le début."},{title:"M.",artist:"Anil Emre Daldal",yt:"https://www.youtube.com/watch?v=41IaR01vEb0",why:"La mélodie, les paroles… elle te ressemble."},{title:"Plage Coquillage",artist:"Tao Mon Amour",yt:"https://www.youtube.com/watch?v=T3wSRDYXtPY",why:"Une chanson douce qui me fait penser à toi."},{title:"Ma chérie",artist:"Jul feat. Gims",yt:"https://www.youtube.com/watch?v=xz1bDy8Kt38",why:"Pour toi, évidemment."},{title:"Every day",artist:"Ninho feat. Griff",yt:"https://www.youtube.com/watch?v=aimcZ-Qmv5M",why:"Je pense à toi every day."},{title:"Tu sais",artist:"Djadja & Dinaz",yt:"https://www.youtube.com/watch?v=04EfAtfECYI",why:"Elle me fait penser à nous."},{title:"BB",artist:"Djadja & Dinaz",yt:"https://www.youtube.com/watch?v=J7vBCvuGpRY",why:"Tout simplement pour toi."},{title:"Elle t'a tué",artist:"Alonzo",yt:"https://www.youtube.com/watch?v=rV8jcjuRROo",why:"Une claque musicale."},{title:"À toi…",artist:"Mister You",yt:"https://www.youtube.com/watch?v=ywS5zpEwiBg",why:"Cette chanson est littéralement à toi."},];
 function buildMoments(){const now=new Date();const nowStr=now.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});return [{date:"17 septembre 2025",text:"La première fois qu'on se parle vraiment. J'apprends qu'on est dans la même classe en anglais — je sais pas encore que ce jour change tout.",emoji:"👀",special:false},{date:"19 septembre 2025",text:"On se voit. Et là, sans vraiment l'avoir prévu, on tombe amoureux l'un de l'autre. Certaines choses arrivent simplement.",emoji:"💕",special:false},{date:"26 octobre 2025",text:"Ton anniversaire — tes 19 ans. Le premier qu'on partage ensemble, même de loin.",emoji:"🎂",special:true},{date:"14 janvier 2026",text:"Après une période difficile où on croyait qu'on allait plus jamais se reparler… on se retrouve. Certains liens résistent à tout.",emoji:"🤝",special:false},{date:"6 avril 2026",text:"Mon anniversaire. T'étais là. Ça comptait plus que tu crois.",emoji:"🎉",special:true},{date:nowStr,text:"Aujourd'hui. On est ensemble, on s'aime mutuellement, et ce site est là pour te rappeler que ce sera toujours vrai. Je t'aime, Salmouchee.",emoji:"🌸",special:true,live:true},];}
+
+// ── UTILS ──
 function dBetween(a,b){return Math.round((Date.UTC(b.getFullYear(),b.getMonth(),b.getDate())-Date.UTC(a.getFullYear(),a.getMonth(),a.getDate()))/86400000);}
 function pad(n){return String(n).padStart(2,"0");}
 function fDate(d){const m=["jan","fév","mar","avr","mai","jun","jul","aoû","sep","oct","nov","déc"];return `${d.getDate()} ${m[d.getMonth()]}`;}
 function getOpened(){try{return JSON.parse(localStorage.getItem("oc")||"[]");}catch{return[];}}
 function markOpen(i){const o=getOpened();if(!o.includes(i)){o.push(i);localStorage.setItem("oc",JSON.stringify(o));}}
 function toast(msg,d=3000){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d);}
+
 const today=new Date();today.setHours(0,0,0,0);
 const total=dBetween(START,BDAY)+1;
 const unlocked=Math.min(dBetween(START,today)+1,total);
 
-const isp=document.getElementById('introSparkles');
-const spe=['🌸','✨','💫','🌟','💕','🎀'];
+// ── INTRO ──
+const isp=document.getElementById('introSparkles');const spe=['🌸','✨','💫','🌟','💕','🎀'];
 for(let i=0;i<24;i++){const p=document.createElement('div');p.className='sp';p.textContent=spe[i%spe.length];p.style.cssText=`left:${Math.random()*100}%;top:${15+Math.random()*75}%;font-size:${12+Math.random()*18}px;animation:spFloat ${1.5+Math.random()*2}s ${.3+Math.random()*2}s ease forwards;`;isp.appendChild(p);}
-function skipIntro(){document.getElementById('intro').classList.add('hide');setTimeout(()=>{document.getElementById('intro').style.display='none';document.getElementById('mainWrap').classList.add('visible');},800);}
+function skipIntro(){document.getElementById('intro').classList.add('hide');setTimeout(()=>{document.getElementById('intro').style.display='none';document.getElementById('mainWrap').classList.add('visible');updateHomeWidgets();},800);}
 setTimeout(()=>{if(document.getElementById('intro').style.display!=='none')skipIntro();},3800);
 
+// ── SIDEBAR ──
 function toggleSB(){const s=document.getElementById('sidebar');const o=document.getElementById('overlay');const h=document.getElementById('ham');s.classList.toggle('open');o.classList.toggle('open');h.classList.toggle('open');}
 function closeSB(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('open');document.getElementById('ham').classList.remove('open');}
-
 function goPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -894,11 +890,14 @@ function goPage(id){
   if(id==='carte')initCarte();
   if(id==='quiz')initQuiz();
   if(id==='meteo')initMeteo();
-  if(id==='bisous')initBisous();
+  if(id==='journal')initJournal();
+  if(id==='jukebox')initJukebox();
   if(id==='objectifs')renderObj();
-  if(id==='astro')initAstro();
+  if(id==='qdj')initQdj();
+  if(id==='home')updateHomeWidgets();
 }
 
+// ── GRILLE ──
 const grid=document.getElementById('grid');
 for(let i=0;i<total;i++){
   if(i===total-1){const sep=document.createElement('div');sep.className='bday-sep';sep.innerHTML='<div class="sl"></div><div class="st">✨ 26 Octobre — Ton Anniversaire ✨</div><div class="sl"></div>';grid.appendChild(sep);}
@@ -919,20 +918,48 @@ for(let i=0;i<total;i++){
   grid.appendChild(card);
 }
 
+// ── COUNTDOWN ──
 const cels={d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
 function popEl(el,v){const s=pad(v);if(el.textContent!==s){el.textContent=s;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}}
 function tick(){const diff=BDAY-new Date();if(diff<=0){Object.values(cels).forEach(e=>e.textContent='00');return;}popEl(cels.d,Math.floor(diff/86400000));popEl(cels.h,Math.floor((diff%86400000)/3600000));popEl(cels.m,Math.floor((diff%3600000)/60000));popEl(cels.s,Math.floor((diff%60000)/1000));}
 tick();setInterval(tick,1000);
 
+// ── WIDGETS ACCUEIL ──
+function updateHomeWidgets(){
+  // Jours ensemble
+  const ref=new Date("2025-09-19");
+  const days=Math.max(0,Math.floor((new Date()-ref)/86400000));
+  const el=document.getElementById('twNum');if(el)el.textContent=days;
+  // Stats
+  const defDone=(JSON.parse(localStorage.getItem('defis_done')||'[]')).length;
+  const objCount=(JSON.parse(localStorage.getItem('objectifs')||'[]')).length;
+  const photoCount=(JSON.parse(localStorage.getItem('gallery_photos')||'[]')).length;
+  const journalCount=(JSON.parse(localStorage.getItem('journal_entries')||'[]')).length;
+  const sd=document.getElementById('statDefis');if(sd)sd.textContent=defDone;
+  const so=document.getElementById('statObjs');if(so)so.textContent=objCount;
+  const sp2=document.getElementById('statPhotos');if(sp2)sp2.textContent=photoCount;
+  const sj=document.getElementById('statJournal');if(sj)sj.textContent=journalCount;
+  // Mini météo
+  const saved=JSON.parse(localStorage.getItem('meteo_data')||'null');
+  if(saved){const el2=document.getElementById('homeMeteoIco');if(el2)el2.textContent=saved.ico||'☀️';const tl=document.getElementById('homeMeteoTitle');if(tl)tl.textContent=saved.label||'Météo de notre relation';const sl=document.getElementById('homeMeteoSub');if(sl)sl.textContent=saved.desc||'Appuie pour voir et mettre à jour';}
+  // QDJ
+  const QDJ_QUESTIONS2=[{q:"Si on était des personnages de film, on serait dans quel genre ?",ico:"🎬"},{q:"C'est quoi le moment où t'as réalisé que tu tenais vraiment à moi ?",ico:"💕"},{q:"Si on pouvait partir demain n'importe où, où tu voudrais aller ?",ico:"✈️"},{q:"Quelle est la chose qui te fait le plus sourire quand tu penses à nous ?",ico:"😊"},{q:"Si tu pouvais choisir une chanson pour résumer notre histoire, laquelle ?",ico:"🎵"},{q:"Quel est le truc le plus drôle qu'on ait vécu ensemble ?",ico:"😂"},{q:"Si on avait une devise en couple, ça serait quoi ?",ico:"💫"},];
+  const idx=new Date().getDate()%QDJ_QUESTIONS2.length;
+  const qEl=document.getElementById('homeQdj');if(qEl)qEl.textContent=QDJ_QUESTIONS2[idx].q;
+}
+
+// ── MODAL ──
 function openModal(num,date,msg,isBday,isLocked){const m=document.getElementById('modal');m.classList.remove('bday-modal','locked-modal');if(isBday)m.classList.add('bday-modal');if(isLocked)m.classList.add('locked-modal');document.getElementById('modalBadge').textContent=isBday?'🎂 Ton Anniversaire !':`Jour ${num} · ${fDate(date)}`;document.getElementById('modalIco').textContent=msg.icon;document.getElementById('modalTitle').textContent=msg.title;document.getElementById('modalTxt').textContent=msg.content;document.getElementById('modalSig').style.display=isLocked?'none':'block';document.getElementById('modalBg').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(e){if(e.target===document.getElementById('modalBg'))closeModalD();}
 function closeModalD(){document.getElementById('modalBg').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalD();});
 
+// ── MUSIQUE ──
 let playing=false;const aud=document.getElementById('bgAudio');aud.volume=.4;
 function toggleMusic(){const fab=document.getElementById('musicFab');if(playing){aud.pause();playing=false;fab.textContent='🎵';fab.classList.remove('playing');toast('🔇 Musique pausée');}else{aud.play().catch(()=>{});playing=true;fab.textContent='🔇';fab.classList.add('playing');toast('🎵 Musique lancée');}}
 window.addEventListener('scroll',()=>{const b=document.getElementById('fabTop');window.scrollY>320?b.classList.add('vis'):b.classList.remove('vis');});
 
+// ── GALLERY ──
 let currentUser=localStorage.getItem('gallery_user')||null;
 function initGallery(){if(currentUser)showGalleryContent();else{document.getElementById('galleryLogin').style.display='block';document.getElementById('galleryContent').style.display='none';}}
 function loginAs(user){currentUser=user;localStorage.setItem('gallery_user',user);showGalleryContent();toast(`Connecté en tant que ${user==='rayan'?'Rayan 👦':'Salmouchee 👧'}`);}
@@ -940,214 +967,79 @@ function logout(){currentUser=null;localStorage.removeItem('gallery_user');docum
 function showGalleryContent(){document.getElementById('galleryLogin').style.display='none';document.getElementById('galleryContent').style.display='block';const av=document.getElementById('galleryAvatar');const un=document.getElementById('galleryUsername');if(currentUser==='rayan'){av.className='gub-avatar av-rayan';av.textContent='👦';un.textContent='Rayan';}else{av.className='gub-avatar av-salma';av.textContent='👧';un.textContent='Salmouchee';}renderGallery();}
 function getPhotos(){try{return JSON.parse(localStorage.getItem('gallery_photos')||'[]');}catch{return[];}}
 function savePhotos(p){localStorage.setItem('gallery_photos',JSON.stringify(p));}
-function renderGallery(){const pg=document.getElementById('photoGrid');pg.innerHTML='';const photos=getPhotos();photos.forEach(p=>{const slot=document.createElement('div');slot.className='photo-slot';const isRayan=p.author==='rayan';slot.innerHTML=`<img src="${p.src}" alt="photo"/><div class="ps-overlay"><div class="ps-avatar ${isRayan?'av-rayan':'av-salma'}">${isRayan?'👦':'👧'}</div><span class="ps-author">${isRayan?'Rayan':'Salmouchee'}</span></div>`;slot.onclick=()=>viewPhoto(p.src);pg.appendChild(slot);});const emptyCount=Math.max(0,4-photos.length);for(let i=0;i<emptyCount+2;i++){const slot=document.createElement('div');slot.className='photo-empty';slot.innerHTML=`<div class="pe-ico">📷</div><div class="pe-txt">Photo à venir</div>`;slot.onclick=()=>document.getElementById('photoInput').click();pg.appendChild(slot);}}
+function renderGallery(){const pg=document.getElementById('photoGrid');pg.innerHTML='';const photos=getPhotos();photos.forEach(p=>{const slot=document.createElement('div');slot.className='photo-slot';const isRayan=p.author==='rayan';slot.innerHTML=`<img src="${p.src}" alt="photo"/><div class="ps-overlay"><div class="ps-avatar ${isRayan?'av-rayan':'av-salma'}">${isRayan?'👦':'👧'}</div><span class="ps-author">${isRayan?'Rayan':'Salmouchee'}</span></div>`;slot.onclick=()=>viewPhoto(p.src);pg.appendChild(slot);});const ec=Math.max(0,4-photos.length);for(let i=0;i<ec+2;i++){const slot=document.createElement('div');slot.className='photo-empty';slot.innerHTML=`<div class="pe-ico">📷</div><div class="pe-txt">Photo à venir</div>`;slot.onclick=()=>document.getElementById('photoInput').click();pg.appendChild(slot);}}
 function handlePhotos(e){const files=Array.from(e.target.files);const photos=getPhotos();let done=0;files.forEach(f=>{const r=new FileReader();r.onload=ev=>{photos.push({src:ev.target.result,author:currentUser,date:new Date().toLocaleDateString('fr-FR')});done++;if(done===files.length){savePhotos(photos);renderGallery();toast(`📸 ${files.length} photo${files.length>1?'s':''} ajoutée${files.length>1?'s':''}!`);}};r.readAsDataURL(f);});e.target.value='';}
 function viewPhoto(src){const lb=document.createElement('div');lb.className='lightbox';lb.innerHTML=`<img src="${src}" alt="photo"/>`;lb.onclick=()=>lb.remove();document.body.appendChild(lb);}
+
+// ── PLAYLIST ──
 function renderPlaylist(){const list=document.getElementById('trackList');list.innerHTML='';TRACKS.forEach((t,i)=>{const el=document.createElement('a');el.className='track';el.href=t.yt;el.target='_blank';el.rel='noopener';el.innerHTML=`<div class="track-num">${i+1}</div><div class="track-info"><div class="track-title">${t.title}</div><div class="track-artist">${t.artist}</div>${t.why?`<div class="track-why">"${t.why}"</div>`:''}</div><div class="track-yt">▶️</div>`;list.appendChild(el);});}
+
+// ── MOMENTS ──
 function renderMoments(){const tl=document.getElementById('timeline');tl.innerHTML='';buildMoments().forEach(m=>{const el=document.createElement('div');el.className='moment'+(m.special?' special':'')+(m.live?' live':'');el.innerHTML=`<div class="moment-date">${m.date}${m.live?' · <span style="color:var(--rose);font-weight:700;">En ce moment même 🌸</span>':''}</div><div class="moment-text">${m.text}</div><div class="moment-emoji">${m.emoji}</div>`;tl.appendChild(el);});}
 
-// ══ CODE DES 10 NOUVELLES FONCTIONNALITÉS ══
-
-// — 1. Widget jours ensemble —
-(function(){
-  const start=new Date("2019-09-19");// date officielle 19 sept 2025
-  const ref=new Date("2025-09-19");
-  const days=Math.floor((new Date()-ref)/86400000);
-  const el=document.getElementById('twNum');
-  if(el)el.textContent=days>0?days:0;
-})();
-
-// — 2. HUMEUR DU JOUR —
-const MOODS=[{ico:'😍',lbl:'Amoureux'},{ico:'😊',lbl:'Heureux'},{ico:'🥰',lbl:'Câlin'},{ico:'😴',lbl:'Fatigué'},{ico:'🤩',lbl:'Excité'},{ico:'😌',lbl:'Calme'},{ico:'🥺',lbl:'Émouvant'},{ico:'😂',lbl:'Heureux'},{ico:'💪',lbl:'Motivé'},{ico:'🌸',lbl:'Doux'}];
+// ── HUMEUR ──
+const MOODS=[{ico:'😍',lbl:'Amoureux'},{ico:'😊',lbl:'Heureux'},{ico:'🥰',lbl:'Câlin'},{ico:'😴',lbl:'Fatigué'},{ico:'🤩',lbl:'Excité'},{ico:'😌',lbl:'Calme'},{ico:'🥺',lbl:'Émouvant'},{ico:'😂',lbl:'Joyeux'},{ico:'💪',lbl:'Motivé'},{ico:'🌸',lbl:'Doux'}];
 let selectedMood=null;
-function initHumeur(){
-  const u=localStorage.getItem('gallery_user');
-  if(!u){document.getElementById('humeurLoginMsg').style.display='block';document.getElementById('humeurMain').style.display='none';return;}
-  document.getElementById('humeurLoginMsg').style.display='none';document.getElementById('humeurMain').style.display='block';
-  const mg=document.getElementById('moodGrid');mg.innerHTML='';
-  MOODS.forEach((m,i)=>{const b=document.createElement('div');b.className='mood-btn';b.innerHTML=`<span class="mood-ico">${m.ico}</span><span class="mood-lbl">${m.lbl}</span>`;b.onclick=()=>{document.querySelectorAll('.mood-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');selectedMood=m;};mg.appendChild(b);});
-  renderMoodHistory();
-}
-function sendMood(){
-  if(!selectedMood){toast('Choisis une humeur d\'abord !');return;}
-  const u=localStorage.getItem('gallery_user');
-  const history=JSON.parse(localStorage.getItem('mood_history')||'[]');
-  history.unshift({ico:selectedMood.ico,lbl:selectedMood.lbl,user:u,date:new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long'})});
-  if(history.length>20)history.pop();
-  localStorage.setItem('mood_history',JSON.stringify(history));
-  renderMoodHistory();
-  toast(`${selectedMood.ico} Humeur partagée !`);
-  selectedMood=null;document.querySelectorAll('.mood-btn').forEach(x=>x.classList.remove('selected'));
-}
-function renderMoodHistory(){
-  const h=JSON.parse(localStorage.getItem('mood_history')||'[]');
-  const c=document.getElementById('moodHistory');c.innerHTML='';
-  if(!h.length){c.innerHTML='<div style="text-align:center;font-size:13px;color:var(--mid);padding:16px;font-style:italic;">Aucune humeur partagée pour l\'instant 🌸</div>';return;}
-  h.slice(0,8).forEach(e=>{const d=document.createElement('div');d.className='mood-entry';const isR=e.user==='rayan';d.innerHTML=`<span class="mood-entry-ico">${e.ico}</span><div class="mood-entry-info"><span class="mood-entry-user">${isR?'Rayan 👦':'Salmouchee 👧'}</span> — ${e.lbl}<div class="mood-entry-date">${e.date}</div></div>`;c.appendChild(d);});
-}
+function initHumeur(){const u=localStorage.getItem('gallery_user');if(!u){document.getElementById('humeurLoginMsg').style.display='block';document.getElementById('humeurMain').style.display='none';return;}document.getElementById('humeurLoginMsg').style.display='none';document.getElementById('humeurMain').style.display='block';const mg=document.getElementById('moodGrid');mg.innerHTML='';MOODS.forEach(m=>{const b=document.createElement('div');b.className='mood-btn';b.innerHTML=`<span class="mood-ico">${m.ico}</span><span class="mood-lbl">${m.lbl}</span>`;b.onclick=()=>{document.querySelectorAll('.mood-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');selectedMood=m;};mg.appendChild(b);});renderMoodHistory();}
+function sendMood(){if(!selectedMood){toast('Choisis une humeur d\'abord !');return;}const u=localStorage.getItem('gallery_user');const h=JSON.parse(localStorage.getItem('mood_history')||'[]');h.unshift({ico:selectedMood.ico,lbl:selectedMood.lbl,user:u,date:new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long'})});if(h.length>20)h.pop();localStorage.setItem('mood_history',JSON.stringify(h));renderMoodHistory();toast(`${selectedMood.ico} Humeur partagée !`);selectedMood=null;document.querySelectorAll('.mood-btn').forEach(x=>x.classList.remove('selected'));}
+function renderMoodHistory(){const h=JSON.parse(localStorage.getItem('mood_history')||'[]');const c=document.getElementById('moodHistory');c.innerHTML='';if(!h.length){c.innerHTML='<div style="text-align:center;font-size:13px;color:var(--mid);padding:16px;font-style:italic;">Aucune humeur partagée pour l\'instant 🌸</div>';return;}h.slice(0,8).forEach(e=>{const d=document.createElement('div');d.className='mood-entry';const isR=e.user==='rayan';d.innerHTML=`<span class="mood-entry-ico">${e.ico}</span><div class="mood-entry-info"><span class="mood-entry-user">${isR?'Rayan 👦':'Salmouchee 👧'}</span> — ${e.lbl}<div class="mood-entry-date">${e.date}</div></div>`;c.appendChild(d);});}
 
-// — 3. DÉFIS EN COUPLE —
-const DEFIS=[
-  {ico:'📸',title:'Photo ensemble',desc:'Prenez une photo tous les deux et ajoutez-la à la galerie !'},
-  {ico:'🍕',title:'Cuisiner ensemble',desc:'Préparez un repas ensemble, même simple.'},
-  {ico:'🎬',title:'Film marathon',desc:'Regardez un film ou une série ensemble.'},
-  {ico:'💌',title:'Lettre surprise',desc:'Rayan écrit un message surprise pour Salmouchee.'},
-  {ico:'🚶',title:'Balade romantique',desc:'Une balade ensemble, peu importe où.'},
-  {ico:'🎵',title:'Chanter ensemble',desc:'Chantez votre chanson préférée tous les deux.'},
-  {ico:'🌟',title:'3 qualités',desc:'Chacun dit 3 qualités qu\'il aime chez l\'autre.'},
-  {ico:'🎁',title:'Petit cadeau',desc:'Rayan fait une petite surprise à Salmouchee.'},
-  {ico:'🌅',title:'Regarder le coucher',desc:'Regardez un coucher de soleil ensemble.'},
-  {ico:'💫',title:'Soirée stargazing',desc:'Regardez les étoiles et faites un vœu ensemble.'},
-];
-function initDefis(){
-  const done=JSON.parse(localStorage.getItem('defis_done')||'[]');
-  const list=document.getElementById('defiList');list.innerHTML='';
-  DEFIS.forEach((d,i)=>{
-    const isDone=done.includes(i);
-    const card=document.createElement('div');card.className='defi-card'+(isDone?' done':'');
-    card.innerHTML=`<span class="defi-ico">${d.ico}</span><div class="defi-body"><div class="defi-title">${d.title}</div><div class="defi-desc">${d.desc}</div></div><button class="defi-check${isDone?' checked':''}" data-i="${i}">${isDone?'✓':''}</button>`;
-    card.querySelector('.defi-check').onclick=function(){
-      const idx=parseInt(this.dataset.i);const dd=JSON.parse(localStorage.getItem('defis_done')||'[]');
-      if(dd.includes(idx)){dd.splice(dd.indexOf(idx),1);}else{dd.push(idx);toast(`${d.ico} Défi accompli !`);}
-      localStorage.setItem('defis_done',JSON.stringify(dd));initDefis();
-    };
-    list.appendChild(card);
-  });
-  const doneCount=done.length;
-  document.getElementById('defiProgressTxt').textContent=`${doneCount} / ${DEFIS.length}`;
-  document.getElementById('defiBar').style.width=`${(doneCount/DEFIS.length)*100}%`;
-}
+// ── DÉFIS ──
+const DEFIS=[{ico:'📸',title:'Photo ensemble',desc:'Prenez une photo tous les deux et ajoutez-la à la galerie !'},{ico:'🍕',title:'Cuisiner ensemble',desc:'Préparez un repas ensemble, même simple.'},{ico:'🎬',title:'Film marathon',desc:'Regardez un film ou une série ensemble.'},{ico:'💌',title:'Lettre surprise',desc:'Rayan écrit un message surprise pour Salmouchee.'},{ico:'🚶',title:'Balade romantique',desc:'Une balade ensemble, peu importe où.'},{ico:'🎵',title:'Chanter ensemble',desc:'Chantez votre chanson préférée tous les deux.'},{ico:'🌟',title:'3 qualités',desc:'Chacun dit 3 qualités qu\'il aime chez l\'autre.'},{ico:'🎁',title:'Petit cadeau',desc:'Rayan fait une petite surprise à Salmouchee.'},{ico:'🌅',title:'Regarder le coucher',desc:'Regardez un coucher de soleil ensemble.'},{ico:'💫',title:'Soirée stargazing',desc:'Regardez les étoiles et faites un vœu ensemble.'},];
+function initDefis(){const done=JSON.parse(localStorage.getItem('defis_done')||'[]');const list=document.getElementById('defiList');list.innerHTML='';DEFIS.forEach((d,i)=>{const isDone=done.includes(i);const card=document.createElement('div');card.className='defi-card'+(isDone?' done':'');card.innerHTML=`<span class="defi-ico">${d.ico}</span><div class="defi-body"><div class="defi-title">${d.title}</div><div class="defi-desc">${d.desc}</div></div><button class="defi-check${isDone?' checked':''}" data-i="${i}">${isDone?'✓':''}</button>`;card.querySelector('.defi-check').onclick=function(){const idx=parseInt(this.dataset.i);const dd=JSON.parse(localStorage.getItem('defis_done')||'[]');if(dd.includes(idx)){dd.splice(dd.indexOf(idx),1);}else{dd.push(idx);toast(`${d.ico} Défi accompli !');}localStorage.setItem('defis_done',JSON.stringify(dd));initDefis();};list.appendChild(card);});const doneCount=done.length;document.getElementById('defiProgressTxt').textContent=`${doneCount} / ${DEFIS.length}`;document.getElementById('defiBar').style.width=`${(doneCount/DEFIS.length)*100}%`;}
 
-// — 4. CARTE VIRTUELLE —
+// ── CARTE ──
 const CARTE_EMOJIS=['🌸','💕','🌹','✨','💌','🎀','🌷','💐','🌻','🦋'];
 let selectedEmoji='🌸';
-function initCarte(){
-  const picker=document.getElementById('carteEmojiPicker');picker.innerHTML='';
-  CARTE_EMOJIS.forEach(e=>{const b=document.createElement('button');b.className='ep-btn'+(e===selectedEmoji?' active':'');b.textContent=e;b.onclick=()=>{selectedEmoji=e;document.getElementById('carteEmojiDisplay').textContent=e;document.querySelectorAll('.ep-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');};picker.appendChild(b);});
-  const saved=JSON.parse(localStorage.getItem('carte_saved')||'null');
-  if(saved){document.getElementById('carteMsgInput').value=saved.msg||'';document.getElementById('carteMsgDisplay').textContent=saved.msg||'Écris ton message ci-dessous…';document.getElementById('carteEmojiDisplay').textContent=saved.emoji||'🌸';}
-}
+function initCarte(){const picker=document.getElementById('carteEmojiPicker');picker.innerHTML='';CARTE_EMOJIS.forEach(e=>{const b=document.createElement('button');b.className='ep-btn'+(e===selectedEmoji?' active':'');b.textContent=e;b.onclick=()=>{selectedEmoji=e;document.getElementById('carteEmojiDisplay').textContent=e;document.querySelectorAll('.ep-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');};picker.appendChild(b);});const saved=JSON.parse(localStorage.getItem('carte_saved')||'null');if(saved){document.getElementById('carteMsgInput').value=saved.msg||'';document.getElementById('carteMsgDisplay').textContent=saved.msg||'Écris ton message ci-dessous…';document.getElementById('carteEmojiDisplay').textContent=saved.emoji||'🌸';}}
 function updateCarte(){const v=document.getElementById('carteMsgInput').value;document.getElementById('carteMsgDisplay').textContent=v||'Écris ton message ci-dessous…';}
 function saveCarte(){const msg=document.getElementById('carteMsgInput').value;localStorage.setItem('carte_saved',JSON.stringify({msg,emoji:selectedEmoji}));toast('💾 Carte sauvegardée !');}
 
-// — 5. QUIZ "NOUS DEUX" —
-const QUIZ_QUESTIONS=[
-  {q:"Quel jour on s'est parlé pour la première fois ?",opts:["15 septembre 2025","17 septembre 2025","19 septembre 2025","21 septembre 2025"],ans:1,expl:"C'était le 17 septembre 2025, en cours d'anglais. 📚"},
-  {q:"Dans quelle matière on était dans la même classe ?",opts:["Maths","Histoire","Anglais","SVT"],ans:2,expl:"En anglais — et ça a tout changé. 🌍"},
-  {q:"Quand est l'anniversaire de Salmouchee ?",opts:["14 octobre","26 octobre","2 novembre","19 octobre"],ans:1,expl:"Le 26 octobre — la date la plus spéciale de l'année. 🎂"},
-  {q:"Quand est l'anniversaire de Rayan ?",opts:["6 mars","6 avril","6 mai","6 juin"],ans:1,expl:"Le 6 avril — Rayan est du Bélier ! ♈"},
-  {q:"Quel jour on a décidé de se reparler après une rupture ?",opts:["1er janvier 2026","14 janvier 2026","5 février 2026","19 mars 2026"],ans:1,expl:"Le 14 janvier 2026 — certains liens résistent à tout. 🕊️"},
-  {q:"Quel est le surnom affectueux de Salma ?",opts:["Salmina","Salmouchee","Salmette","Salmouche"],ans:1,expl:"Salmouchee bien sûr, le plus mignon ! 🌸"},
-];
+// ── QUIZ ──
+const QUIZ_QUESTIONS=[{q:"Quel jour on s'est parlé pour la première fois ?",opts:["15 septembre 2025","17 septembre 2025","19 septembre 2025","21 septembre 2025"],ans:1,expl:"C'était le 17 septembre 2025, en cours d'anglais. 📚"},{q:"Dans quelle matière on était dans la même classe ?",opts:["Maths","Histoire","Anglais","SVT"],ans:2,expl:"En anglais — et ça a tout changé. 🌍"},{q:"Quand est l'anniversaire de Salmouchee ?",opts:["14 octobre","26 octobre","2 novembre","19 octobre"],ans:1,expl:"Le 26 octobre — la date la plus spéciale de l'année. 🎂"},{q:"Quand est l'anniversaire de Rayan ?",opts:["6 mars","6 avril","6 mai","6 juin"],ans:1,expl:"Le 6 avril — Rayan est du Bélier ! ♈"},{q:"Quel jour on a décidé de se reparler ?",opts:["1er janvier 2026","14 janvier 2026","5 février 2026","19 mars 2026"],ans:1,expl:"Le 14 janvier 2026 — certains liens résistent à tout. 🕊️"},{q:"Quel est le surnom affectueux de Salma ?",opts:["Salmina","Salmouchee","Salmette","Salmouche"],ans:1,expl:"Salmouchee bien sûr, le plus mignon ! 🌸"},];
 let quizIndex=0;let quizScore=0;let quizAnswered=false;
 function initQuiz(){quizIndex=0;quizScore=0;renderQuiz();}
-function renderQuiz(){
-  const c=document.getElementById('quizCard');
-  if(quizIndex>=QUIZ_QUESTIONS.length){
-    const pct=Math.round((quizScore/QUIZ_QUESTIONS.length)*100);
-    const ico=pct>=80?'🥇':pct>=60?'🥈':'🎗️';
-    c.innerHTML=`<div class="quiz-score-wrap"><div class="quiz-score-ico">${ico}</div><div class="quiz-score-num">${quizScore}/${QUIZ_QUESTIONS.length}</div><div class="quiz-score-label">Tu connais notre histoire à ${pct}% ! 🌸</div><button class="quiz-restart-btn" onclick="initQuiz()">Rejouer 🔄</button></div>`;
-    return;
-  }
-  quizAnswered=false;
-  const q=QUIZ_QUESTIONS[quizIndex];
-  c.innerHTML=`<div class="quiz-q-num">Question ${quizIndex+1} / ${QUIZ_QUESTIONS.length}</div><div class="quiz-question">${q.q}</div><div class="quiz-options">${q.opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}">${o}</button>`).join('')}</div><div class="quiz-result" id="quizResult"></div><button class="quiz-next-btn" id="quizNext" style="display:none" onclick="nextQuiz()">Suivant →</button>`;
-  c.querySelectorAll('.quiz-opt').forEach(btn=>{btn.onclick=function(){if(quizAnswered)return;quizAnswered=true;const chosen=parseInt(this.dataset.i);c.querySelectorAll('.quiz-opt').forEach((b,i)=>{if(i===q.ans)b.classList.add('correct');else if(i===chosen&&chosen!==q.ans)b.classList.add('wrong');});if(chosen===q.ans){quizScore++;document.getElementById('quizResult').textContent='✅ Bonne réponse ! '+q.expl;}else{document.getElementById('quizResult').textContent='❌ '+q.expl;}document.getElementById('quizNext').style.display='inline-block';};});
-}
+function renderQuiz(){const c=document.getElementById('quizCard');if(quizIndex>=QUIZ_QUESTIONS.length){const pct=Math.round((quizScore/QUIZ_QUESTIONS.length)*100);const ico=pct>=80?'🥇':pct>=60?'🥈':'🎗️';c.innerHTML=`<div class="quiz-score-wrap"><div class="quiz-score-ico">${ico}</div><div class="quiz-score-num">${quizScore}/${QUIZ_QUESTIONS.length}</div><div class="quiz-score-label">Tu connais notre histoire à ${pct}% ! 🌸</div><button class="quiz-restart-btn" onclick="initQuiz()">Rejouer 🔄</button></div>`;return;}quizAnswered=false;const q=QUIZ_QUESTIONS[quizIndex];c.innerHTML=`<div class="quiz-q-num">Question ${quizIndex+1} / ${QUIZ_QUESTIONS.length}</div><div class="quiz-question">${q.q}</div><div class="quiz-options">${q.opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}">${o}</button>`).join('')}</div><div class="quiz-result" id="quizResult"></div><button class="quiz-next-btn" id="quizNext" style="display:none" onclick="nextQuiz()">Suivant →</button>`;c.querySelectorAll('.quiz-opt').forEach(btn=>{btn.onclick=function(){if(quizAnswered)return;quizAnswered=true;const chosen=parseInt(this.dataset.i);c.querySelectorAll('.quiz-opt').forEach((b,i)=>{if(i===q.ans)b.classList.add('correct');else if(i===chosen&&chosen!==q.ans)b.classList.add('wrong');});if(chosen===q.ans){quizScore++;document.getElementById('quizResult').textContent='✅ Bonne réponse ! '+q.expl;}else{document.getElementById('quizResult').textContent='❌ '+q.expl;}document.getElementById('quizNext').style.display='inline-block';};});}
 function nextQuiz(){quizIndex++;renderQuiz();}
 
-// — 6. MÉTÉO RELATION —
+// ── MÉTÉO ──
 const METEO_OPTIONS=[{ico:'☀️',label:'Ensoleillé',desc:'Tout va bien, l\'amour brille fort aujourd\'hui.'},{ico:'🌸',label:'Fleuri',desc:'Doux et beau, on est dans notre bulle.'},{ico:'⛅',label:'Nuageux',desc:'Quelques petits nuages, mais ça passe.'},{ico:'🌧️',label:'Pluvieux',desc:'On traverse une période un peu dure, mais ça va aller.'},{ico:'🌈',label:'Arc-en-ciel',desc:'Après la pluie, le beau temps. On est au top.'},{ico:'💫',label:'Magique',desc:'Quelque chose de spécial se passe en ce moment.'}];
-function initMeteo(){
-  const u=localStorage.getItem('gallery_user');
-  if(u){document.getElementById('meteoSetBtn').style.display='block';}
-  else{document.getElementById('meteoSetBtn').style.display='none';}
-  const saved=JSON.parse(localStorage.getItem('meteo_data')||'null');
-  if(saved){
-    const opt=METEO_OPTIONS.find(o=>o.ico===saved.ico)||METEO_OPTIONS[0];
-    document.getElementById('meteoIco').textContent=opt.ico;
-    document.getElementById('meteoTitle').textContent=opt.label;
-    document.getElementById('meteoDesc').textContent=opt.desc;
-    document.getElementById('meteoRayan').textContent=saved.rayan||'–';
-    document.getElementById('meteoSalma').textContent=saved.salma||'–';
-    document.getElementById('meteoTogether').textContent=saved.ico||'–';
-  }
-  const pb=document.getElementById('meteoPickerBtns');pb.innerHTML='';
-  METEO_OPTIONS.forEach(m=>{const b=document.createElement('button');b.className='mp-btn';b.textContent=m.ico;b.title=m.label;b.onclick=()=>{setMeteo(m);document.getElementById('meteoPicker').style.display='none';};pb.appendChild(b);});
-}
-function openMeteoPicker(){document.getElementById('meteoPicker').style.display='block';}
-function closeMeteoModal(){document.getElementById('meteoPicker').style.display='none';}
-function setMeteo(opt){
-  const u=localStorage.getItem('gallery_user');
-  const saved=JSON.parse(localStorage.getItem('meteo_data')||'{}');
-  if(u==='rayan')saved.rayan=opt.ico;else saved.salma=opt.ico;
-  saved.ico=opt.ico;saved.label=opt.label;
-  localStorage.setItem('meteo_data',JSON.stringify(saved));
-  document.getElementById('meteoIco').textContent=opt.ico;
-  document.getElementById('meteoTitle').textContent=opt.label;
-  document.getElementById('meteoDesc').textContent=opt.desc;
-  if(u==='rayan')document.getElementById('meteoRayan').textContent=opt.ico;
-  else document.getElementById('meteoSalma').textContent=opt.ico;
-  document.getElementById('meteoTogether').textContent=opt.ico;
-  toast(`${opt.ico} Météo mise à jour !`);
-}
+function initMeteo(){const u=localStorage.getItem('gallery_user');document.getElementById('meteoSetBtn').style.display=u?'block':'none';const saved=JSON.parse(localStorage.getItem('meteo_data')||'null');if(saved){document.getElementById('meteoIco').textContent=saved.ico||'☀️';document.getElementById('meteoTitle').textContent=saved.label||'Ensoleillé';document.getElementById('meteoDesc').textContent=saved.desc||'';document.getElementById('meteoRayan').textContent=saved.rayan||'–';document.getElementById('meteoSalma').textContent=saved.salma||'–';document.getElementById('meteoTogether').textContent=saved.ico||'–';}const pb=document.getElementById('meteoPickerBtns');pb.innerHTML='';METEO_OPTIONS.forEach(m=>{const b=document.createElement('button');b.className='mp-btn';b.textContent=m.ico;b.title=m.label;b.onclick=()=>{setMeteo(m);document.getElementById('meteoPicker').style.display='none';};pb.appendChild(b);});}
+function openMeteoPicker(){const u=localStorage.getItem('gallery_user');if(!u){toast('Connecte-toi d\'abord dans la galerie !');return;}document.getElementById('meteoPicker').style.display='block';}
+function setMeteo(opt){const u=localStorage.getItem('gallery_user');const saved=JSON.parse(localStorage.getItem('meteo_data')||'{}');if(u==='rayan')saved.rayan=opt.ico;else saved.salma=opt.ico;saved.ico=opt.ico;saved.label=opt.label;saved.desc=opt.desc;localStorage.setItem('meteo_data',JSON.stringify(saved));document.getElementById('meteoIco').textContent=opt.ico;document.getElementById('meteoTitle').textContent=opt.label;document.getElementById('meteoDesc').textContent=opt.desc;if(u==='rayan')document.getElementById('meteoRayan').textContent=opt.ico;else document.getElementById('meteoSalma').textContent=opt.ico;document.getElementById('meteoTogether').textContent=opt.ico;toast(`${opt.ico} Météo mise à jour !`);}
 
-// — 7. BOÎTE À BISOUS —
-let bisouUser='rayan';
-function initBisous(){
-  const num=parseInt(localStorage.getItem('bisous_count')||'0');
-  document.getElementById('bisousNum').textContent=num;
-  renderBisousLog();
-}
-function setBisouUser(u){
-  bisouUser=u;
-  document.getElementById('bwRayan').classList.toggle('active',u==='rayan');
-  document.getElementById('bwSalma').classList.toggle('active',u==='salma');
-}
-function sendBisou(){
-  const count=parseInt(localStorage.getItem('bisous_count')||'0')+1;
-  localStorage.setItem('bisous_count',String(count));
-  const log=JSON.parse(localStorage.getItem('bisous_log')||'[]');
-  log.unshift({user:bisouUser,date:new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})+' · '+new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'short'})});
-  if(log.length>10)log.pop();
-  localStorage.setItem('bisous_log',JSON.stringify(log));
-  document.getElementById('bisousNum').textContent=count;
-  renderBisousLog();
-  toast('💋 Bisou envoyé !');
-}
-function renderBisousLog(){
-  const log=JSON.parse(localStorage.getItem('bisous_log')||'[]');
-  const c=document.getElementById('bisousLog');c.innerHTML='';
-  if(!log.length){c.innerHTML='<div style="text-align:center;font-size:12px;color:var(--mid);padding:12px;font-style:italic;">Aucun bisou encore… appuie ! 💋</div>';return;}
-  log.forEach(e=>{const d=document.createElement('div');d.className='bisous-entry';const isR=e.user==='rayan';d.innerHTML=`<span class="be-ico">💋</span><div class="be-info"><span class="be-user">${isR?'Rayan 👦':'Salmouchee 👧'}</span> a envoyé un bisou<br><span style="font-size:10px;opacity:.6;">${e.date}</span></div>`;c.appendChild(d);});
-}
+// ── JOURNAL COMMUN ──
+let journalUser='rayan';
+function setJournalUser(u){journalUser=u;document.getElementById('jlbRayan').style.opacity=u==='rayan'?'1':'.4';document.getElementById('jlbSalma').style.opacity=u==='salma'?'1':'.4';}
+function initJournal(){const now=new Date();document.getElementById('journalDateLabel').textContent=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});renderJournalEntries();}
+function submitJournal(){const text=document.getElementById('journalTextarea').value.trim();if(!text){toast('Écris quelque chose d\'abord 📔');return;}const entries=JSON.parse(localStorage.getItem('journal_entries')||'[]');entries.unshift({text,user:journalUser,date:new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}),time:new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})});if(entries.length>50)entries.pop();localStorage.setItem('journal_entries',JSON.stringify(entries));document.getElementById('journalTextarea').value='';renderJournalEntries();toast('📔 Entrée publiée !');}
+function renderJournalEntries(){const entries=JSON.parse(localStorage.getItem('journal_entries')||'[]');const c=document.getElementById('journalEntries');c.innerHTML='';document.getElementById('journalEmpty').style.display=entries.length?'none':'block';entries.forEach((e,idx)=>{const isR=e.user==='rayan';const el=document.createElement('div');el.className='journal-entry'+(isR?'':' from-salma');el.innerHTML=`<div class="je-header"><div class="je-av ${isR?'av-rayan':'av-salma'}">${isR?'👦':'👧'}</div><span class="je-from">${isR?'Rayan':'Salmouchee'}</span><span class="je-date">${e.date} à ${e.time||'–'}</span></div><div class="je-text">${e.text}</div><button class="je-del" onclick="delJournal(${idx})">🗑 Supprimer</button>`;c.appendChild(el);});}
+function delJournal(idx){const entries=JSON.parse(localStorage.getItem('journal_entries')||'[]');entries.splice(idx,1);localStorage.setItem('journal_entries',JSON.stringify(entries));renderJournalEntries();}
 
-// — 8. OBJECTIFS —
+// ── JUKEBOX ──
+let jkIndex=0;
+function initJukebox(){jkIndex=0;renderJukebox();}
+function renderJukebox(){const t=TRACKS[jkIndex];document.getElementById('jkTitle').textContent=t.title;document.getElementById('jkArtist').textContent=t.artist;document.getElementById('jkWhy').textContent=t.why?`"${t.why}"`:''
+;const playBtn=document.getElementById('jkPlayBtn');playBtn.href=t.yt;const list=document.getElementById('jkList');list.innerHTML='';TRACKS.forEach((tr,i)=>{const el=document.createElement('div');el.className='jk-item'+(i===jkIndex?' active':'');el.innerHTML=`<div class="jki-num">${i+1}</div><div class="jki-info"><div class="jki-title">${tr.title}</div><div class="jki-artist">${tr.artist}</div></div><div class="jki-ico">▶️</div>`;el.onclick=()=>{jkIndex=i;renderJukebox();};list.appendChild(el);});}
+function jkPrev(){jkIndex=(jkIndex-1+TRACKS.length)%TRACKS.length;renderJukebox();}
+function jkNext(){jkIndex=(jkIndex+1)%TRACKS.length;renderJukebox();}
+
+// ── OBJECTIFS ──
 function getObjs(){try{return JSON.parse(localStorage.getItem('objectifs')||'[]');}catch{return[];}}
 function saveObjs(o){localStorage.setItem('objectifs',JSON.stringify(o));}
-function renderObj(){
-  const objs=getObjs();const list=document.getElementById('objList');list.innerHTML='';
-  document.getElementById('objEmpty').style.display=objs.length?'none':'block';
-  objs.forEach((o,i)=>{
-    const d=document.createElement('div');d.className='obj-item'+(o.done?' done-item':'');
-    d.innerHTML=`<button class="obj-check-btn${o.done?' checked':''}" data-i="${i}">${o.done?'✓':''}</button><div class="obj-text">${o.text}</div><button class="obj-del-btn" data-i="${i}">🗑</button>`;
-    d.querySelector('.obj-check-btn').onclick=function(){const idx=parseInt(this.dataset.i);const ob=getObjs();ob[idx].done=!ob[idx].done;saveObjs(ob);renderObj();};
-    d.querySelector('.obj-del-btn').onclick=function(){const idx=parseInt(this.dataset.i);const ob=getObjs();ob.splice(idx,1);saveObjs(ob);renderObj();toast('Objectif supprimé');};
-    list.appendChild(d);
-  });
-}
+function renderObj(){const objs=getObjs();const list=document.getElementById('objList');list.innerHTML='';document.getElementById('objEmpty').style.display=objs.length?'none':'block';objs.forEach((o,i)=>{const d=document.createElement('div');d.className='obj-item'+(o.done?' done-item':'');d.innerHTML=`<button class="obj-check-btn${o.done?' checked':''}" data-i="${i}">${o.done?'✓':''}</button><div class="obj-text">${o.text}</div><button class="obj-del-btn" data-i="${i}">🗑</button>`;d.querySelector('.obj-check-btn').onclick=function(){const idx=parseInt(this.dataset.i);const ob=getObjs();ob[idx].done=!ob[idx].done;saveObjs(ob);renderObj();};d.querySelector('.obj-del-btn').onclick=function(){const idx=parseInt(this.dataset.i);const ob=getObjs();ob.splice(idx,1);saveObjs(ob);renderObj();toast('Objectif supprimé');};list.appendChild(d);});}
 function addObj(){const v=document.getElementById('objInput').value.trim();if(!v)return;const ob=getObjs();ob.push({text:v,done:false});saveObjs(ob);document.getElementById('objInput').value='';renderObj();toast('📝 Objectif ajouté !');}
 
+// ── QUESTION DU JOUR ──
+const QDJ_QUESTIONS=[{q:"Si on était des personnages de film, on serait dans quel genre ?",ico:"🎬"},{q:"C'est quoi le moment où t'as réalisé que tu tenais vraiment à moi ?",ico:"💕"},{q:"Si on pouvait partir demain n'importe où, où tu voudrais aller ?",ico:"✈️"},{q:"Quelle est la chose qui te fait le plus sourire quand tu penses à nous ?",ico:"😊"},{q:"Si tu pouvais choisir une chanson pour résumer notre histoire, laquelle ?",ico:"🎵"},{q:"Quel est le truc le plus drôle qu'on ait vécu ensemble ?",ico:"😂"},{q:"Si on avait une devise en couple, ça serait quoi ?",ico:"💫"},{q:"Qu'est-ce que tu ferais si tu avais une journée entière rien que pour toi ?",ico:"🌟"},{q:"Quel est ton souvenir préféré depuis qu'on se connaît ?",ico:"🌸"},{q:"Si tu devais me décrire en 3 mots, ce serait lesquels ?",ico:"💌"},];
+let qdjUser='rayan';
+function initQdj(){const idx=new Date().getDate()%QDJ_QUESTIONS.length;const q=QDJ_QUESTIONS[idx];document.getElementById('qdjQuestion').textContent=q.q;document.getElementById('qdjIco').textContent=q.ico;document.getElementById('qdjDate').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});renderQdjAnswers(idx);}
+function setQdjUser(u){qdjUser=u;document.getElementById('qdjBtnR').classList.toggle('inactive',u!=='rayan');document.getElementById('qdjBtnS').classList.toggle('inactive',u!=='salma');const saved=JSON.parse(localStorage.getItem('qdj_answers')||'{}');const key=`${new Date().getDate()}_${u}`;document.getElementById('qdjTextarea').value=saved[key]||'';}
+function saveQdj(){const text=document.getElementById('qdjTextarea').value.trim();if(!text){toast('Écris ta réponse d\'abord !');return;}const saved=JSON.parse(localStorage.getItem('qdj_answers')||'{}');const key=`${new Date().getDate()}_${qdjUser}`;saved[key]=text;localStorage.setItem('qdj_answers',JSON.stringify(saved));renderQdjAnswers(new Date().getDate()%QDJ_QUESTIONS.length);toast('💾 Réponse sauvegardée !');}
+function renderQdjAnswers(idx){const saved=JSON.parse(localStorage.getItem('qdj_answers')||'{}');const c=document.getElementById('qdjAnswersDisplay');c.innerHTML='';['rayan','salma'].forEach(u=>{const key=`${new Date().getDate()}_${u}`;if(saved[key]){const isR=u==='rayan';const el=document.createElement('div');el.className='qdj-ans-item';el.innerHTML=`<div class="qdj-ans-header"><div class="qdj-ans-av ${isR?'av-rayan':'av-salma'}">${isR?'👦':'👧'}</div><span class="qdj-ans-name">${isR?'Rayan':'Salmouchee'}</span></div><div class="qdj-ans-text">${saved[key]}</div>`;c.appendChild(el);}});}
 
-  // Score animé
-  setTimeout(()=>{document.getElementById('astroFill').style.width='92%';},200);
-  // Traits
-  const tc=document.getElementById('astroTraits');tc.innerHTML='';
-  ASTRO_TRAITS.forEach(t=>{tc.innerHTML+=`<div class="astro-trait"><div class="astro-trait-ico">${t.ico}</div><div class="astro-trait-title">${t.title}</div><div class="astro-trait-desc">${t.desc}</div></div>`;});
-  // Message du jour basé sur la date
-  const idx=new Date().getDate()%ASTRO_MSGS.length;
-  document.getElementById('astroDailyMsg').textContent=ASTRO_MSGS[idx];
-}
+// Init home
+updateHomeWidgets();
 </script>
 </body>
 </html>
