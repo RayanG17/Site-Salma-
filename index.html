@@ -62,8 +62,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .soc-auth-btn:hover{background:#fff0f5;border-color:rgba(196,84,122,.3);transform:translateY(-1px);box-shadow:0 4px 14px rgba(139,34,82,.1);}
 .soc-ico-wrap{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .soc-google{background:#fff;border:1px solid #e0e0e0;}
-.soc-apple{background:#000;color:#fff;}
-.soc-phone{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
 .soc-label{text-align:left;}
 .soc-label-main{display:block;font-size:13px;font-weight:600;}
 .soc-label-sub{display:block;font-size:10px;color:var(--mid);opacity:.7;}
@@ -80,7 +78,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .field input::placeholder{color:var(--mid);opacity:.45;}
 .field-ico{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:16px;cursor:pointer;opacity:.5;}
 .field-ico:hover{opacity:.9;}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
 .pwd-strength{margin-top:6px;display:flex;gap:4px;}
 .ps-bar{flex:1;height:3px;border-radius:3px;background:rgba(196,84,122,.12);transition:background .3s;}
@@ -89,18 +86,20 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .ps-bar.strong{background:#27ae60;}
 .ps-label{font-size:10px;color:var(--mid);margin-top:3px;}
 
-.account-select{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
-.acc-opt{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:2px solid rgba(196,84,122,.12);cursor:pointer;transition:all .22s;background:#fff8f9;}
-.acc-opt:hover{border-color:rgba(196,84,122,.4);background:#fff0f5;transform:translateX(4px);}
-.acc-opt.selected{background:linear-gradient(135deg,rgba(196,84,122,.1),rgba(139,34,82,.06));border-color:var(--rose);}
-.acc-avatar{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;}
+/* PROFILE CHOICE PANEL (shown after first login) */
+.profile-choice{display:flex;flex-direction:column;gap:14px;margin:8px 0 20px;}
+.prof-opt{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:20px;border:2.5px solid rgba(196,84,122,.15);cursor:pointer;transition:all .25s;background:#fff8f9;}
+.prof-opt:hover{border-color:var(--rose);background:#fff0f5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(139,34,82,.15);}
+.prof-opt.selected{background:linear-gradient(135deg,rgba(196,84,122,.12),rgba(139,34,82,.07));border-color:var(--rose);box-shadow:0 6px 20px rgba(139,34,82,.18);}
+.prof-avatar{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;flex-shrink:0;}
 .av-r{background:linear-gradient(135deg,var(--rose),var(--deep));}
 .av-s{background:linear-gradient(135deg,#9b59b6,#6c3483);}
-.acc-info{flex:1;}
-.acc-name{font-size:15px;font-weight:700;color:var(--deep);}
-.acc-role{font-size:11px;color:var(--mid);opacity:.7;margin-top:1px;}
-.acc-check{width:22px;height:22px;border-radius:50%;border:2px solid rgba(196,84,122,.25);display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;}
-.acc-opt.selected .acc-check{background:var(--rose);border-color:var(--rose);color:#fff;}
+.prof-info{flex:1;}
+.prof-name{font-size:17px;font-weight:700;color:var(--deep);}
+.prof-role{font-size:11px;color:var(--mid);opacity:.7;margin-top:2px;}
+.prof-check{width:26px;height:26px;border-radius:50%;border:2px solid rgba(196,84,122,.25);display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s;}
+.prof-opt.selected .prof-check{background:var(--rose);border-color:var(--rose);color:#fff;}
+.prof-note{font-size:11px;color:var(--mid);text-align:center;background:rgba(196,84,122,.06);border-radius:10px;padding:10px 14px;line-height:1.6;margin-bottom:14px;}
 
 .auth-btn{width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--rose),var(--deep));color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .22s;box-shadow:0 4px 18px rgba(139,34,82,.3);letter-spacing:.02em;}
 .auth-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(139,34,82,.4);}
@@ -109,14 +108,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 
 .auth-footer-note{text-align:center;margin-top:16px;font-size:11px;color:var(--mid);opacity:.6;line-height:1.6;}
 .auth-footer-note a{color:var(--rose);cursor:pointer;text-decoration:none;}
-
-.otp-wrap{text-align:center;}
-.otp-title{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--deep);margin-bottom:6px;}
-.otp-sub{font-size:12px;color:var(--mid);margin-bottom:20px;}
-.otp-inputs{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
-.otp-input{width:48px;height:56px;border-radius:12px;border:2px solid rgba(196,84,122,.2);background:#fff8f9;text-align:center;font-size:22px;font-weight:700;color:var(--deep);outline:none;transition:border-color .2s;font-family:'Playfair Display',serif;}
-.otp-input:focus{border-color:var(--rose);}
-.otp-resend{font-size:12px;color:var(--rose);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
 
 .auth-error{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.2);border-radius:10px;padding:10px 14px;font-size:12px;color:#c0392b;margin-bottom:14px;display:none;}
 .auth-error.show{display:block;}
@@ -127,7 +118,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .auth-success-title{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--deep);margin-bottom:8px;}
 .auth-success-sub{font-size:13px;color:var(--mid);line-height:1.6;}
 
-/* Firebase loading spinner */
 .auth-loading{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--mid);padding:8px 0;}
 .auth-spinner{width:18px;height:18px;border:2px solid rgba(196,84,122,.2);border-top-color:var(--rose);border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -311,7 +301,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
 .page-hd p{font-size:13px;color:var(--mid);margin-top:6px;background:#fff0f5;display:inline-block;padding:4px 14px;border-radius:50px;}
 .page-body{position:relative;z-index:10;max-width:680px;margin:0 auto;padding:0 18px 100px;}
 
-/* Gallery */
 .gallery-user-bar{display:flex;align-items:center;justify-content:space-between;background:#fff0f5;border:1px solid rgba(196,84,122,.18);border-radius:50px;padding:8px 18px;margin-bottom:20px;}
 .gub-left{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--deep);font-weight:500;}
 .gub-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;}
@@ -573,10 +562,13 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
       <h1>Pour Salmouchee</h1>
       <p>Le site de Rayan & Salma — connecte-toi pour commencer</p>
     </div>
-    <div class="auth-tabs">
+
+    <!-- Tabs only for login/register, hidden on profile choice -->
+    <div class="auth-tabs" id="authTabs">
       <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Se connecter</button>
       <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">S'inscrire</button>
     </div>
+
     <div class="auth-body">
       <div class="auth-error" id="authError"></div>
 
@@ -594,19 +586,9 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
           </button>
         </div>
         <div class="auth-divider"><div class="auth-div-line"></div><div class="auth-div-txt">ou avec email</div><div class="auth-div-line"></div></div>
-
-        <p style="font-size:12px;color:var(--mid);margin-bottom:14px;text-align:center;">Sélectionne ton profil</p>
-        <div class="account-select" id="loginAccSelect">
-          <div class="acc-opt selected" id="accRayan" onclick="selectAccount('rayan')">
-            <div class="acc-avatar av-r">👦</div>
-            <div class="acc-info"><div class="acc-name">Rayan</div><div class="acc-role">Le créateur du site</div></div>
-            <div class="acc-check">✓</div>
-          </div>
-          <div class="acc-opt" id="accSalma" onclick="selectAccount('salma')">
-            <div class="acc-avatar av-s">👧</div>
-            <div class="acc-info"><div class="acc-name">Salmouchee</div><div class="acc-role">La personne la plus spéciale</div></div>
-            <div class="acc-check"></div>
-          </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="ton@email.com" onkeydown="if(event.key==='Enter')document.getElementById('loginPwd').focus()"/>
         </div>
         <div class="field">
           <label>Mot de passe</label>
@@ -633,22 +615,6 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
           </button>
         </div>
         <div class="auth-divider"><div class="auth-div-line"></div><div class="auth-div-txt">ou créer un compte</div><div class="auth-div-line"></div></div>
-
-        <div class="field">
-          <label>Choisir ton profil</label>
-          <div class="account-select">
-            <div class="acc-opt selected" id="regAccRayan" onclick="selectRegAccount('rayan')">
-              <div class="acc-avatar av-r">👦</div>
-              <div class="acc-info"><div class="acc-name">Rayan</div><div class="acc-role">Le créateur du site</div></div>
-              <div class="acc-check">✓</div>
-            </div>
-            <div class="acc-opt" id="regAccSalma" onclick="selectRegAccount('salma')">
-              <div class="acc-avatar av-s">👧</div>
-              <div class="acc-info"><div class="acc-name">Salmouchee</div><div class="acc-role">La personne la plus spéciale</div></div>
-              <div class="acc-check"></div>
-            </div>
-          </div>
-        </div>
         <div class="field">
           <label>Email</label>
           <input type="email" id="regEmail" placeholder="ton@email.com"/>
@@ -671,6 +637,25 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden;min-hei
         </div>
         <button class="auth-btn" id="registerBtn" onclick="doRegister()">Créer mon compte 🌸</button>
         <div class="auth-footer-note">Site privé pour Rayan & Salma uniquement 🌸</div>
+      </div>
+
+      <!-- PROFILE CHOICE PANEL (shown once after first login) -->
+      <div class="auth-panel" id="panelProfileChoice">
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--deep);text-align:center;margin-bottom:6px;">C'est qui toi ? 🌸</p>
+        <p class="prof-note">C'est ta première connexion !<br>Choisis ton profil — ce choix sera <strong>définitif</strong> pour ce compte.</p>
+        <div class="profile-choice">
+          <div class="prof-opt" id="pcRayan" onclick="selectProfileChoice('rayan')">
+            <div class="prof-avatar av-r">👦</div>
+            <div class="prof-info"><div class="prof-name">Rayan</div><div class="prof-role">Le créateur du site</div></div>
+            <div class="prof-check" id="pcCheckRayan"></div>
+          </div>
+          <div class="prof-opt" id="pcSalma" onclick="selectProfileChoice('salma')">
+            <div class="prof-avatar av-s">👧</div>
+            <div class="prof-info"><div class="prof-name">Salmouchee</div><div class="prof-role">La personne la plus spéciale</div></div>
+            <div class="prof-check" id="pcCheckSalma"></div>
+          </div>
+        </div>
+        <button class="auth-btn" id="confirmProfileBtn" onclick="confirmProfileChoice()" disabled>Confirmer mon profil 🌸</button>
       </div>
 
       <!-- SUCCESS PANEL -->
@@ -942,7 +927,7 @@ Prends soin de toi.</div><div class="letter-div"></div><div class="letter-sig">�
 <audio id="bgAudio" src="musique.mp3" loop></audio>
 
 <!-- ══════════════════════════════════════════════
-     FIREBASE AUTH — Module Script
+     FIREBASE — Module Script
 ══════════════════════════════════════════════ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -957,8 +942,13 @@ import {
   signOut,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ── Firebase config ──
 const firebaseConfig = {
   apiKey: "AIzaSyAYCjH-mV9SA01ougS-fJrS0mycIxIQCfc",
   authDomain: "fan2salmouchee.firebaseapp.com",
@@ -971,42 +961,30 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-// ── Profile mapping: email → profile ──
-// Modifie ces emails pour correspondre aux vrais comptes
-const EMAIL_PROFILE_MAP = {
-  'rayan@fan2salmouchee.fr': 'rayan',
-  'salma@fan2salmouchee.fr': 'salma',
-  // Emails Google acceptés
-  'rayan.gs7@gmail.com': 'rayan',
-};
-
-const ACCOUNTS = {
-  rayan: { name:'Rayan', role:'Le créateur du site', emoji:'👦', email:'rayan@fan2salmouchee.fr' },
-  salma: { name:'Salmouchee', role:'La personne la plus spéciale', emoji:'👧', email:'salma@fan2salmouchee.fr' }
-};
-
-// ── Détermine le profil selon l'email Firebase ──
-function getProfileFromEmail(email) {
-  if (!email) return null;
-  const emailLower = email.toLowerCase();
-  // Mapping direct
-  if (EMAIL_PROFILE_MAP[emailLower]) return EMAIL_PROFILE_MAP[emailLower];
-  // Par défaut: si l'email contient "salma" → salma, sinon → rayan
-  if (emailLower.includes('salma')) return 'salma';
-  return 'rayan';
+// ── Save profile to Firestore ──
+async function saveProfileToFirestore(uid, profile) {
+  await setDoc(doc(db, "users", uid), { profile }, { merge: true });
 }
 
-// ── Expose functions to global scope for onclick handlers ──
+// ── Get profile from Firestore ──
+async function getProfileFromFirestore(uid) {
+  try {
+    const snap = await getDoc(doc(db, "users", uid));
+    if (snap.exists() && snap.data().profile) return snap.data().profile;
+  } catch(e) {}
+  return null;
+}
 
+// ── Expose to global ──
 window._fbSignIn = async function(email, password) {
   const btn = document.getElementById('loginBtn');
   btn.disabled = true;
   btn.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:8px"><div class="auth-spinner"></div> Connexion…</div>';
   try {
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-    // success handled by onAuthStateChanged
+    await signInWithEmailAndPassword(auth, email, password);
   } catch(e) {
     btn.disabled = false;
     btn.textContent = 'Se connecter 🌸';
@@ -1014,15 +992,13 @@ window._fbSignIn = async function(email, password) {
   }
 };
 
-window._fbSignUp = async function(email, password, profile) {
+window._fbSignUp = async function(email, password) {
   const btn = document.getElementById('registerBtn');
   btn.disabled = true;
   btn.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:8px"><div class="auth-spinner"></div> Création…</div>';
   try {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    // Update display name to include profile hint
-    await updateProfile(cred.user, { displayName: profile });
-    // success via onAuthStateChanged
+    await createUserWithEmailAndPassword(auth, email, password);
+    // profile choice handled by onAuthStateChanged
   } catch(e) {
     btn.disabled = false;
     btn.textContent = 'Créer mon compte 🌸';
@@ -1052,42 +1028,60 @@ window._fbResetPassword = async function(email) {
   }
 };
 
+// ── Expose save profile (called after user picks profile) ──
+window._fbSaveProfile = async function(uid, profile) {
+  await saveProfileToFirestore(uid, profile);
+};
+
 // ── Auth state listener ──
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // Determine profile
-    let profile = getProfileFromEmail(user.email);
-    // Override with displayName if set during register
-    if (user.displayName === 'rayan' || user.displayName === 'salma') {
-      profile = user.displayName;
-    }
-    // Also check localStorage override (set by profile selector)
-    const localOverride = localStorage.getItem('selected_profile');
-    if (localOverride === 'rayan' || localOverride === 'salma') {
-      profile = localOverride;
-      localStorage.removeItem('selected_profile');
-    }
+onAuthStateChanged(auth, async (user) => {
+  if (!user) return;
+
+  // Check if profile exists in Firestore
+  const existingProfile = await getProfileFromFirestore(user.uid);
+
+  if (existingProfile) {
+    // Known user → go straight in
     window._currentFirebaseUser = user;
-    window._currentProfile = profile;
-
-    // Show success & hide overlay
-    const acc = ACCOUNTS[profile];
-    document.getElementById('successTitle').textContent = `Bienvenue, ${acc.name} ! ${acc.emoji}`;
-    document.getElementById('successSub').textContent = `Connecté avec ${user.email}\nRedirection en cours…`;
-    document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panelSuccess').classList.add('active');
-
-    setTimeout(() => {
-      document.getElementById('authOverlay').classList.add('hiding');
-      setTimeout(() => {
-        document.getElementById('authOverlay').style.display = 'none';
-        window.onLoggedIn(profile, user.email);
-      }, 500);
-    }, 1400);
+    window._currentProfile = existingProfile;
+    showSuccessAndEnter(existingProfile, user.email);
+  } else {
+    // New user → show profile choice screen
+    window._pendingFirebaseUser = user;
+    showProfileChoiceScreen();
   }
 });
 
-// ── Firebase error → French messages ──
+function showProfileChoiceScreen() {
+  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panelProfileChoice').classList.add('active');
+  // Hide tabs during profile choice
+  document.getElementById('authTabs').style.display = 'none';
+}
+
+function showSuccessAndEnter(profile, email) {
+  const ACCOUNTS = {
+    rayan: { name:'Rayan', emoji:'👦' },
+    salma: { name:'Salmouchee', emoji:'👧' }
+  };
+  const acc = ACCOUNTS[profile];
+  document.getElementById('successTitle').textContent = `Bienvenue, ${acc.name} ! ${acc.emoji}`;
+  document.getElementById('successSub').textContent = `Connecté avec ${email}\nRedirection en cours…`;
+  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panelSuccess').classList.add('active');
+
+  setTimeout(() => {
+    document.getElementById('authOverlay').classList.add('hiding');
+    setTimeout(() => {
+      document.getElementById('authOverlay').style.display = 'none';
+      window.onLoggedIn(profile, email);
+    }, 500);
+  }, 1400);
+}
+
+// Expose showSuccessAndEnter for confirmProfileChoice
+window._showSuccessAndEnter = showSuccessAndEnter;
+
 function firebaseErrorToFr(code) {
   const msgs = {
     'auth/user-not-found': 'Aucun compte trouvé avec cet email.',
@@ -1105,19 +1099,10 @@ function firebaseErrorToFr(code) {
 </script>
 
 <!-- ══════════════════════════════════════════════
-     SITE LOGIC (non-module)
+     SITE LOGIC
 ══════════════════════════════════════════════ -->
 <script>
-// ── Profile selector state ──
-let selectedLoginAccount = 'rayan';
-let selectedRegAccount = 'rayan';
-
-const ACCOUNTS_LOCAL = {
-  rayan: { name:'Rayan', role:'Le créateur du site', emoji:'👦', email:'rayan@fan2salmouchee.fr' },
-  salma: { name:'Salmouchee', role:'La personne la plus spéciale', emoji:'👧', email:'salma@fan2salmouchee.fr' }
-};
-
-// ── Auth UI helpers ──
+// ── Auth UI ──
 function switchAuthTab(tab) {
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
@@ -1126,63 +1111,32 @@ function switchAuthTab(tab) {
   clearAuthError();
 }
 function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
-function showAuthError(msg) {
-  const el = document.getElementById('authError');
-  el.textContent = '⚠️ ' + msg;
-  el.classList.add('show');
-}
-function clearAuthError() {
-  document.getElementById('authError').classList.remove('show');
-}
-
-function togglePwd(id) {
-  const inp = document.getElementById(id);
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-}
-
+function showAuthError(msg) { const el=document.getElementById('authError'); el.textContent='⚠️ '+msg; el.classList.add('show'); }
+window.showAuthError = showAuthError;
+function clearAuthError() { document.getElementById('authError').classList.remove('show'); }
+function togglePwd(id) { const inp=document.getElementById(id); inp.type=inp.type==='password'?'text':'password'; }
 function checkPwdStrength(pwd) {
-  const bars = [document.getElementById('ps1'), document.getElementById('ps2'), document.getElementById('ps3')];
-  const label = document.getElementById('psLabel');
-  bars.forEach(b => b.className = 'ps-bar');
-  if (!pwd) { label.textContent = ''; return; }
-  let score = 0;
-  if (pwd.length >= 6) score++;
-  if (pwd.length >= 10) score++;
-  if (/[A-Z]/.test(pwd) && /[0-9]/.test(pwd)) score++;
-  const levels = ['weak','medium','strong'];
-  const labels = ['Faible','Moyen','Fort'];
-  for (let i = 0; i < score; i++) bars[i].classList.add(levels[Math.min(score-1,2)]);
-  label.textContent = score > 0 ? labels[Math.min(score-1,2)] : '';
+  const bars=[document.getElementById('ps1'),document.getElementById('ps2'),document.getElementById('ps3')];
+  const label=document.getElementById('psLabel');
+  bars.forEach(b=>b.className='ps-bar');
+  if(!pwd){label.textContent='';return;}
+  let score=0;
+  if(pwd.length>=6)score++;
+  if(pwd.length>=10)score++;
+  if(/[A-Z]/.test(pwd)&&/[0-9]/.test(pwd))score++;
+  const levels=['weak','medium','strong'];
+  const labels=['Faible','Moyen','Fort'];
+  for(let i=0;i<score;i++)bars[i].classList.add(levels[Math.min(score-1,2)]);
+  label.textContent=score>0?labels[Math.min(score-1,2)]:'';
 }
 
-function selectAccount(id) {
-  selectedLoginAccount = id;
-  ['rayan','salma'].forEach(a => {
-    const el = document.getElementById('acc' + cap(a));
-    el.classList.toggle('selected', a === id);
-    el.querySelector('.acc-check').textContent = a === id ? '✓' : '';
-  });
-}
-function selectRegAccount(id) {
-  selectedRegAccount = id;
-  ['rayan','salma'].forEach(a => {
-    const el = document.getElementById('regAcc' + cap(a));
-    el.classList.toggle('selected', a === id);
-    el.querySelector('.acc-check').textContent = a === id ? '✓' : '';
-  });
-}
-
-// ── Called by onclick buttons — route to Firebase ──
 function doLogin() {
   clearAuthError();
+  const email = document.getElementById('loginEmail').value.trim();
   const pwd = document.getElementById('loginPwd').value;
+  if (!email) { showAuthError('Entre ton email.'); return; }
   if (!pwd) { showAuthError('Entre ton mot de passe.'); return; }
-  // Use selected profile's email
-  const acc = ACCOUNTS_LOCAL[selectedLoginAccount];
-  // Store profile choice so Firebase auth state listener can use it
-  localStorage.setItem('selected_profile', selectedLoginAccount);
-  window._fbSignIn(acc.email, pwd);
+  window._fbSignIn(email, pwd);
 }
 
 function doRegister() {
@@ -1194,94 +1148,50 @@ function doRegister() {
   if (!pwd) { showAuthError('Choisis un mot de passe.'); return; }
   if (pwd.length < 6) { showAuthError('Minimum 6 caractères.'); return; }
   if (pwd !== pwd2) { showAuthError('Les mots de passe ne correspondent pas.'); return; }
-  localStorage.setItem('selected_profile', selectedRegAccount);
-  window._fbSignUp(email, pwd, selectedRegAccount);
+  window._fbSignUp(email, pwd);
 }
 
-function socialAuthGoogle() {
-  clearAuthError();
-  window._fbGoogleSignIn();
-}
-
-function doLogout() {
-  if (!confirm('Te déconnecter ?')) return;
-  window._fbLogout();
-}
-
+function socialAuthGoogle() { clearAuthError(); window._fbGoogleSignIn(); }
+function doLogout() { if (!confirm('Te déconnecter ?')) return; window._fbLogout(); }
 function forgotPwd() {
-  const acc = ACCOUNTS_LOCAL[selectedLoginAccount];
-  const email = prompt(`Email pour réinitialiser ton mot de passe:`, acc.email);
+  const email = document.getElementById('loginEmail').value.trim() || prompt('Ton email :');
   if (email) window._fbResetPassword(email);
 }
 
-// ── onLoggedIn: called after successful Firebase auth ──
-window.onLoggedIn = function(user, email) {
-  const acc = ACCOUNTS_LOCAL[user];
-  const partner = user === 'rayan' ? 'salma' : 'rayan';
-  const partnerAcc = ACCOUNTS_LOCAL[partner];
+// ── Profile Choice (first login only) ──
+let _pendingProfileChoice = null;
 
-  // User bar
-  document.getElementById('userBar').classList.add('visible');
-  const ubAv = document.getElementById('ubAvatar');
-  ubAv.style.background = user === 'rayan'
-    ? 'linear-gradient(135deg,var(--rose),var(--deep))'
-    : 'linear-gradient(135deg,#9b59b6,#6c3483)';
-  ubAv.textContent = acc.emoji;
-  ubAv.innerHTML += '<div class="ub-online-dot"></div>';
-  document.getElementById('ubName').textContent = acc.name;
+function selectProfileChoice(profile) {
+  _pendingProfileChoice = profile;
+  ['rayan','salma'].forEach(p => {
+    document.getElementById('pc' + cap(p)).classList.toggle('selected', p === profile);
+    document.getElementById('pcCheck' + cap(p)).textContent = p === profile ? '✓' : '';
+  });
+  document.getElementById('confirmProfileBtn').disabled = false;
+}
 
-  // Sidebar profile
-  document.getElementById('sbUserProfile').style.display = 'flex';
-  const sbAv = document.getElementById('sbUserAv');
-  sbAv.style.background = user === 'rayan'
-    ? 'linear-gradient(135deg,var(--rose),var(--deep))'
-    : 'linear-gradient(135deg,#9b59b6,#6c3483)';
-  sbAv.textContent = acc.emoji;
-  document.getElementById('sbUserName').textContent = acc.name;
-  document.getElementById('sbUserEmail').textContent = email || acc.email;
+async function confirmProfileChoice() {
+  if (!_pendingProfileChoice) return;
+  const btn = document.getElementById('confirmProfileBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:8px"><div class="auth-spinner"></div> Sauvegarde…</div>';
 
-  // Partner card
-  document.getElementById('partnerCard').style.display = 'flex';
-  const pav = document.getElementById('partnerAv');
-  pav.style.background = partner === 'rayan'
-    ? 'linear-gradient(135deg,var(--rose),var(--deep))'
-    : 'linear-gradient(135deg,#9b59b6,#6c3483)';
-  pav.textContent = partnerAcc.emoji;
-  document.getElementById('partnerName').textContent = partnerAcc.name;
+  const user = window._pendingFirebaseUser;
+  await window._fbSaveProfile(user.uid, _pendingProfileChoice);
 
-  // Gallery
-  currentUser = user;
-  document.getElementById('galleryAvatar').className = 'gub-avatar ' + (user === 'rayan' ? 'av-rayan' : 'av-salma');
-  document.getElementById('galleryAvatar').textContent = acc.emoji;
-  document.getElementById('galleryUsername').textContent = acc.name;
-  document.getElementById('galleryPartnerBadge').textContent = `👀 ${partnerAcc.name} peut voir tes photos`;
-
-  // Carte
-  document.getElementById('carteFrom').textContent = `De ${acc.name}`;
-  document.getElementById('carteSig').textContent = `— ${acc.name} ${user === 'rayan' ? '❤️' : '🌸'}`;
-
-  // Msecret
-  document.getElementById('msCurrentUser').textContent = acc.name;
-  msUser = user;
-
-  // Notifs
-  const notifs = getNotifications();
-  if (notifs.length > 0) {
-    document.getElementById('notifBadge').style.display = 'flex';
-    document.getElementById('notifBadge').textContent = Math.min(notifs.length, 9);
-  }
-
-  document.getElementById('mainWrap').classList.add('visible');
-  addNotification(`${acc.emoji} ${acc.name} vient de se connecter`);
-  toast(`Bienvenue ${acc.name} ${acc.emoji} !`);
-  renderGallery();
-  initQuiz();
-  initMsecret();
-};
+  window._currentFirebaseUser = user;
+  window._currentProfile = _pendingProfileChoice;
+  window._showSuccessAndEnter(_pendingProfileChoice, user.email);
+}
 
 // ══════════════════════
 //  SITE DATA & LOGIC
 // ══════════════════════
+const ACCOUNTS_LOCAL = {
+  rayan: { name:'Rayan', role:'Le créateur du site', emoji:'👦' },
+  salma: { name:'Salmouchee', role:'La personne la plus spéciale', emoji:'👧' }
+};
+
 const START=new Date("2026-05-03T00:00:00");
 const BDAY=new Date("2026-10-26T00:00:00");
 const MSGS={0:{icon:"💬",title:"Le premier jour",content:"Aujourd'hui c'est le premier jour de ce compte à rebours, et je voulais juste te dire que tu es ma personne préférée au monde.\n\nChaque jour qui passe me rapproche de toi, Salmouchee. Je t'aime."},1:{icon:"🌙",title:"Bête de journée",content:"Hier on a passé une journée géniale avec ta maman.\n\nD'ailleurs fait lui savoir qu'elle cuisine vraiment bien hohoho. Je suis tellement heureux de te connaître."},2:{icon:"💌",title:"Une lettre",content:"Salma,\n\nJe pense beaucoup à toi ça me fait tellement bizarre d'aller à la fac sans que tu sois là.\n\nOn se voit pour manger après tfaçon nan ? je t'aime mimiche."},3:{icon:"🗺️",title:"Ensemble",content:"Un jour on ira quelque part ensemble, juste pour le plaisir.\n\nPas besoin que ce soit grand. Juste toi, moi, et un bon moment à raconter plus tard."},4:{icon:"📸",title:"Notre photo",content:"Il y a des moments qu'on n'a pas pris en photo mais qu'on n'oublie jamais.\n\nT'en as sûrement un toi aussi. Moi oui. Et tu joues dedans. 🌸"},5:{icon:"❤️",title:"Salma écoute moi",content:"N'écoute pas cette vicieuse moi je t'aimerais jusqu'à la fin de ma vie.\n\nPersonne pourra te remplacer. La condescendance ne mène à nul part, elle me dégoûte, c'est signe d'un cœur noir or que le tien est blanc. 🌸"},6:{icon:"✨",title:"Je sais que c'est dur",content:"Je sais que cest dur en ce moment mais Salma je ne cesse pas de t'aimer.\nJe m'en fiche de l'avis des autres moi c'est toi que je veux aimer.\nOn ne peut quand meme pas enlever ma salma d'amour .\n\nJe laisserais personne me faire changer d'avis, personne."},7:{icon:"🌸",title:"Juste pour toi",content:"Aujourd'hui j'avais juste envie de te dire que je pense à toi, et que ça me suffit comme raison d'écrire."},8:{icon:"☕",title:"Les matins",content:"Les matins seraient tellement mieux avec toi.\n\nJuste un café, une conversation tranquille. Ça doit être mignon."},9:{icon:"🌊",title:"Quelque chose de calme",content:"Il y a quelque chose de très calme dans ce que je ressens pour toi.\n\nJuste une certitude douce que t'es importante. C'est rare ça."},10:{icon:"🎀",title:"Hello Kitty t'envie",content:"Tu sais ce que Hello Kitty et toi avez en commun ?\n\nVous rendez le monde plus mignon juste en existant dedans. Hello Kitty t'envie, je t'assure."},11:{icon:"💪",title:"Ta force",content:"T'as une force en toi que tu vois pas forcément.\n\nMoi je la vois. Dans ta façon de gérer les choses, de continuer même quand c'est dur. Elle me bluffe, vraiment."},12:{icon:"🌟",title:"Tu brilles",content:"T'as cette capacité à être lumineuse même sans t'en rendre compte.\n\nSoit t'as, soit t'as pas. Et toi t'as. En abondance."},13:{icon:"🏴‍☠️",title:"She's my Nakama",content:"Tu sais dans One Piece, Luffy dit que ses nakamas c'est son trésor ?\n\nMon trésor à moi il s'appelle Salmouchee."},14:{icon:"🎮",title:"Tomodachi Life",content:"Si on était des personnages Tomodachi Life, je suis sûr que notre compatibilité serait à 100%.\n\nAvec toi même les imperfections ont l'air d'aller de soi."},15:{icon:"🌙",title:"Les nuits",content:"Les nuits où je dors pas bien, je pense à des trucs simples.\n\nUne conversation qu'on a eu. Un truc drôle que t'as dit. Et bizarrement ça suffit à rendre la nuit plus douce."},16:{icon:"💭",title:"Dans ma tête",content:"T'es dans ma tête plus souvent que tu le réalises.\n\nC'est dingue comme quelqu'un peut prendre autant de place sans même être là."},17:{icon:"🙏",title:"Merci",content:"Merci d'être toi, d'être là, de me rendre la vie plus colorée.\n\nT'es un cadeau même si tu réalises pas à quel point."},18:{icon:"🔮",title:"L'avenir",content:"Dans tous les scénarios que j'imagine pour l'avenir, t'es là.\n\nT'es devenue une évidence pour moi. Et les évidences, on les protège."},19:{icon:"🕊️",title:"La paix",content:"Il y a quelque chose de très paisible dans le fait de penser à toi.\n\nJuste une chaleur tranquille qui dit que tout va bien."},20:{icon:"🌺",title:"Fleurir",content:"T'as la même façon que les fleurs de rendre l'espace autour de toi plus beau.\n\nSauf que toi tu fanes jamais. Et ça c'est encore mieux."},21:{icon:"⚓",title:"L'ancre",content:"T'es les deux en même temps pour moi — celle qui me donne envie d'aller plus loin, et celle qui me donne envie de rester."},22:{icon:"💫",title:"Unique",content:"Il n'y a qu'une seule toi dans tout l'univers. J'ai la chance de connaître cette personne. Je mesure cette chance."},23:{icon:"🎯",title:"La promesse",content:"Je te promets pas la perfection. Je te promets juste d'être là, sincèrement.\n\nDes actes constants et honnêtes. C'est ça que je t'offre."},24:{icon:"🧸",title:"Ton doudou",content:"Si j'étais un doudou, je voudrais être celui que tu sortirais les soirs où ça va pas, et que tu rangeras plus jamais. Voilà mon ambition."},25:{icon:"🌅",title:"La veille",content:"Demain c'est ton anniversaire, Salmouchee.\n\nJe voulais juste te dire merci. Merci d'exister. Merci d'être toi."}};
@@ -1365,8 +1275,73 @@ let playing=false;const aud=document.getElementById('bgAudio');aud.volume=.4;
 function toggleMusic(){const fab=document.getElementById('musicFab');if(playing){aud.pause();playing=false;fab.textContent='🎵';fab.classList.remove('playing');toast('🔇 Musique pausée');}else{aud.play().catch(()=>{});playing=true;fab.textContent='🔇';fab.classList.add('playing');toast('🎵 Musique lancée');}}
 window.addEventListener('scroll',()=>{const b=document.getElementById('fabTop');window.scrollY>320?b.classList.add('vis'):b.classList.remove('vis');});
 
-// GALERIE
+// ── onLoggedIn ──
 let currentUser = null;
+window.onLoggedIn = function(user, email) {
+  const acc = ACCOUNTS_LOCAL[user];
+  const partner = user === 'rayan' ? 'salma' : 'rayan';
+  const partnerAcc = ACCOUNTS_LOCAL[partner];
+
+  currentUser = user;
+
+  // User bar
+  document.getElementById('userBar').classList.add('visible');
+  const ubAv = document.getElementById('ubAvatar');
+  ubAv.style.background = user === 'rayan'
+    ? 'linear-gradient(135deg,var(--rose),var(--deep))'
+    : 'linear-gradient(135deg,#9b59b6,#6c3483)';
+  ubAv.textContent = acc.emoji;
+  ubAv.innerHTML += '<div class="ub-online-dot"></div>';
+  document.getElementById('ubName').textContent = acc.name;
+
+  // Sidebar profile
+  document.getElementById('sbUserProfile').style.display = 'flex';
+  const sbAv = document.getElementById('sbUserAv');
+  sbAv.style.background = user === 'rayan'
+    ? 'linear-gradient(135deg,var(--rose),var(--deep))'
+    : 'linear-gradient(135deg,#9b59b6,#6c3483)';
+  sbAv.textContent = acc.emoji;
+  document.getElementById('sbUserName').textContent = acc.name;
+  document.getElementById('sbUserEmail').textContent = email || '';
+
+  // Partner card
+  document.getElementById('partnerCard').style.display = 'flex';
+  const pav = document.getElementById('partnerAv');
+  pav.style.background = partner === 'rayan'
+    ? 'linear-gradient(135deg,var(--rose),var(--deep))'
+    : 'linear-gradient(135deg,#9b59b6,#6c3483)';
+  pav.textContent = partnerAcc.emoji;
+  document.getElementById('partnerName').textContent = partnerAcc.name;
+
+  // Gallery
+  document.getElementById('galleryAvatar').className = 'gub-avatar ' + (user === 'rayan' ? 'av-rayan' : 'av-salma');
+  document.getElementById('galleryAvatar').textContent = acc.emoji;
+  document.getElementById('galleryUsername').textContent = acc.name;
+  document.getElementById('galleryPartnerBadge').textContent = `👀 ${partnerAcc.name} peut voir tes photos`;
+
+  // Carte
+  document.getElementById('carteFrom').textContent = `De ${acc.name}`;
+  document.getElementById('carteSig').textContent = `— ${acc.name} ${user === 'rayan' ? '❤️' : '🌸'}`;
+
+  // Msecret
+  document.getElementById('msCurrentUser').textContent = acc.name;
+
+  // Notifs
+  const notifs = getNotifications();
+  if (notifs.length > 0) {
+    document.getElementById('notifBadge').style.display = 'flex';
+    document.getElementById('notifBadge').textContent = Math.min(notifs.length, 9);
+  }
+
+  document.getElementById('mainWrap').classList.add('visible');
+  addNotification(`${acc.emoji} ${acc.name} vient de se connecter`);
+  toast(`Bienvenue ${acc.name} ${acc.emoji} !`);
+  renderGallery();
+  initQuiz();
+  initMsecret();
+};
+
+// GALERIE
 function getPhotos(){try{return JSON.parse(localStorage.getItem('gallery_photos')||'[]');}catch{return[];}}
 function savePhotos(p){localStorage.setItem('gallery_photos',JSON.stringify(p));}
 function renderGallery(){
@@ -1434,14 +1409,13 @@ function saveObjs(o){localStorage.setItem('objectifs',JSON.stringify(o));}
 function renderObj(){const objs=getObjs();const list=document.getElementById('objList');list.innerHTML='';document.getElementById('objEmpty').style.display=objs.length?'none':'block';objs.forEach((o,i)=>{const d=document.createElement('div');d.className='obj-item'+(o.done?' done-item':'');d.innerHTML=`<button class="obj-check-btn${o.done?' checked':''}" data-i="${i}">${o.done?'✓':''}</button><div class="obj-text">${o.text}</div><button class="obj-del-btn" data-i="${i}">🗑</button>`;d.querySelector('.obj-check-btn').onclick=function(){const idx=parseInt(this.dataset.i);const ob=getObjs();ob[idx].done=!ob[idx].done;saveObjs(ob);renderObj();};d.querySelector('.obj-del-btn').onclick=function(){const idx=parseInt(this.dataset.i);const ob=getObjs();ob.splice(idx,1);saveObjs(ob);renderObj();toast('Objectif supprimé');};list.appendChild(d);});}
 function addObj(){const v=document.getElementById('objInput').value.trim();if(!v)return;const ob=getObjs();ob.push({text:v,done:false,author:currentUser||'rayan'});saveObjs(ob);document.getElementById('objInput').value='';renderObj();toast('📝 Objectif ajouté !');if(currentUser)addNotification(`${ACCOUNTS_LOCAL[currentUser].emoji} ${ACCOUNTS_LOCAL[currentUser].name} a ajouté un objectif : "${v}"`);}
 
-let msUser='rayan';
 function initMsecret(){
-  if(currentUser){msUser=currentUser;document.getElementById('msCurrentUser').textContent=ACCOUNTS_LOCAL[currentUser].name;}
+  if(currentUser){document.getElementById('msCurrentUser').textContent=ACCOUNTS_LOCAL[currentUser].name;}
   renderMsMsgs();
 }
 function sendMsMsg(){
   const txt=document.getElementById('msMsgInput').value.trim();if(!txt){toast('Écris quelque chose 🌸');return;}
-  const u=currentUser||msUser;
+  const u=currentUser||'rayan';
   const msgs=JSON.parse(localStorage.getItem('ms_msgs')||'[]');
   msgs.unshift({text:txt,author:u,date:new Date().toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})});
   if(msgs.length>30)msgs.pop();localStorage.setItem('ms_msgs',JSON.stringify(msgs));
@@ -1465,7 +1439,6 @@ function saveSouvenir(){const title=document.getElementById('svTitle').value.tri
 function renderSouvenirs(){const sv=JSON.parse(localStorage.getItem('souvenirs')||'[]');const all=[...DEFAULT_SOUVENIRS,...sv];const list=document.getElementById('souvenirList');list.innerHTML='';all.forEach((s,i)=>{const d=document.createElement('div');d.className='sv-item';const isCustom=i>=DEFAULT_SOUVENIRS.length;d.innerHTML=`<div class="sv-item-date">${s.ico||'🌸'} ${s.date}${isCustom?` <button class="sv-del" onclick="delSouvenir(${i-DEFAULT_SOUVENIRS.length})">🗑</button>`:''}</div><div class="sv-item-title">${s.title}</div><div class="sv-item-txt">${s.txt}</div>`;list.appendChild(d);});}
 function delSouvenir(i){const sv=JSON.parse(localStorage.getItem('souvenirs')||'[]');sv.splice(i,1);localStorage.setItem('souvenirs',JSON.stringify(sv));renderSouvenirs();toast('Souvenir supprimé');}
 
-// NOTIFICATIONS
 function getNotifications(){try{return JSON.parse(localStorage.getItem('notifications')||'[]');}catch{return[];}}
 function addNotification(msg){const notifs=getNotifications();notifs.unshift({msg,time:new Date().toLocaleString('fr-FR',{hour:'2-digit',minute:'2-digit'})});if(notifs.length>20)notifs.pop();localStorage.setItem('notifications',JSON.stringify(notifs));}
 function toggleNotif(){const panel=document.getElementById('notifPanel');panel.classList.toggle('open');if(panel.classList.contains('open')){renderNotifications();document.getElementById('notifBadge').style.display='none';}}
